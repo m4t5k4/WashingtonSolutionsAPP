@@ -3,15 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\core",
-    "\\src\\app\\core\\authentication",
-    "\\src\\app\\core\\guards",
-    "\\src\\app\\core\\interceptors",
-    "\\src\\app\\core\\services",
     "\\src\\app\\modules",
-    "\\src\\app\\shared",
-    "\\src\\app\\shared\\components"
+    "\\src\\app\\modules\\admin\\competition",
+    "\\src\\app\\modules\\admin\\table",
+    "\\src\\app\\modules\\admin\\team",
+    "\\src\\app\\modules\\admin\\tournament",
+    "\\src\\app\\modules\\admin\\user",
+    "\\src\\app\\modules\\user\\team"
   ],
-  "SelectedNode": "\\src\\app\\core\\services",
+  "SelectedNode": "\\src\\app",
   "PreviewInSolutionExplorer": false
 }
