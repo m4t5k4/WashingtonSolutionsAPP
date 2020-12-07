@@ -4,10 +4,12 @@
     "\\WashingtonSolutions",
     "\\WashingtonSolutions\\src",
     "\\WashingtonSolutions\\src\\app",
-    "\\WashingtonSolutions\\src\\app\\modules",
-    "\\WashingtonSolutions\\src\\app\\modules\\home",
-    "\\WashingtonSolutions\\src\\app\\modules\\home\\homepage"
+    "\\WashingtonSolutions\\src\\app\\shared",
+    "\\WashingtonSolutions\\src\\app\\shared\\components",
+    "\\WashingtonSolutions\\src\\app\\shared\\components\\error\\error403",
+    "\\WashingtonSolutions\\src\\app\\shared\\components\\error\\error404",
+    "\\WashingtonSolutions\\src\\app\\shared\\models"
   ],
-  "SelectedNode": "\\WashingtonSolutions\\src\\app\\modules\\home\\home.module.ts",
+  "SelectedNode": "\\WashingtonSolutions\\src\\app\\shared\\models\\user.model.ts",
   "PreviewInSolutionExplorer": false
 }
