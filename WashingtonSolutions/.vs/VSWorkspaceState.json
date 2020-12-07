@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\modules",
+    "\\src\\app\\modules\\admin\\competition",
+    "\\src\\app\\modules\\admin\\table",
+    "\\src\\app\\modules\\admin\\team",
+    "\\src\\app\\modules\\admin\\tournament",
+    "\\src\\app\\modules\\admin\\user",
+    "\\src\\app\\modules\\user\\team"
+  ],
+  "SelectedNode": "\\src\\app",
+  "PreviewInSolutionExplorer": false
+}
