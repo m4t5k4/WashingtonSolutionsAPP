@@ -14,7 +14,7 @@ import { LoginComponent } from './modules/home/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     Error403Component,
 
     FooterComponent,
-    NavigationbarComponent
+    NavigationbarComponent,
 
     AlertComponent,
     LoginComponent
@@ -31,7 +31,8 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
