@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\core",
+    "\\src\\app\\core\\authentication",
+    "\\src\\app\\core\\guards",
+    "\\src\\app\\core\\interceptors",
+    "\\src\\app\\core\\services",
+    "\\src\\app\\modules",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\components"
+  ],
+  "SelectedNode": "\\src\\app\\core\\services",
+  "PreviewInSolutionExplorer": false
+}
