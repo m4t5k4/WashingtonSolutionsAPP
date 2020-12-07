@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService} from '../../../core/services/account.service';
+import { AlertService } from '../../../core/services/alert.service';
+import { first } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
   
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private alertService: AlertService
@@ -45,7 +50,7 @@ export class LoginComponent implements OnInit {
         next: () => {
           // get return url from query parameters or default to home page
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl("/dashboard");
+          this.router.navigateByUrl("/home");
         },
         error: error => {
           this.alertService.error(error);
