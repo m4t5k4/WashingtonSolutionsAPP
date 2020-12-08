@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
 
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -12,7 +13,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        FlexLayoutModule
+    FlexLayoutModule,
+    MatTableModule
     ],
     declarations: [],
     exports: [
@@ -20,7 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-
+      MatTableModule,
         MaterialModule,
         FlexLayoutModule
     ]

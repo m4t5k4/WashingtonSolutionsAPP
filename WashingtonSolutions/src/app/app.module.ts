@@ -16,6 +16,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 
+import { TableModule } from './modules/admin/table/table.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +28,19 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationbarComponent,
 
     AlertComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule
+  ],
+  exports: [
+    SharedModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
