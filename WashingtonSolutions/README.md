@@ -29,3 +29,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Run `npm install bootstrap --save` to install bootstrap
 In case of any error run `npm audit fix` after `npm install bootstrap --save`
 
+ng add @angular/localize
+npm install @ng-bootstrap/ng-bootstrap

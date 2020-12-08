@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        NgbModule
     ],
     declarations: [],
     exports: [
@@ -22,7 +24,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         RouterModule,
 
         MaterialModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        NgbModule
     ]
 })
 export class SharedModule {}
