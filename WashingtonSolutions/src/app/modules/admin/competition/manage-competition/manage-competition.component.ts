@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Competition } from 'src/app/shared/models/competition.model';
+import { CompetitionService } from '../../../../core/services/competition.service';
 
 @Component({
   selector: 'app-manage-competition',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCompetitionComponent implements OnInit {
 
-  constructor() { }
+  competitions: Competition[];
+
+  constructor(private _competitionService: CompetitionService) { 
+    this._competitionService.getCompetitions().subscribe(
+      result => {
+        this.competitions = result;
+        console.log(this.competitions);
+      }
+    )
+  }
 
   ngOnInit(): void {
   }
