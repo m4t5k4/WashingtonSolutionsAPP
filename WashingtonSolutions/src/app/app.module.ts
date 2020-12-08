@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { GroupComponent } from './modules/admin/group/group.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationbarComponent,
 
     AlertComponent,
-    LoginComponent
+    LoginComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
