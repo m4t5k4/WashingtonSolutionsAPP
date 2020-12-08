@@ -16,6 +16,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CompetitionModule } from './modules/admin/competition/competition.module';
+import { RegisterComponent } from './modules/home/register/register.component';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,6 @@ import { CompetitionModule } from './modules/admin/competition/competition.modul
     NavigationbarComponent,
 
     AlertComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +36,7 @@ import { CompetitionModule } from './modules/admin/competition/competition.modul
     SharedModule,
     HttpClientModule,
     CompetitionModule,
+    HomeModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
