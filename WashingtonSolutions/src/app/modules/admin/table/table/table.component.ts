@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableService } from 'src/app/core/services/table.service'
-import {Table} from 'src/app/shared/models/table.model'
+import { Table } from 'src/app/shared/models/table.model'
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -9,7 +10,11 @@ import {Table} from 'src/app/shared/models/table.model'
 })
 export class TableComponent implements OnInit {
 
-  constructor(private _tableService: TableService) {
+  constructor(
+    private _tableService: TableService,
+    private route: ActivatedRoute,
+    private router: Router)
+  {
     this.getTables()
     };
   
@@ -19,8 +24,14 @@ export class TableComponent implements OnInit {
 
   //CRUD methods
 
-  deleteTable(table: Table) {
-    this._tableService.deleteTable(table.TableID)
+  deleteTable(id:number) {
+    this._tableService.deleteTable(id).subscribe({
+      next: () => {
+        //refresh table
+        this.getTables()
+
+      }
+    })
 }
 
   getTables() {

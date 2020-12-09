@@ -17,13 +17,13 @@ export class TableService {
   }
 
   addTable(table: Table) {
-    return this.http.post("https://kickerapi.azurewebsites.net/api/tables", table).subscribe(result => {
-    })
+    return this.http.post("https://kickerapi.azurewebsites.net/api/tables", table)
+      //.subscribe(result => {})  ???waarom deed ik dit?
   }
 
   deleteTable(id: number) {
     console.log("delete table " + id)
-    return this.http.delete("https://kickerapi.azurewebsites.net/api/tables" + id);
+    return this.http.delete("https://kickerapi.azurewebsites.net/api/Tables/" + id);
   }
 
 

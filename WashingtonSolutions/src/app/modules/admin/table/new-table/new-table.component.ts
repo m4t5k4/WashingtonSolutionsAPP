@@ -26,7 +26,8 @@ export class NewTableComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       tablename: ['', Validators.required],
-      companyname: ['', Validators.required]
+      companyname: ['', Validators.required],
+      address: ['', Validators.required]
     });
   }
 
@@ -45,9 +46,20 @@ export class NewTableComponent implements OnInit {
     }
 
     this.loading = true;
-    var t = new Table(0, this.f.tablename.value, this.f.companyname.value, "", 1, 1)
+    var t = new Table(0, this.f.tablename.value, this.f.companyname.value, this.f.address.value, 1, 1)
+    //TODO: userID == ingelogde gebruiker
     console.log(t)
     this._tableService.addTable(t)
+      .subscribe({
+        next: () => {
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigateByUrl("/table");
+        },
+        error: error => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
       
   }
     
