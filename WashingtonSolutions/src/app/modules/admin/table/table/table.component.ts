@@ -32,7 +32,11 @@ export class TableComponent implements OnInit {
 
       }
     })
-}
+  }
+
+  editTable(id: number) {
+    this.router.navigateByUrl("/table/" + id);
+  }
 
   getTables() {
     this._tableService.getTables().subscribe(result => {
