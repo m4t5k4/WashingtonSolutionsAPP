@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "WashingtonSolutions"
+    }
+  },
+  "defaultProject": "WashingtonSolutions",
+  "cli": {
+    "analytics": "09e6f8f2-d81e-4fae-999b-397453474d0d"
+  }
 }
