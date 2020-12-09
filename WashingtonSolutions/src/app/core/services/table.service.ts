@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { FoosballTable } from 'src/app/shared/models/foosball-table.model'
+import { Table } from 'src/app/shared/models/table.model'
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,19 @@ export class TableService {
 
   constructor(private http: HttpClient) { }
 
-  getTables(): Observable<FoosballTable[]> {
-    return  this.http.get<FoosballTable[]>("http://localhost:5000/api/tables");
+  getTables(): Observable<Table[]> {
+    return  this.http.get<Table[]>("https://kickerapi.azurewebsites.net/api/tables");
     
+  }
+
+  addTable(table: Table) {
+    return this.http.post("https://kickerapi.azurewebsites.net/api/tables", table).subscribe(result => {
+    })
+  }
+
+  deleteTable(id: number) {
+    console.log("delete table " + id)
+    return this.http.delete("https://kickerapi.azurewebsites.net/api/tables" + id);
   }
 
 

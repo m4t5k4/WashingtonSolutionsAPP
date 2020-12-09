@@ -4,13 +4,20 @@ import { HomepageComponent } from './modules/home/homepage/homepage.component';
 import { Error404Component } from './shared/components/error/error404/error404.component';
 import { LoginComponent } from './modules/home/login/login.component';
 import { TableComponent } from './modules/admin/table/table/table.component';
+import { NewTableComponent } from './modules/admin/table/new-table/new-table.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'table', component: TableComponent },
-  { path: '**', component: Error404Component },
+  { path: 'addtable', component: NewTableComponent },
   //TODO: childrenroutes
+
+
+  //moet laatst blijven staan.
+  { path: '**', component: Error404Component },
+  
+  
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableService } from 'src/app/core/services/table.service'
-import {FoosballTable} from 'src/app/shared/models/foosball-table.model'
+import {Table} from 'src/app/shared/models/table.model'
 
 @Component({
   selector: 'app-table',
@@ -14,13 +14,13 @@ export class TableComponent implements OnInit {
     };
   
 
-  tables: FoosballTable[];
+  tables: Table[];
   columnsToDisplay = ['userID', 'name', 'companyname', 'address','contact','verwijderen'];
 
   //CRUD methods
 
-  deleteUser(table: FoosballTable) {
-
+  deleteTable(table: Table) {
+    this._tableService.deleteTable(table.TableID)
 }
 
   getTables() {
