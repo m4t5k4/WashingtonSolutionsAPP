@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../../shared/models/user.model';
+import { NewUser } from '../../shared/models/new-user.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -42,7 +43,7 @@ export class AccountService {
     this.router.navigate(['/login']);
   }
 
-  register (user: User) {
+  register (user: NewUser) {
     return this.http.post(`${environment.apiUrl}/users`, user);
   }
 

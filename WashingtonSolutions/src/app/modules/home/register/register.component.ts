@@ -26,10 +26,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(4)],],
+      email: ['', Validators.required],
+      birthday: ['', Validators.required]
     });
   }
 
@@ -49,18 +51,21 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     let values = this.form.value;
     var newUser = {
-      roleID : 1,
+      roleID : 2,
       username: values.username,
       password: values.password,
-      firstname: values.firstName,
-      lastname: values.lastName,
+      firstName: values.firstName,
+      lastName: values.lastName,
       email: values.email,
-      birthday: null,
-      token: null,
-      userPicture: null,
-      userID: null,
-      groupID: null
+      birthday: values.birthday, //string->DateTime
+      //token: null, //mag weg
+      //userPicture: null, //mag weg
+      //userID: null, //mag weg
+      //groupID: null //moet nullable
     }
+
+    console.log(newUser);
+
     this.accountService.register(newUser)
       .pipe(first())
       .subscribe({

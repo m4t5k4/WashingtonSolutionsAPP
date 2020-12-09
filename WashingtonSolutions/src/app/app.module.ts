@@ -10,14 +10,13 @@ import { FooterComponent } from './shared/components/templates/footer/footer.com
 import { NavigationbarComponent } from './shared/components/templates/navigationbar/navigationbar.component';
 
 import { AlertComponent } from './shared/components/alert/alert.component';
-import { LoginComponent } from './modules/home/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CompetitionModule } from './modules/admin/competition/competition.module';
-import { RegisterComponent } from './modules/home/register/register.component';
 import { HomeModule } from './modules/home/home.module';
+import { UserModule } from './modules/admin/user/user.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,8 @@ import { HomeModule } from './modules/home/home.module';
     SharedModule,
     HttpClientModule,
     CompetitionModule,
-    HomeModule
+    HomeModule,
+    UserModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
