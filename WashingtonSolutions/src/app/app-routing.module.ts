@@ -11,6 +11,7 @@ import { RegisterComponent } from './modules/home/register/register.component';
 import { ListComponent as UserListComponent } from './modules/admin/user/list/list.component';
 import { DetailComponent as UserDetailComponent } from './modules/admin/user/detail/detail.component';
 import { ListComponent as GameListComponent } from './modules/admin/game/list/list.component';
+import { GroupComponent } from './modules/admin/group/group.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -30,11 +31,10 @@ const routes: Routes = [
   { path: 'table/:id', component: EditTableComponent },
   //TODO: childrenroutes
 
+  { path: 'group', component: GroupComponent },
 
   //moet laatst blijven staan.
   { path: '**', component: Error404Component },
-  
-  
 ];
 
 @NgModule({

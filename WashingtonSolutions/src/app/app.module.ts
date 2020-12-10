@@ -21,6 +21,7 @@ import { UserModule } from './modules/admin/user/user.module';
 import { TableModule } from './modules/admin/table/table.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameModule } from './modules/admin/game/game.module';
+import { GroupComponent } from './modules/admin/group/group.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,8 @@ import { GameModule } from './modules/admin/game/game.module';
     FooterComponent,
     NavigationbarComponent,
 
-    AlertComponent
-
+    AlertComponent,
+    GroupComponent
   ],
 
   imports: [
@@ -48,7 +49,6 @@ import { GameModule } from './modules/admin/game/game.module';
     GameModule
   ],
   exports: [
-    SharedModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
