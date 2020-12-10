@@ -10,6 +10,29 @@ import { User } from '../../../models/user.model';
 })
 export class NavigationbarComponent implements OnInit {
   user: User;
+
+  navUser = [
+    { link: '/', title: 'Mijn wedstrijden' },
+    { link: '/', title: 'Mijn ploeg' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' }
+  ]
+  navCaptain = [
+    { link: '/', title: 'Mijn ploeg' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' }
+  ]
+  navAdmin = [
+    { link: '/admin/list', title: 'Gebruikers' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' },
+    { link: '/', title: 'link' }
+  ]
+
   constructor(
     private accountService: AccountService
   ) {
