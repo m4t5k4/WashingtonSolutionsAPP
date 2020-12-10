@@ -12,10 +12,10 @@ export class ManageCompetitionComponent implements OnInit {
   competitions: Competition[];
 
   constructor(private _competitionService: CompetitionService) { 
+    // subscribe to GET competitions
     this._competitionService.getCompetitions().subscribe(
       result => {
         this.competitions = result;
-        console.log(this.competitions);
       }
     )
   }

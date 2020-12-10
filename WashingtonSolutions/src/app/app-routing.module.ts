@@ -11,7 +11,7 @@ import { RegisterComponent } from './modules/home/register/register.component';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'competition', component: ManageCompetitionComponent},
+  { path: 'competitions', component: ManageCompetitionComponent},
   { path: 'add-competition', component: AddCompetitionComponent},
   { path: 'edit-competition', component: EditCompetitionComponent},
   { path: 'register', component: RegisterComponent},
