@@ -28,6 +28,10 @@ export class ManageCompetitionComponent implements OnInit {
     )
   }
 
+  editCompetition(id) {
+    this.router.navigateByUrl("/edit-competition/" + id);
+  }
+
   deleteCompetition(id) {
     var competitionID: number = + id;
     // subscribe to DELETE competitions

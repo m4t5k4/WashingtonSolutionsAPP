@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'competitions', component: ManageCompetitionComponent},
   { path: 'add-competition', component: AddCompetitionComponent},
-  { path: 'edit-competition', component: EditCompetitionComponent},
+  { path: 'edit-competition/:id', component: EditCompetitionComponent},
   { path: 'register', component: RegisterComponent},
   { path: '**', component: Error404Component }
 ];

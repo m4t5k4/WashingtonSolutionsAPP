@@ -21,18 +21,28 @@ export class CompetitionService {
     return this.http.get<Competition[]>(`${environment.apiUrl}/competitions`);
   }
 
+  // GET competition by id
+  public getCompetitionById(id: number) {
+    return this.http.get<Competition>(`${environment.apiUrl}/competitions/` + id);
+  }
+
   // GET gameTypes
   public getGameTypes() {
     return this.http.get<GameType[]>(`${environment.apiUrl}/gametypes`);
   }
 
   // POST competition
-  public postCompetition(competition) {
+  public postCompetition(competition: Competition) {
     return this.http.post<Competition>(`${environment.apiUrl}/competitions`, competition);
   }
 
+  // PUT competition
+  public putCompetition(id: number, competition: Competition) {
+    return this.http.put<Competition>(`${environment.apiUrl}/competitions/` + id, competition);
+  }
+
   // DELETE competition
-  public deleteCompetition(competitionID) {
+  public deleteCompetition(competitionID: number) {
     return this.http.delete<Competition>(`${environment.apiUrl}/competitions/` + competitionID);
   }
 }

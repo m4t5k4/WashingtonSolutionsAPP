@@ -38,7 +38,6 @@ export class AddCompetitionComponent implements OnInit {
       },
       error: error => {
         console.log(error);
-        console.log(c)
       }
     });
   }
