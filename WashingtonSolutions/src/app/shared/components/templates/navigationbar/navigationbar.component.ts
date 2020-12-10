@@ -28,8 +28,8 @@ export class NavigationbarComponent implements OnInit {
   navAdmin = [
     { link: '/admin/user/list', title: 'Gebruikers' },
     { link: '/admin/game/list', title: 'Wedstrijden' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
+    { link: '/table', title: 'Tafels' },
+    { link: '/', title: 'Ploegen' },
     { link: '/', title: 'link' }
   ]
 
