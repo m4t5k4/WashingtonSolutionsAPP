@@ -2,14 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app\\modules\\admin\\competition",
+    "\\src\\app",
+    "\\src\\app\\core",
+    "\\src\\app\\core\\services",
+    "\\src\\app\\modules",
+    "\\src\\app\\modules\\admin",
     "\\src\\app\\modules\\admin\\table",
-    "\\src\\app\\modules\\admin\\team",
-    "\\src\\app\\modules\\admin\\tournament",
-    "\\src\\app\\modules\\admin\\user",
-    "\\src\\app\\modules\\user\\team",
-    "\\src\\app\\shared\\components\\templates"
+    "\\src\\app\\modules\\admin\\table\\edit-table",
+    "\\src\\app\\modules\\admin\\table\\new-table"
   ],
-  "SelectedNode": "\\src\\index.html",
+  "SelectedNode": "\\src\\app\\core\\services\\table.service.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -4,12 +4,14 @@
     "\\WashingtonSolutions",
     "\\WashingtonSolutions\\src",
     "\\WashingtonSolutions\\src\\app",
-    "\\WashingtonSolutions\\src\\app\\shared",
-    "\\WashingtonSolutions\\src\\app\\shared\\components",
-    "\\WashingtonSolutions\\src\\app\\shared\\components\\error\\error403",
-    "\\WashingtonSolutions\\src\\app\\shared\\components\\error\\error404",
+    "\\WashingtonSolutions\\src\\app\\core",
+    "\\WashingtonSolutions\\src\\app\\core\\services",
+    "\\WashingtonSolutions\\src\\app\\modules",
+    "\\WashingtonSolutions\\src\\app\\modules\\admin",
+    "\\WashingtonSolutions\\src\\app\\modules\\admin\\table",
+    "\\WashingtonSolutions\\src\\app\\modules\\admin\\table\\table",
     "\\WashingtonSolutions\\src\\app\\shared\\models"
   ],
-  "SelectedNode": "\\WashingtonSolutions\\src\\app\\shared\\models\\user.model.ts",
+  "SelectedNode": "\\WashingtonSolutions\\src\\app\\modules\\admin\\table\\table\\table.component.html",
   "PreviewInSolutionExplorer": false
 }

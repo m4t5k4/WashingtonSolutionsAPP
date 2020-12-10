@@ -18,6 +18,8 @@ import { CompetitionModule } from './modules/admin/competition/competition.modul
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/admin/user/user.module';
 
+import { TableModule } from './modules/admin/table/table.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,15 +30,19 @@ import { UserModule } from './modules/admin/user/user.module';
     NavigationbarComponent,
 
     AlertComponent,
+    LoginComponent,
+
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    CompetitionModule,
-    HomeModule,
-    UserModule
+    TableModule
+  ],
+  exports: [
+    SharedModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

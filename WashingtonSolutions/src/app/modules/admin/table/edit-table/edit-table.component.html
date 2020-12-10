@@ -1,0 +1,40 @@
+<div class="card">
+  <h4 class="card-header">Tafel Bewerken</h4>
+  <div *ngIf="data" class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="tableName">Tafelnaam</label>
+        <input type="text" formControlName="tableName" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.tableName.errors }" />
+        <div *ngIf="submitted && f.tableName.errors" class="invalid-feedback">
+          <div *ngIf="f.tableName.errors.required">Tablename is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="companyName">Bedrijfsnaam</label>
+        <input type="text" formControlName="companyName" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+        <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+          <div *ngIf="f.companyName.errors.required">Companyname is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" formControlName="address" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required">Address is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Aanpassen
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

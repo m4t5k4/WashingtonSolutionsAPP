@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './modules/home/homepage/homepage.component';
 import { Error404Component } from './shared/components/error/error404/error404.component';
 import { LoginComponent } from './modules/home/login/login.component';
+import { TableComponent } from './modules/admin/table/table/table.component';
+import { NewTableComponent } from './modules/admin/table/new-table/new-table.component';
+import { EditTableComponent } from './modules/admin/table/edit-table/edit-table.component';
 import { ManageCompetitionComponent } from './modules/admin/competition/manage-competition/manage-competition.component';
 import { RegisterComponent } from './modules/home/register/register.component';
 import { ListComponent } from './modules/admin/user/list/list.component';
@@ -18,6 +21,17 @@ const routes: Routes = [
   { path: 'admin/edit/:id', component: DetailComponent},
   { path: 'admin/add', component: DetailComponent },
   { path: '**', component: Error404Component }
+  { path: 'login', component: LoginComponent },
+  { path: 'table', component: TableComponent },
+  { path: 'addtable', component: NewTableComponent },
+  { path: 'table/:id', component: EditTableComponent },
+  //TODO: childrenroutes
+
+
+  //moet laatst blijven staan.
+  { path: '**', component: Error404Component },
+  
+  
 ];
 
 @NgModule({
