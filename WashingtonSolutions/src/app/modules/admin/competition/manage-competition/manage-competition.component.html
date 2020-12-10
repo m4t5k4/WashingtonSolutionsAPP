@@ -24,7 +24,7 @@
         <td *ngIf="competition.winnerID">{{ competition.winnerID }}</td>
         <td>
           <button class="btn btn-info mr-2" routerLink="/edit-competition" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Edit</button>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger" (click)="deleteCompetition(competition.competitionID)">Delete</button>
         </td>
       </tr>
     </tbody>

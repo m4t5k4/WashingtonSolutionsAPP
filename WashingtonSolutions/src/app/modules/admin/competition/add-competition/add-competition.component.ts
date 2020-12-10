@@ -14,7 +14,7 @@ export class AddCompetitionComponent implements OnInit {
   gameTypes: GameType[];
   competition = new Competition(0,null,null,null);
 
-  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute,) { 
+  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) { 
     // subscribe to GET gameTypes
     this._competitionService.getGameTypes().subscribe(
       result => {
@@ -29,6 +29,8 @@ export class AddCompetitionComponent implements OnInit {
   addCompetition(){
     var gameTypeID: number = + this.competition.gameTypeID;
     var c = new Competition(0, this.competition.name, gameTypeID, null);
+
+    // subscribe to POST competition
     this._competitionService.postCompetition(c).subscribe({
       next: () => {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

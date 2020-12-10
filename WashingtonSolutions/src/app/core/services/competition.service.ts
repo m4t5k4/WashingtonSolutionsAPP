@@ -30,4 +30,9 @@ export class CompetitionService {
   public postCompetition(competition) {
     return this.http.post<Competition>(`${environment.apiUrl}/competitions`, competition);
   }
+
+  // DELETE competition
+  public deleteCompetition(competitionID) {
+    return this.http.delete<Competition>(`${environment.apiUrl}/competitions/` + competitionID);
+  }
 }
