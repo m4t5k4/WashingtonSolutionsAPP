@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'admin/list', component: ListComponent},
   { path: 'admin/edit/:id', component: DetailComponent},
   { path: 'admin/add', component: DetailComponent },
-  { path: '**', component: Error404Component }
   { path: 'login', component: LoginComponent },
   { path: 'table', component: TableComponent },
   { path: 'addtable', component: NewTableComponent },

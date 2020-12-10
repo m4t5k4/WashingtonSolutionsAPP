@@ -17,8 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CompetitionModule } from './modules/admin/competition/competition.module';
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/admin/user/user.module';
+import { LoginComponent } from './modules/home/login/login.component';
 
 import { TableModule } from './modules/admin/table/table.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,8 @@ import { TableModule } from './modules/admin/table/table.module';
     FooterComponent,
     NavigationbarComponent,
 
-    AlertComponent,
-    LoginComponent,
+    AlertComponent
+    //LoginComponent,
 
   ],
 
@@ -39,7 +41,8 @@ import { TableModule } from './modules/admin/table/table.module';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    TableModule
+    TableModule,
+    NgbModule
   ],
   exports: [
     SharedModule
