@@ -73,15 +73,23 @@ export class GroupComponent implements OnInit {
   }
 
   modify(x){
+    let xx = {
+      "name": x.name,
+      "companyName": x.companyName,
+      "location": x.location,
+      "groupID": this.modifyGroup.groupID
+    }
     console.log(x);
+    console.log(xx);
     console.log(this.modifyGroup);
     return this.http.put('https://kickerapi.azurewebsites.net/api/Groups/' + this.modifyGroup.groupID,
-    x).subscribe(result => {
+    xx).subscribe(result => {
       if (result){
         this.ngOnInit();
       }
       else{
-        this.invalidModify = true;
+        // this.invalidModify = true;
+        this.ngOnInit();
       }
     });
   }
