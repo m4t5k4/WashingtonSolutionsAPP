@@ -8,19 +8,23 @@ import { NewTableComponent } from './modules/admin/table/new-table/new-table.com
 import { EditTableComponent } from './modules/admin/table/edit-table/edit-table.component';
 import { ManageCompetitionComponent } from './modules/admin/competition/manage-competition/manage-competition.component';
 import { RegisterComponent } from './modules/home/register/register.component';
-import { ListComponent } from './modules/admin/user/list/list.component';
-import { DetailComponent } from './modules/admin/user/detail/detail.component';
-
+import { ListComponent as UserListComponent } from './modules/admin/user/list/list.component';
+import { DetailComponent as UserDetailComponent } from './modules/admin/user/detail/detail.component';
+import { ListComponent as GameListComponent } from './modules/admin/game/list/list.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'competition', component: ManageCompetitionComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'admin/list', component: ListComponent},
-  { path: 'admin/edit/:id', component: DetailComponent},
-  { path: 'admin/add', component: DetailComponent },
-  { path: 'login', component: LoginComponent },
+
+  { path: 'competition', component: ManageCompetitionComponent },
+
+  { path: 'admin/user/list', component: UserListComponent },
+  { path: 'admin/user/edit/:id', component: UserDetailComponent },
+  { path: 'admin/user/add', component: UserDetailComponent },
+
+  { path: 'admin/game/list', component: GameListComponent },
+
   { path: 'table', component: TableComponent },
   { path: 'addtable', component: NewTableComponent },
   { path: 'table/:id', component: EditTableComponent },

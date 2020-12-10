@@ -17,10 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CompetitionModule } from './modules/admin/competition/competition.module';
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/admin/user/user.module';
-import { LoginComponent } from './modules/home/login/login.component';
 
 import { TableModule } from './modules/admin/table/table.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GameModule } from './modules/admin/game/game.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavigationbarComponent,
 
     AlertComponent
-    //LoginComponent,
 
   ],
 
@@ -42,7 +41,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     HttpClientModule,
     TableModule,
-    NgbModule
+    NgbModule,
+    CompetitionModule,
+    HomeModule,
+    UserModule,
+    GameModule
   ],
   exports: [
     SharedModule

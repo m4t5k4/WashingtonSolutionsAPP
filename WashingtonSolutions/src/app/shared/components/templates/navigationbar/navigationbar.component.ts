@@ -26,8 +26,8 @@ export class NavigationbarComponent implements OnInit {
     { link: '/', title: 'link' }
   ]
   navAdmin = [
-    { link: '/admin/list', title: 'Gebruikers' },
-    { link: '/', title: 'link' },
+    { link: '/admin/user/list', title: 'Gebruikers' },
+    { link: '/admin/game/list', title: 'Wedstrijden' },
     { link: '/', title: 'link' },
     { link: '/', title: 'link' },
     { link: '/', title: 'link' }
