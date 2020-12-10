@@ -27,6 +27,10 @@ export class EditTableComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit(): void {
+
+    
+
+
     //deze functie in new-table component zetten zou beter zijn! <-- TODO
     var id = Number(this.route.snapshot.paramMap.get("id"));
     this._tableService.getTable(id).subscribe(result => {
@@ -35,11 +39,12 @@ export class EditTableComponent implements OnInit {
       this.data = true;
 
       this.form = this.formBuilder.group({
-        tablename: ['', Validators.required],
-        companyname: ['', Validators.required],
+        tableName: ['', Validators.required],
+        companyName: ['', Validators.required],
         address: ['', Validators.required]
       });
 
+      this.form.patchValue(result)
       //errors nog doen
     })
     
@@ -61,8 +66,8 @@ export class EditTableComponent implements OnInit {
 
     this.loading = true;
    //tablevariablen
-    this.table.tableName = this.f.tablename.value;
-    this.table.companyName = this.f.companyname.value;
+    this.table.tableName = this.f.tableName.value;
+    this.table.companyName = this.f.companyName.value;
     this.table.address = this.f.address.value;
     //TODO: userID == ingelogde gebruiker
     console.log(this.table)

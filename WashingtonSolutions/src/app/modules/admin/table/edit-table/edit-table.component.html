@@ -1,23 +1,21 @@
-<p>{{ table | json }}</p>
-
 <div class="card">
   <h4 class="card-header">Tafel Bewerken</h4>
   <div *ngIf="data" class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="tablename">Tafelnaam</label>
-        <input type="text" formControlName="tablename" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.tablename.errors }" />
-        <div *ngIf="submitted && f.tablename.errors" class="invalid-feedback">
-          <div *ngIf="f.tablename.errors.required">Tablename is required</div>
+        <label for="tableName">Tafelnaam</label>
+        <input type="text" formControlName="tableName" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.tableName.errors }" />
+        <div *ngIf="submitted && f.tableName.errors" class="invalid-feedback">
+          <div *ngIf="f.tableName.errors.required">Tablename is required</div>
         </div>
       </div>
       <div class="form-group">
-        <label for="companyname">Bedrijfsnaam</label>
-        <input type="text" formControlName="companyname" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }" />
-        <div *ngIf="submitted && f.companyname.errors" class="invalid-feedback">
-          <div *ngIf="f.companyname.errors.required">Companyname is required</div>
+        <label for="companyName">Bedrijfsnaam</label>
+        <input type="text" formControlName="companyName" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+        <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+          <div *ngIf="f.companyName.errors.required">Companyname is required</div>
         </div>
       </div>
 

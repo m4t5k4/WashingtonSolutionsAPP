@@ -46,7 +46,7 @@ export class NewTableComponent implements OnInit {
     }
 
     this.loading = true;
-    var t = new Table(0, this.f.tablename.value, this.f.companyname.value, this.f.address.value, 1, 1)
+    var t = new Table(0, this.f.tableName.value, this.f.companyName.value, this.f.Address.value, 1, 1)
     //TODO: userID == ingelogde gebruiker
     console.log(t)
     this._tableService.addTable(t)
