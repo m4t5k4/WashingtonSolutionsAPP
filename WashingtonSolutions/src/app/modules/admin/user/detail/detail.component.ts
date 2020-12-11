@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService } from '../../../../core/services/alert.service';
 import { AccountService } from '../../../../core/services/account.service';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 interface Option {
     value: number;
@@ -34,7 +35,8 @@ export class DetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private ngbDateParserFormatter: NgbDateParserFormatter
   ) { }
 
   ngOnInit(): void {
@@ -65,6 +67,11 @@ export class DetailComponent implements OnInit {
   }
 
   get f () { return this.form.controls; }
+
+  get imageUrl () {
+    let fileName = 'Morty_Smith.jpg'
+    return 'https://kickerapi.azurewebsites.net/uploads/' + fileName;
+  }
 
   onSubmit () {
     this.submitted = true;
@@ -112,6 +119,9 @@ export class DetailComponent implements OnInit {
   private updateUser () {
     console.log(this.form.value.roleID);
     let values = this.form.value;
+    let ngbDate = values.birthday;
+    let date = this.ngbDateParserFormatter.format(ngbDate);
+    console.log(date);
     var updateUser = {
       roleID: parseInt(values.roleID),
       username: values.username,
@@ -120,7 +130,8 @@ export class DetailComponent implements OnInit {
       lastName: values.lastName,
       email: values.email,
       userID: this.id,
-      birthday: values.birthday
+      birthday: date,
+      userPictureID: 1
     }
     this.accountService.update(this.id, updateUser)
       .pipe(first())
@@ -132,6 +143,7 @@ export class DetailComponent implements OnInit {
         error: error => {
           this.alertService.error(error);
           this.loading = false;
+          console.log(updateUser);
         }
       });
   }

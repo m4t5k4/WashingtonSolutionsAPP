@@ -14,6 +14,10 @@ export class ListComponent implements OnInit {
     this.accountService.getAll()
       .pipe(first())
       .subscribe(users => this.users = users);
+    
+    this.accountService.getAll()
+      .pipe(first())
+      .subscribe(users => console.log(users));
   }
 
   deleteUser (id: number) {

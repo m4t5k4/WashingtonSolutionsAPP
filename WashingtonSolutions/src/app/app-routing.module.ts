@@ -12,6 +12,8 @@ import { ListComponent as UserListComponent } from './modules/admin/user/list/li
 import { DetailComponent as UserDetailComponent } from './modules/admin/user/detail/detail.component';
 import { ListComponent as GameListComponent } from './modules/admin/game/list/list.component';
 import { GroupComponent } from './modules/admin/group/group.component';
+import { EditComponent as ProfileEditComponent } from './modules/user/profile/edit/edit.component';
+import { DetailComponent as GameDetailComponent } from './modules/admin/game/detail/detail.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -25,6 +27,10 @@ const routes: Routes = [
   { path: 'admin/user/add', component: UserDetailComponent },
 
   { path: 'admin/game/list', component: GameListComponent },
+  { path: 'admin/game/edit/:id', component: GameDetailComponent },
+  { path: 'admin/game/add', component: GameDetailComponent },
+
+  { path: 'user/profile/edit', component: ProfileEditComponent },
 
   { path: 'table', component: TableComponent },
   { path: 'addtable', component: NewTableComponent },

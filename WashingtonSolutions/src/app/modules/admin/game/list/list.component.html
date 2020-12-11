@@ -1,34 +1,40 @@
-<h1>Wedstrijden</h1>
-<a routerLink="/admin/game/add" class="btn btn-sm btn-success mb-2">Wedstrijd toeveogen</a>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="width: 20%">Datum</th>
-            <th style="width: 20%">Team A</th>
-            <th style="width: 20%">Team B</th>
-            <th style="width: 20%">Score</th>
-            <th style="width: 20%"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let game of games">
-            <td>{{game.date}}</td>
-            <td>{{game.teamAID}}</td>
-            <td>{{game.teamBID}}</td>
-            <td>{{game.scoreTeamA}} - {{game.scoreTeamB}}</td>
-            <td style="white-space: nowrap">
-                <a routerLink="../edit/{{game.gameID}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                <button (click)="deleteGame(game.gameID)" class="btn btn-sm btn-danger btn-delete-user"
-                    [disabled]="game.isDeleting">
-                    <span *ngIf="game.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!game.isDeleting">Delete</span>
-                </button>
-            </td>
-        </tr>
-        <tr *ngIf="!games">
-            <td colspan="4" class="text-center">
-                <span class="spinner-border spinner-border-lg align-center"></span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="card item" style="width: 80vw;">
+        <div class="card-body">
+            <h2>Wedstrijden</h2>
+            <a routerLink="/admin/game/add" class="btn btn-sm btn-success mb-2">Wedstrijd toeveogen</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 20%">Datum</th>
+                        <th style="width: 20%">Team A</th>
+                        <th style="width: 20%">Team B</th>
+                        <th style="width: 20%">Score</th>
+                        <th style="width: 20%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let game of games">
+                        <td>{{game.date}}</td>
+                        <td>{{game.teamAID}}</td>
+                        <td>{{game.teamBID}}</td>
+                        <td>{{game.scoreTeamA}} - {{game.scoreTeamB}}</td>
+                        <td style="white-space: nowrap">
+                            <a routerLink="../edit/{{game.gameID}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                            <button (click)="deleteGame(game.gameID)" class="btn btn-sm btn-danger btn-delete-user"
+                                [disabled]="game.isDeleting">
+                                <span *ngIf="game.isDeleting" class="spinner-border spinner-border-sm"></span>
+                                <span *ngIf="!game.isDeleting">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!games">
+                        <td colspan="4" class="text-center">
+                            <span class="spinner-border spinner-border-lg align-center"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

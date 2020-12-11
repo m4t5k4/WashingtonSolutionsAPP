@@ -22,6 +22,7 @@ import { TableModule } from './modules/admin/table/table.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameModule } from './modules/admin/game/game.module';
 import { GroupComponent } from './modules/admin/group/group.component';
+import { ProfileModule } from './modules/user/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { GroupComponent } from './modules/admin/group/group.component';
     CompetitionModule,
     HomeModule,
     UserModule,
-    GameModule
+    GameModule,
+    ProfileModule
   ],
   exports: [
   ],
