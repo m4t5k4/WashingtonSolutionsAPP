@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Competition } from 'src/app/shared/models/competition.model';
 import { GameType } from 'src/app/shared/models/game-type.model';
+import { Group } from 'src/app/shared/models/group.model';
 
 
 @Injectable({
@@ -29,6 +30,11 @@ export class CompetitionService {
   // GET gameTypes
   public getGameTypes() {
     return this.http.get<GameType[]>(`${environment.apiUrl}/gametypes`);
+  }
+
+  // GET groups
+  public getGroups() {
+    return this.http.get<Group[]>(`${environment.apiUrl}/groups`);
   }
 
   // POST competition

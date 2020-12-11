@@ -16,6 +16,19 @@
       </select>
       <small id="gameTypeHelp" class="form-text text-muted">The type of games in the competition.</small>
     </div>
-    <button class="btn btn-success" type="submit">Submit</button>
+
+    <div class="form-group">
+      <label for="winner">Winner</label>
+      <select class="form-control" id="winner" aria-describedby="winnerHelp" name="winner"
+        [(ngModel)]="competition.winnerID">
+        <option hidden [value]="null">Select winner</option>
+        <option [value]="null">No winner yet</option>
+        <option *ngFor="let group of groups" [value]="group.groupID">{{ group.name }}</option>
+      </select>
+      <small id="winnerHelp" class="form-text text-muted">The winner of the competition.</small>
+    </div>
+
+    <button class="btn btn-success mr-2" type="submit">Submit</button>
+    <button class="btn btn-info" routerLink="/competitions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Cancel</button>
   </form>
 </div>

@@ -19,9 +19,9 @@
     <tbody>
       <tr *ngFor="let competition of competitions">
         <td>{{ competition.name }}</td>
-        <td>{{ competition.gameTypeID }}</td>
+        <td>{{ gameTypes[competition.gameTypeID - 1].name }}</td>
         <td *ngIf="! competition.winnerID">No winner yet!</td>
-        <td *ngIf="competition.winnerID">{{ competition.winnerID }}</td>
+        <td *ngIf="competition.winnerID">{{ groups[competition.winnerID - 1].name }}</td>
         <td>
           <button class="btn btn-info mr-2" (click)="editCompetition(competition.competitionID)">Edit</button>
           <button class="btn btn-danger" (click)="deleteCompetition(competition.competitionID)">Delete</button>
