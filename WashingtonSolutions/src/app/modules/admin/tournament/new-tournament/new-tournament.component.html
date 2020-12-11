@@ -1,32 +1,41 @@
 <div class="card">
+  {{model | json }}
   <h4 class="card-header">Nieuwe tafel aanmaken</h4>
   <div class="card-body">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="tablename">Naam</label>
-        <input type="text" formControlName="name" class="form-control"
-               [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-          <div *ngIf="f.name.errors.required">Tablename is required</div>
+    <form (ngSubmit)="onSubmit()">
+      <input type="text" class="form-control" id="name"
+             required
+             [(ngModel)]="model.name" name="name">
+
+
+      <div class="input-group">
+
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker">
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">📅</button>
         </div>
+
       </div>
 
-     
-      <div>
-        <mat-form-field>
-          <input matInput [matDatepicker]="startdatePicker" [min]="date">
-          <mat-datepicker-toggle [for]="startdatePicker" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #startdatePicker></mat-datepicker>
+      <div class="input-group">
+
+        <input class="form-control" placeholder="yyyy-mm-dd" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker">
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button">📅</button>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Competition</mat-label>
+          <mat-select [(value)]="model.competitionID">
+            <mat-option *ngFor="let competition of competitions" value={{competition.competitionID}}>{{competition.name}} </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
-
-
-      <mat-form-field>
-        <mat-label>Angular forms</mat-label>
-        <input matInput [matDatepicker]="picker1" [formControl]="date">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
 
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
@@ -38,3 +47,5 @@
     </form>
 </div>
 </div>
+<p>TODO: Fix dieje layout!</p>
+<h1>{{startdate}}</h1>
