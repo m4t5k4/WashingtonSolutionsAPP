@@ -3,14 +3,20 @@
   <h4 class="card-header">Nieuwe tafel aanmaken</h4>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
-      <input type="text" class="form-control" id="name"
-             required
-             [(ngModel)]="model.name" name="name">
 
+      <div class="input-group">
+        <label for="name">Naam</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name" #nameControl="ngModel">
+
+      </div>
+
+      <div>vaild: {{nameControl.valid}}</div>
 
       <div class="input-group">
 
-        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker">
+        <input class="form-control" required placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker">
 
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">📅</button>
@@ -20,11 +26,12 @@
 
       <div class="input-group">
 
-        <input class="form-control" placeholder="yyyy-mm-dd" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker">
+        <input required class="form-control" placeholder="yyyy-mm-dd" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker">
 
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button">📅</button>
         </div>
+
 
       </div>
 
@@ -45,7 +52,7 @@
       </div>
 
     </form>
-</div>
+  </div>
 </div>
 <p>TODO: Fix dieje layout!</p>
 <h1>{{startdate}}</h1>

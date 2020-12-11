@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { TournamentService } from 'src/app/core/services/tournament.service'
 import { CompetitionService } from 'src/app/core/services/competition.service'
 import { Tournament } from 'src/app/shared/models/tournament.model'
@@ -23,8 +23,8 @@ export class NewTournamentComponent implements OnInit {
   competitions: Competition[];
   startdate;
   enddate;
-  model = new Tournament(0, "", new Date(), new Date(),null)
-  
+  model = new Tournament(0, "", null, null, null)
+
 
   constructor(
     private _tournamentService: TournamentService,
@@ -48,7 +48,7 @@ export class NewTournamentComponent implements OnInit {
     })
   }
 
-  convertDate(date: NgbDate): Date{
+  convertDate(date: NgbDate): Date {
     let x = this.ngbDateParserFormatter.format(date);
     console.log(x)
     return new Date(x);
@@ -59,12 +59,48 @@ export class NewTournamentComponent implements OnInit {
 
     // reset alerts on submit
     this.alertService.clear();
+    this.loading = true;
 
     //convert dates
     this.model.startdate = this.convertDate(this.startdate);
     this.model.enddate = this.convertDate(this.enddate);
     this.model.competitionID = Number(this.model.competitionID) //er is waarschijnlijk een betere manier om dit te doen.
 
+    //validate form
+    if (!this.model.name) {
+      console.log("naam mag niet leeg zijn.")
+      this.loading = false;
+      return;
+    }
+
+    if (!this.model.competitionID) {
+      console.log("selecteer een competitie")
+      this.loading = false;
+      return;
+    }
+
+    if (!this.model.startdate) {
+      console.log("selecteer een startdatum")
+      this.loading = false;
+      return;
+    }
+
+    if (!this.model.enddate) {
+      console.log("selecteer een einddatum")
+      this.loading = false;
+      return;
+    }
+
+    if (this.model.startdate >= this.model.enddate) {
+      console.log("startdate moet kleiner zijn dan enddate")
+      this.loading = false;
+      return;
+    }
+    if (this.model.startdate < this.today) {
+      console.log("startdate mag niet voor vandaag zijn.")
+      this.loading = false;
+      return;
+    }
     // stop here if form is invalid
 
     console.log(this.model.name)
@@ -74,8 +110,8 @@ export class NewTournamentComponent implements OnInit {
 
 
 
-    this.loading = true;
-    
+
+
     console.log(this.model)
     this._tournamentService.addTournament(this.model)
       .subscribe({
@@ -91,6 +127,8 @@ export class NewTournamentComponent implements OnInit {
 
   }
 
-  
+
 
 }
+
+
