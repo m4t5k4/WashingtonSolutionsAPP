@@ -34,7 +34,7 @@ export class AddCompetitionComponent implements OnInit {
     this._competitionService.postCompetition(c).subscribe({
       next: () => {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigateByUrl('/competitions');
+        this.router.navigateByUrl('/admin/competition');
       },
       error: error => {
         console.log(error);

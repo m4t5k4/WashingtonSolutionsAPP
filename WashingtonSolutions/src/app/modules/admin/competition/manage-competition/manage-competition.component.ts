@@ -53,7 +53,7 @@ export class ManageCompetitionComponent implements OnInit {
   }
 
   editCompetition(id) {
-    this.router.navigateByUrl("/edit-competition/" + id);
+    this.router.navigateByUrl("/admin/competition/edit/" + id);
   };
 
   deleteCompetition(id) {
@@ -63,7 +63,7 @@ export class ManageCompetitionComponent implements OnInit {
       next: () => {
         this.getCompetitions()
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigateByUrl('/competitions');
+        this.router.navigateByUrl('/admin/competitions');
       },
       error: error => {
         console.log(error);

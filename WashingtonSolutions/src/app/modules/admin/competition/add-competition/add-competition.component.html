@@ -16,6 +16,8 @@
       </select>
       <small id="gameTypeHelp" class="form-text text-muted">The type of games in the competition.</small>
     </div>
-    <button class="btn btn-success" type="submit">Submit</button>
+    <button class="btn btn-success mr-2" type="submit">Submit</button>
+    <button class="btn btn-info" routerLink="/admin/competition" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">Cancel</button>
   </form>
 </div>
