@@ -1,1 +1,21 @@
-<p>add-competition works!</p>
+<div class="container mt-5">
+  <h1>Add Competition</h1>
+  <form (ngSubmit)="addCompetition()">
+    <div class="form-group mt-4">
+      <label for="competitionName">Competition Name</label>
+      <input type="text" class="form-control" id="competitionName" aria-describedby="competitionNameHelp"
+        [(ngModel)]="competition.name" placeholder="e.g. Kicker Championship 1998" name="competitionName">
+      <small id="competitionNameHelp" class="form-text text-muted">The name of the competition.</small>
+    </div>
+    <div class="form-group">
+      <label for="gameType">Game Type</label>
+      <select class="form-control" id="gameType" aria-describedby="gameTypeHelp" [(ngModel)]="competition.gameTypeID"
+        name="gameType">
+        <option hidden [value]="null">Select game type</option>
+        <option *ngFor="let gameType of gameTypes" [value]="gameType.gameTypeID">{{ gameType.name }}</option>
+      </select>
+      <small id="gameTypeHelp" class="form-text text-muted">The type of games in the competition.</small>
+    </div>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+</div>
