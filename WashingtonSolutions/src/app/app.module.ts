@@ -18,8 +18,8 @@ import { CompetitionModule } from './modules/admin/competition/competition.modul
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/admin/user/user.module';
 import { LoginComponent } from './modules/home/login/login.component';
-
 import { TableModule } from './modules/admin/table/table.module';
+import { TournamentModule } from './modules/admin/tournament/tournament.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -42,6 +42,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     HttpClientModule,
     TableModule,
+    TournamentModule,
+
     NgbModule
   ],
   exports: [

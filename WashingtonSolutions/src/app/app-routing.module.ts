@@ -10,6 +10,9 @@ import { ManageCompetitionComponent } from './modules/admin/competition/manage-c
 import { RegisterComponent } from './modules/home/register/register.component';
 import { ListComponent } from './modules/admin/user/list/list.component';
 import { DetailComponent } from './modules/admin/user/detail/detail.component';
+import { TournamentComponent } from './modules/admin/tournament/tournament/tournament.component';
+import { NewTournamentComponent } from './modules/admin/tournament/new-tournament/new-tournament.component';
+import { EditTournamentComponent } from './modules/admin/tournament/edit-tournament/edit-tournament.component';
 
 
 const routes: Routes = [
@@ -22,8 +25,11 @@ const routes: Routes = [
   { path: 'admin/add', component: DetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'table', component: TableComponent },
-  { path: 'addtable', component: NewTableComponent },
+  { path: 'table/add', component: NewTableComponent },
   { path: 'table/:id', component: EditTableComponent },
+  { path: 'tournament', component: TournamentComponent },
+  { path: 'tournament/add', component: NewTournamentComponent },
+  { path: 'tournament/:id', component: EditTournamentComponent },
   //TODO: childrenroutes
 
 
@@ -32,6 +38,7 @@ const routes: Routes = [
   
   
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
