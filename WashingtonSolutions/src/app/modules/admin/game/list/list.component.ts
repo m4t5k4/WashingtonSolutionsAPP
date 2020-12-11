@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   constructor(private gameService: GameService) { }
 
   ngOnInit (): void {
-    this.gameService.getAll()
+    this.gameService.getGames()
       .pipe(first())
       .subscribe(games => this.games = games);
   }
@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   deleteGame (id: number) {
     const game = this.games.find(x => x.id === id);
     game.isDeleting = true;
-    this.gameService.delete(id)
+    this.gameService.deleteGame(id)
       .pipe(first())
       .subscribe(() => this.games = this.games.filter(x => x.id !== id));
   }

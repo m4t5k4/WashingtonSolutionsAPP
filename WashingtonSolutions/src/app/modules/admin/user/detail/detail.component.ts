@@ -148,4 +148,8 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  goBack() {
+    this.router.navigateByUrl("/admin/user/list")
+  }
+
 }
