@@ -1,4 +1,7 @@
 export class Team {
-  constructor(teamID: number, teamName: string, groupID: number) {
+  constructor(
+    public teamID: number, 
+    public teamName: string, 
+    public groupID: number) {
   }
 }

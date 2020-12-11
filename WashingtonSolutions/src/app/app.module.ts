@@ -10,14 +10,19 @@ import { FooterComponent } from './shared/components/templates/footer/footer.com
 import { NavigationbarComponent } from './shared/components/templates/navigationbar/navigationbar.component';
 
 import { AlertComponent } from './shared/components/alert/alert.component';
-import { LoginComponent } from './modules/home/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CompetitionModule } from './modules/admin/competition/competition.module';
-import { RegisterComponent } from './modules/home/register/register.component';
 import { HomeModule } from './modules/home/home.module';
+import { UserModule } from './modules/admin/user/user.module';
+
+import { TableModule } from './modules/admin/table/table.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GameModule } from './modules/admin/game/game.module';
+import { GroupComponent } from './modules/admin/group/group.component';
+import { ProfileModule } from './modules/user/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -29,14 +34,23 @@ import { HomeModule } from './modules/home/home.module';
     NavigationbarComponent,
 
     AlertComponent,
+    GroupComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    TableModule,
+    NgbModule,
     CompetitionModule,
-    HomeModule
+    HomeModule,
+    UserModule,
+    GameModule,
+    ProfileModule
+  ],
+  exports: [
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
