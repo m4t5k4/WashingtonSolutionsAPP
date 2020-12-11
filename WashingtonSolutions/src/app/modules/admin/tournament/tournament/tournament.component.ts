@@ -43,12 +43,20 @@ export class TournamentComponent implements OnInit {
     //refresh lijst
   }
 
+  deleteTournament(id: number) {
+    this._tournamentService.deleteTournament(id)
+      .subscribe({
+        next: () => {
+          this.getTournaments()
+        }
+      })}
+
   checkStatus(date: Date, id: number) {
     //status = 0 --> nog niet afgelopen
     //status = 1 --> afgelopen en nog geen winnaar
     //status = 2 --> afgelopen en een winnaar
 
-    //werkt voor geen meter
+    //werkt voor geen meter!!!
     console.log("test" + date + " versus " + this.date )
 
     if (date > this.date) {
@@ -57,6 +65,10 @@ export class TournamentComponent implements OnInit {
     if (date <= this.date) {
       return 1
     }
+  }
+
+  editTournament(id: number) {
+    this.router.navigateByUrl("/tournament/"+id);
   }
 
   ngOnInit(): void {

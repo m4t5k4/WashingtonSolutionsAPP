@@ -15,6 +15,7 @@ export class NewTournamentComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
+  minDate = new Date();
 
   constructor(
     private _tournamentService: TournamentService,
@@ -25,7 +26,7 @@ export class NewTournamentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: ['', Validators.required],
     });
   }
 
@@ -43,6 +44,8 @@ export class NewTournamentComponent implements OnInit {
       return;
     }
 
+    console.log()
+
     this.loading = true;
     var t = new Tournament(0, this.f.name.value, new Date(), new Date(),1)
     
@@ -51,7 +54,7 @@ export class NewTournamentComponent implements OnInit {
       .subscribe({
         next: () => {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl("/table");
+          this.router.navigateByUrl("/tournament");
         },
         error: error => {
           this.alertService.error(error);
@@ -60,5 +63,7 @@ export class NewTournamentComponent implements OnInit {
       });
 
   }
+
+  
 
 }

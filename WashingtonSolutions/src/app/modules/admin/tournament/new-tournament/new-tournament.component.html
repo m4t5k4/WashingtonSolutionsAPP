@@ -10,8 +10,19 @@
           <div *ngIf="f.name.errors.required">Tablename is required</div>
         </div>
       </div>
-      
-
+      <div>
+        <mat-form-field>
+          <input matInput [matDatepicker]="startdatePicker" [min]="date">
+          <mat-datepicker-toggle [for]="startdatePicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #startdatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <mat-form-field >
+        <mat-label>Angular forms</mat-label>
+        <input matInput [matDatepicker]="picker1" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
 
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
@@ -21,5 +32,5 @@
       </div>
 
     </form>
-  </div>
+</div>
 </div>

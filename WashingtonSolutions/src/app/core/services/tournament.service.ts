@@ -15,4 +15,12 @@ export class TournamentService {
     return this.http.get<Tournament[]>("https://kickerapi.azurewebsites.net/api/tournaments");
 
   }
+
+  addTournament(tournament: Tournament) {
+    return this.http.post("https://kickerapi.azurewebsites.net/api/tournaments", tournament);
+  }
+
+  deleteTournament(id: number) {
+    return this.http.delete("https://kickerapi.azurewebsites.net/api/tournaments/"+ id);
+  }
 }
