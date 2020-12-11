@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\src",
     "\\src\\app",
+    "\\src\\app\\core",
     "\\src\\app\\modules",
     "\\src\\app\\modules\\admin",
-    "\\src\\app\\modules\\admin\\table",
-    "\\src\\app\\modules\\home",
-    "\\src\\app\\shared"
+    "\\src\\app\\modules\\admin\\tournament",
+    "\\src\\app\\modules\\admin\\tournament\\edit-tournament",
+    "\\src\\app\\modules\\admin\\tournament\\new-tournament",
+    "\\src\\app\\modules\\admin\\tournament\\tournament"
   ],
-  "SelectedNode": "\\tsconfig.json",
+  "SelectedNode": "\\src\\app\\modules\\admin\\tournament\\new-tournament\\new-tournament.component.html",
   "PreviewInSolutionExplorer": false
 }
