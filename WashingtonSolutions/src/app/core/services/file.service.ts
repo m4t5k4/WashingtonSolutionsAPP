@@ -2,7 +2,7 @@ import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { File } from '../../shared/models/file.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,7 @@ export class FileService {
   }
 
   public getFile (id: number) {
-    return this.http.get<File[]>(`${environment.apiUrl}/file/${id}`);
+    return this.http.get<File>(`${environment.apiUrl}/file/${id}`);
   }
 
   public uploadFile (file: Blob): Observable<HttpEvent<void>> {

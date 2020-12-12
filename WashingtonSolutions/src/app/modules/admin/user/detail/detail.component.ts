@@ -5,7 +5,10 @@ import { first } from 'rxjs/operators';
 
 import { AlertService } from '../../../../core/services/alert.service';
 import { AccountService } from '../../../../core/services/account.service';
+import { FileService } from '../../../../core/services/file.service';
+import { GroupService } from '../../../../core/services/group.service';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
 
 interface Option {
     value: number;
@@ -23,6 +26,7 @@ export class DetailComponent implements OnInit {
   isAddMode: boolean;
   loading = false;
   submitted = false;
+  imageUrl: string;
 
   roles: Option[] = [
     { value: 1, viewValue: 'admin' },
@@ -30,12 +34,18 @@ export class DetailComponent implements OnInit {
     { value: 3, viewValue: 'kapitein' }
   ] 
 
+  groups: Option[] = [
+
+  ]
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
     private alertService: AlertService,
+    private fileService: FileService,
+    private groupService: GroupService,
     private ngbDateParserFormatter: NgbDateParserFormatter
   ) { }
 
@@ -56,22 +66,39 @@ export class DetailComponent implements OnInit {
       password: ['', passwordValidators],
       email: ['', Validators.required],
       roleID: [2],
-      birthday: ['', Validators.required]
+      dob: ['', Validators.required],
+      userPictureID: [],
+      groupID: []
     });
 
     if (!this.isAddMode) {
       this.accountService.getById(this.id)
         .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
+        .subscribe(x => {
+          let date = this.ngbDateParserFormatter.parse(x.dob);
+          console.log(x)
+          this.form.patchValue(x);
+          this.form.patchValue({
+            dob: date
+          });
+          this.fileService.getFile(x.userPictureID)
+            .pipe(first())
+            .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/uploads/' + x.path);
+        });
     }
+
+    this.groupService.getGroups()
+      .pipe(first())
+      .subscribe(x =>
+        x.forEach(group =>
+          this.groups.push(
+            { value: group.groupID, viewValue: group.name }
+          )
+        )
+      );
   }
 
   get f () { return this.form.controls; }
-
-  get imageUrl () {
-    let fileName = 'Morty_Smith.jpg'
-    return 'https://kickerapi.azurewebsites.net/uploads/' + fileName;
-  }
 
   onSubmit () {
     this.submitted = true;
@@ -93,6 +120,8 @@ export class DetailComponent implements OnInit {
 
   private createUser () {
     let values = this.form.value;
+    let ngbDate = values.dob;
+    let date = this.ngbDateParserFormatter.format(ngbDate);
     var newUser = {
       roleID: parseInt(values.roleID),
       username: values.username,
@@ -100,7 +129,9 @@ export class DetailComponent implements OnInit {
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
-      birthday: values.birthday
+      dob: date+"T00:00:00",
+      userPictureID: 1,
+      groupID: parseInt(values.groupID)
     }
     this.accountService.register(newUser)
       .pipe(first())
@@ -119,7 +150,7 @@ export class DetailComponent implements OnInit {
   private updateUser () {
     console.log(this.form.value.roleID);
     let values = this.form.value;
-    let ngbDate = values.birthday;
+    let ngbDate = values.dob;
     let date = this.ngbDateParserFormatter.format(ngbDate);
     console.log(date);
     var updateUser = {
@@ -130,15 +161,16 @@ export class DetailComponent implements OnInit {
       lastName: values.lastName,
       email: values.email,
       userID: this.id,
-      birthday: date,
-      userPictureID: 1
+      dob: date+"T00:00:00",
+      userPictureID: 1,
+      groupID: parseInt(values.groupID)
     }
     this.accountService.update(this.id, updateUser)
       .pipe(first())
       .subscribe({
         next: () => {
           this.alertService.success('Update succesvol', { keepAfterRouteChange: true });
-          this.router.navigate(['../../'], { relativeTo: this.route });
+          this.router.navigate(['../../list'], { relativeTo: this.route });
         },
         error: error => {
           this.alertService.error(error);

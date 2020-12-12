@@ -4,7 +4,7 @@ import { AlertService } from '../../../core/services/alert.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/shared/models/user.model';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private ngbDateParserFormatter: NgbDateParserFormatter
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4)],],
       email: ['', Validators.required],
-      birthday: ['', Validators.required]
+      dob: ['', Validators.required]
     });
   }
 
@@ -50,6 +51,8 @@ export class RegisterComponent implements OnInit {
 
     this.loading = true;
     let values = this.form.value;
+    let ngbDate = values.dob;
+    let date = this.ngbDateParserFormatter.format(ngbDate);
     var newUser = {
       roleID : 2,
       username: values.username,
@@ -57,11 +60,7 @@ export class RegisterComponent implements OnInit {
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
-      birthday: values.birthday, //string->DateTime
-      //token: null, //mag weg
-      //userPicture: null, //mag weg
-      //userID: null, //mag weg
-      //groupID: null //moet nullable
+      dob: date+"T00:00:00"
     }
 
     console.log(newUser);

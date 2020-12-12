@@ -153,7 +153,7 @@ export class DetailComponent implements OnInit {
       .subscribe({
         next: () => {
           this.alertService.success('Wedstrijd succesvol geupdate', { keepAfterRouteChange: true });
-          this.router.navigate(['../list'], { relativeTo: this.route });
+          this.router.navigate(['../../list'], { relativeTo: this.route });
         },
         error: error => {
           this.alertService.error(error);

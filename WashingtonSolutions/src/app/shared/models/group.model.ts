@@ -4,7 +4,7 @@ export class Group {
     public name: string,
     public companyName: string,
     public location: string,
-    public teamPicture?: string
+    public groupPictureID: number
     )
 
     {}
