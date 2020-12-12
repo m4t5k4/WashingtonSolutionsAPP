@@ -6,8 +6,9 @@ import { Tournament } from 'src/app/shared/models/tournament.model'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../../core/services/alert.service';
 import { Competition } from '../../../../shared/models/competition.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-tournament',
@@ -24,6 +25,10 @@ export class NewTournamentComponent implements OnInit {
   startdate;
   enddate;
   model = new Tournament(0, "", null, null, null)
+  //variabellen voor edit
+  isEdit = false;
+  startDisabled = false;
+  endDisabled = false;
 
 
   constructor(
@@ -38,7 +43,48 @@ export class NewTournamentComponent implements OnInit {
   ngOnInit(): void {
 
     this.getCompetitions()
+    var url = this.route.snapshot.paramMap.get("id");
+    console.log(url)
+    if (url) {
+      var id = Number(url)
+      this._tournamentService.getTournament(id)
+        .pipe(
+          catchError(err => {
+            this.router.navigateByUrl("/tournament");
+            return throwError(err);
+            //stuurt mensen terug als hettournooi niet bestaad.
+          })
+        )
+        .subscribe(result => {
+        if (result.tournamentID) {
+          this.isEdit = true;
+          this.model = result;
+          var x = result.startDate.split("-", 3);
+          var y = result.endDate.split("-", 3)
+          this.startdate = x[0] + "-" + x[1] + "-" + x[2].substr(0, 1); //bug: wordt niet ingevuld in de input
+          this.enddate = y[0] + "-" + y[1] + "-" + y[2].substr(0, 1)
+          //als de start/einddatum al voorbij is kan de startdatum niet meer aangepast worden.
+          console.log(this.parseDate(result.startDate)) //nog aanpassen in model
+          console.log(this.today.getTime())
 
+          if (this.parseDate(result.startDate).getTime() < this.today.getTime()) {
+            console.log("start")
+            this.startDisabled = true;
+          }
+          if (this.parseDate(result.endDate).getTime() < this.today.getTime()) {
+            console.log("end")
+            this.endDisabled = true;
+          }
+        }
+      })
+    }
+    
+  }
+
+  parseDate(date: string) {
+    var x = date.split("-", 3)
+    console.log(x)
+    return new Date(Number(x[0]), Number(x[1]), Number(x[2].substr(0, 1)));
   }
 
   getCompetitions() {
@@ -57,6 +103,7 @@ export class NewTournamentComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+
     // reset alerts on submit
     this.alertService.clear();
     this.loading = true;
@@ -67,6 +114,7 @@ export class NewTournamentComponent implements OnInit {
     this.model.competitionID = Number(this.model.competitionID) //er is waarschijnlijk een betere manier om dit te doen.
 
     //validate form
+    //automatische validatie lukte niet dus tijdelijk zo.
     if (!this.model.name) {
       console.log("naam mag niet leeg zijn.")
       this.loading = false;
@@ -96,7 +144,9 @@ export class NewTournamentComponent implements OnInit {
       this.loading = false;
       return;
     }
-    if (this.model.startdate < this.today) {
+
+    
+    if (this.model.startdate < this.today && !this.isEdit) {
       console.log("startdate mag niet voor vandaag zijn.")
       this.loading = false;
       return;
@@ -108,22 +158,33 @@ export class NewTournamentComponent implements OnInit {
     console.log(this.model.enddate)
     console.log(this.model.competitionID)
 
-
-
-
-
     console.log(this.model)
-    this._tournamentService.addTournament(this.model)
-      .subscribe({
-        next: () => {
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl("/tournament");
-        },
-        error: error => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      });
+    if (this.isEdit) {
+      this._tournamentService.editTournament(this.model)
+        .subscribe({
+          next: () => {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigateByUrl("/tournament");
+          },
+          error: error => {
+            this.alertService.error(error);
+            this.loading = false;
+          }
+        });
+    } else {
+      this._tournamentService.addTournament(this.model)
+        .subscribe({
+          next: () => {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigateByUrl("/tournament");
+          },
+          error: error => {
+            this.alertService.error(error);
+            this.loading = false;
+          }
+        });
+    }
+    
 
   }
 

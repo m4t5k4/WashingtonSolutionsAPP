@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'table/:id', component: EditTableComponent },
   { path: 'tournament', component: TournamentComponent },
   { path: 'tournament/add', component: NewTournamentComponent },
-  { path: 'tournament/:id', component: EditTournamentComponent },
+  { path: 'tournament/:id', component: NewTournamentComponent },
   //TODO: childrenroutes
 
 

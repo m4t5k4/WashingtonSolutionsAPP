@@ -16,11 +16,20 @@ export class TournamentService {
 
   }
 
+  getTournament(id:number): Observable<Tournament> {
+    return this.http.get<Tournament>("https://kickerapi.azurewebsites.net/api/tournaments/" +id);
+
+  }
+
   addTournament(tournament: Tournament) {
     return this.http.post("https://kickerapi.azurewebsites.net/api/tournaments", tournament);
   }
 
   deleteTournament(id: number) {
     return this.http.delete("https://kickerapi.azurewebsites.net/api/tournaments/"+ id);
+  }
+
+  editTournament(tournament: Tournament) {
+    return this.http.put("https://kickerapi.azurewebsites.net/api/tournaments/" + tournament.tournamentID, tournament );
   }
 }
