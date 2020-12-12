@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AccountService } from '../../../../core/services/account.service';
+import { AlertService } from '../../../../core/services/alert.service';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -8,7 +10,10 @@ import { AccountService } from '../../../../core/services/account.service';
 })
 export class ListComponent implements OnInit {
   users = null;
-  constructor(private accountService: AccountService) { }
+  constructor(
+    private accountService: AccountService,
+    private alertService: AlertService
+    ) { }
 
   ngOnInit(): void {
     this.accountService.getAll()
@@ -21,11 +26,14 @@ export class ListComponent implements OnInit {
   }
 
   deleteUser (id: number) {
-    const user = this.users.find(x => x.id === id);
+    const user = this.users.find(x => x.userID === id);
     user.isDeleting = true;
     this.accountService.delete(id)
       .pipe(first())
-      .subscribe(() => this.users = this.users.filter(x => x.id !== id));
+      .subscribe(() => {
+        this.users = this.users.filter(x => x.userID !== id);
+        this.alertService.success('Gebruiker succesvol verwijderd');
+      });
   }
 
 }

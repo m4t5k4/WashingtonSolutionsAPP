@@ -5,6 +5,8 @@ import { AccountService } from '../../../../core/services/account.service';
 import { User } from '../../../../shared/models/user.model';
 import { HttpEventType } from '@angular/common/http';
 import { FileService } from '../../../../core/services/file.service';
+import { first } from 'rxjs/operators';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -22,12 +24,14 @@ export class EditComponent implements OnInit {
   public imagePath;
   imgURL: any;
   imageID: number;
+  imageUrl: string;
 
   constructor(
     private alertService: AlertService,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private fileService: FileService
+    private fileService: FileService,
+    private ngbDateParserFormatter: NgbDateParserFormatter
   ) { }
 
   ngOnInit(): void {
@@ -37,18 +41,23 @@ export class EditComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', ],
       email: ['', Validators.required],
-      birthday: ['', Validators.required]
+      dob: ['', Validators.required],
+      userPictureID: []
     });
 
-    this.accountService.user.subscribe((x) => {
-      this.user = x;
-      this.form.patchValue(x);
-    });
-  }
-
-  get imageUrl () {
-    let fileName = 'Morty_Smith.jpg'
-    return 'https://kickerapi.azurewebsites.net/uploads/' + fileName;
+    this.accountService.user
+      .pipe(first())
+      .subscribe(x => {
+        let date = this.ngbDateParserFormatter.parse(x.dob);
+        this.user = x;
+        this.form.patchValue(x);
+        this.form.patchValue({
+          dob: date
+        });
+        this.fileService.getFile(x.userPictureID)
+          .pipe(first())
+          .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/uploads/' + x.path);
+      });
   }
 
   get f () { return this.form.controls; }
@@ -88,8 +97,9 @@ export class EditComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
 
-      this.fileService.uploadFile(file).subscribe(
+      /* this.fileService.uploadFile(file).subscribe(
         data => {
+          console.log(data);
           if (data) {
             switch (data.type) {
               case HttpEventType.UploadProgress:
@@ -108,7 +118,9 @@ export class EditComponent implements OnInit {
           this.inputFile.nativeElement.value = '';
 
         }
-      );
+      ); */
+
+      this.fileService.upload(file).subscribe(data => console.log(data));
     }
   }
 

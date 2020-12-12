@@ -107,7 +107,7 @@ export class DetailComponent implements OnInit {
     });
 
     if (!this.isAddMode) {
-      this.gameService.getById(this.id)
+      this.gameService.getGame(this.id)
         .pipe(first())
         .subscribe(x => this.form.patchValue(x));
     }
@@ -133,10 +133,65 @@ export class DetailComponent implements OnInit {
     }
   }
   updateGame () {
-    throw new Error('Method not implemented.');
+    let values = this.form.value;
+    let ngbDate = values.date;
+    let date = this.ngbDateParserFormatter.format(ngbDate);
+    var updateGame = {
+      gameID: this.id,
+      scoreTeamA: values.scoreTeamA,
+      scoreTeamB: values.scoreTeamB,
+      date: date + "T00:00:00",
+      teamAID: parseInt(values.teamAID),
+      teamBID: parseInt(values.teamBID),
+      tableID: parseInt(values.tableID),
+      tournamentID: parseInt(values.tournamentID),
+      gameTypeID: parseInt(values.gameTypeID)
+    }
+    console.log(updateGame);
+    this.gameService.putGame(this.id, updateGame)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.alertService.success('Wedstrijd succesvol geupdate', { keepAfterRouteChange: true });
+          this.router.navigate(['../../list'], { relativeTo: this.route });
+        },
+        error: error => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
   }
   createGame () {
-    throw new Error('Method not implemented.');
+    let values = this.form.value;
+    let ngbDate = values.date;
+    let date =this.ngbDateParserFormatter.format(ngbDate);
+    var newGame = {
+      scoreTeamA: values.scoreTeamA,
+      scoreTeamB: values.scoreTeamB,
+      date: date+"T00:00:00",
+      teamAID: parseInt(values.teamAID),
+      teamBID: parseInt(values.teamBID),
+      tableID: parseInt(values.tableID),
+      tournamentID: parseInt(values.tournamentID),
+      gameTypeID: parseInt(values.gameTypeID)
+    }
+    console.log(newGame);
+    this.gameService.addGame(newGame)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.alertService.success('Wedstrijd succesvol toegevoegd', { keepAfterRouteChange: true });
+          this.router.navigate(['../list'], { relativeTo: this.route });
+        },
+        error: error => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      });
+  }
+
+  goBack () {
+    this.router.navigateByUrl("/admin/game/list")
   }
 
 }

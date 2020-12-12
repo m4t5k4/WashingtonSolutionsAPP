@@ -17,8 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CompetitionModule } from './modules/admin/competition/competition.module';
 import { HomeModule } from './modules/home/home.module';
 import { UserModule } from './modules/admin/user/user.module';
-
+import { LoginComponent } from './modules/home/login/login.component';
 import { TableModule } from './modules/admin/table/table.module';
+import { TournamentModule } from './modules/admin/tournament/tournament.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameModule } from './modules/admin/game/game.module';
 import { UserGameModule } from './modules/user/games/game.module';
@@ -44,6 +45,7 @@ import { ProfileModule } from './modules/user/profile/profile.module';
     SharedModule,
     HttpClientModule,
     TableModule,
+    TournamentModule,
     NgbModule,
     CompetitionModule,
     HomeModule,
@@ -51,6 +53,7 @@ import { ProfileModule } from './modules/user/profile/profile.module';
     GameModule,
     UserGameModule,
     ProfileModule
+
   ],
   exports: [
   ],

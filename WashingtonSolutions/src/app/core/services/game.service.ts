@@ -15,22 +15,26 @@ export class GameService {
     private http: HttpClient
   ) {
   }
-  getAll () {
+  getGames () {
     return this.http.get<Game[]>(`${environment.apiUrl}/games`);
   }
 
-  getById (id: number) {
+  getGame (id: number) {
     return this.http.get<Game>(`${environment.apiUrl}/games/${id}`);
   }
 
-  update (id, params) {
+  addGame(game) {
+    return this.http.post("https://kickerapi.azurewebsites.net/api/games", game);
+  }
+
+  putGame (id, params) {
     return this.http.put(`${environment.apiUrl}/games/${id}`, params)
       .pipe(map(x => {
         return x;
       }));
   }
 
-  delete (id: number) {
+  deleteGame (id: number) {
     return this.http.delete(`${environment.apiUrl}/games/${id}`)
       .pipe(map(x => {
         return x;

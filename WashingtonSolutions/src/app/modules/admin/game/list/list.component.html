@@ -2,7 +2,7 @@
     <div class="card item" style="width: 80vw;">
         <div class="card-body">
             <h2>Wedstrijden</h2>
-            <a routerLink="/admin/game/add" class="btn btn-sm btn-success mb-2">Wedstrijd toeveogen</a>
+            <a routerLink="/admin/game/add" class="btn btn-sm btn-success mb-2">Wedstrijd toevoegen</a>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -21,7 +21,7 @@
                         <td>{{game.scoreTeamA}} - {{game.scoreTeamB}}</td>
                         <td style="white-space: nowrap">
                             <a routerLink="../edit/{{game.gameID}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                            <button (click)="deleteGame(game.gameID)" class="btn btn-sm btn-danger btn-delete-user"
+                            <button (click)="deleteGame(game.gameID)" class="btn btn-sm btn-danger btn-delete-game"
                                 [disabled]="game.isDeleting">
                                 <span *ngIf="game.isDeleting" class="spinner-border spinner-border-sm"></span>
                                 <span *ngIf="!game.isDeleting">Delete</span>

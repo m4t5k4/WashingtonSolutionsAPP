@@ -1,0 +1,61 @@
+<p>tournament list</p>
+<p>Gespeelde tournooien (einddatum bereikt) zonder een winnaar gaan in het rood. Een knop "bepaal winnaar" Wordt getoont.</p>
+<p>Gespeelde tournooien (einddatum bereikt) met een winnaar gaan in het groen</p>
+<div class="mat-elevation-z8">
+  <table *ngIf="loaded" mat-table [dataSource]="tournaments">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="tournamentID">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let tournament"> {{tournament.tournamentID}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let tournament"> {{tournament.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="startdate">
+      <th mat-header-cell *matHeaderCellDef> Begindatum </th>
+      <td mat-cell *matCellDef="let tournament"> {{tournament.startDate | date}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="enddate">
+      <th mat-header-cell *matHeaderCellDef> Einddatum </th>
+      <td mat-cell *matCellDef="let tournament"> {{tournament.endDate | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="competition">
+      <th mat-header-cell *matHeaderCellDef> Competitie </th>
+      <td mat-cell *matCellDef="let tournament"> {{tournament.competitionID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="winner">
+      <th mat-header-cell *matHeaderCellDef> Winnaar </th>
+      <td mat-cell *matCellDef="let tournament">
+        <div *ngIf="tournament.winnerID else unfinished"> {{tournament.winnerID}}</div>
+        <ng-template #unfinished>
+        <button (click)="announceWinner(tournament.tournamentID)" class="btn btn-primary" >Maak winnaar bekend</button>
+        </ng-template>
+      </td>
+    </ng-container>
+
+
+
+
+    <ng-container matColumnDef="acties">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let tournament">
+        <button class="btn btn-primary">Bekijk/Beheer games</button>
+        <button class="btn btn-danger" (click)="deleteTournament(tournament.tournamentID)">Verwijder</button>
+        <button class="btn btn-primary" (click)="editTournament(tournament.tournamentID)">Pas aan</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+  </table>
+  <a href="/tournament/add" class="btn btn-success">Nieuw Toernooi.</a>
+</div>
