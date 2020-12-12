@@ -21,6 +21,7 @@ import { UserModule } from './modules/admin/user/user.module';
 import { TableModule } from './modules/admin/table/table.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameModule } from './modules/admin/game/game.module';
+import { UserGameModule } from './modules/user/games/game.module';
 import { GroupComponent } from './modules/admin/group/group.component';
 import { ProfileModule } from './modules/user/profile/profile.module';
 
@@ -48,6 +49,7 @@ import { ProfileModule } from './modules/user/profile/profile.module';
     HomeModule,
     UserModule,
     GameModule,
+    UserGameModule,
     ProfileModule
   ],
   exports: [

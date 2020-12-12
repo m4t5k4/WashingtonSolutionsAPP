@@ -12,7 +12,7 @@ export class NavigationbarComponent implements OnInit {
   user: User;
 
   navUser = [
-    { link: '/', title: 'Mijn wedstrijden' },
+    { link: '/user/games', title: 'Mijn wedstrijden' },
     { link: '/', title: 'Mijn ploeg' },
     { link: '/user/profile/edit', title: 'Mijn gebruiker' },
     { link: '/', title: 'link' },

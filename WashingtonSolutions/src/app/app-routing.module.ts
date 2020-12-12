@@ -16,6 +16,7 @@ import { ListComponent as GameListComponent } from './modules/admin/game/list/li
 import { GroupComponent } from './modules/admin/group/group.component';
 import { EditComponent as ProfileEditComponent } from './modules/user/profile/edit/edit.component';
 import { DetailComponent as GameDetailComponent } from './modules/admin/game/detail/detail.component';
+import { GameComponent } from './modules/user/games/game.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'admin/game/add', component: GameDetailComponent },
 
   { path: 'user/profile/edit', component: ProfileEditComponent },
+  { path: 'user/games' , component: GameComponent},
 
   { path: 'table', component: TableComponent },
   { path: 'addtable', component: NewTableComponent },

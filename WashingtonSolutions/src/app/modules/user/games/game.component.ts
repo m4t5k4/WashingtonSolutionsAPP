@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CompetitionService } from 'src/app/core/services/competition.service';
+import { TableService } from 'src/app/core/services/table.service';
+import { TeamService } from 'src/app/core/services/team.service';
+import { GameType } from 'src/app/shared/models/game-type.model';
+import { Table } from 'src/app/shared/models/table.model';
+import { Team } from 'src/app/shared/models/team.model';
+import { GameService } from '../../../core/services/game.service';
+import { Game } from '../../../shared/models/game.model';
 
 @Component({
   selector: 'app-game',
@@ -7,9 +16,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  games: Game[];
+  gameTypes: GameType[];
+  tables: Table[];
+  teams: Team[];
+
+  constructor(private _gameService: GameService, private _tableService: TableService, private _competitionService: CompetitionService, private _teamService: TeamService, private _groupService: GroupService) {
+    this.getGames();
+    this.getGameTypes();
+    this.getTables();
+    this.getTeams();
+  }
 
   ngOnInit(): void {
+  }
+
+  getGames() {
+    // subscribe to GET all games
+    this._gameService.getAll().subscribe(
+      result => {
+        this.games = result;
+      }
+    )
+  }
+
+  getGameTypes() {
+    // subscribe to GET gameTypes
+    this._competitionService.getGameTypes().subscribe(
+      result => {
+        this.gameTypes = result;
+      }
+    )
+  };
+
+  getTables() {
+    // subscribe to GET tables
+    this._tableService.getTables().subscribe(
+      result => {
+        this.tables = result;
+      }
+    )
+  }
+
+  getTeams() {
+    // subscribe to GET teams
+    this._teamService.getTeams().subscribe(
+      result => {
+        this.teams = result;
+      }
+    )
+  }
+
+  getGroups() {
+
   }
 
 }
