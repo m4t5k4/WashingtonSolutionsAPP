@@ -21,12 +21,15 @@ import { ListComponent as GameListComponent } from './modules/admin/game/list/li
 import { GroupComponent } from './modules/admin/group/group.component';
 import { EditComponent as ProfileEditComponent } from './modules/user/profile/edit/edit.component';
 import { DetailComponent as GameDetailComponent } from './modules/admin/game/detail/detail.component';
+import { CaptainComponent } from './modules/captain/captain/captain.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent},
   
-  { path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'captain', component: CaptainComponent },
+
   
   { path: 'admin/user/list', component: UserListComponent },
   { path: 'admin/user/edit/:id', component: UserDetailComponent },

@@ -4,14 +4,13 @@
     "\\WashingtonSolutions",
     "\\WashingtonSolutions\\src",
     "\\WashingtonSolutions\\src\\app",
-    "\\WashingtonSolutions\\src\\app\\core",
-    "\\WashingtonSolutions\\src\\app\\core\\services",
     "\\WashingtonSolutions\\src\\app\\modules",
     "\\WashingtonSolutions\\src\\app\\modules\\admin",
-    "\\WashingtonSolutions\\src\\app\\modules\\admin\\table",
-    "\\WashingtonSolutions\\src\\app\\modules\\admin\\table\\table",
-    "\\WashingtonSolutions\\src\\app\\shared\\models"
+    "\\WashingtonSolutions\\src\\app\\modules\\home\\homepage",
+    "\\WashingtonSolutions\\src\\app\\shared",
+    "\\WashingtonSolutions\\src\\app\\shared\\components",
+    "\\WashingtonSolutions\\src\\app\\shared\\components\\templates\\navigationbar"
   ],
-  "SelectedNode": "\\WashingtonSolutions\\src\\app\\modules\\admin\\table\\table\\table.component.html",
+  "SelectedNode": "\\WashingtonSolutions\\src\\app\\shared\\components\\templates",
   "PreviewInSolutionExplorer": false
 }

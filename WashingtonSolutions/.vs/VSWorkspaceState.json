@@ -7,10 +7,10 @@
     "\\src\\app\\core\\services",
     "\\src\\app\\modules",
     "\\src\\app\\modules\\admin",
-    "\\src\\app\\modules\\admin\\tournament",
-    "\\src\\app\\modules\\admin\\tournament\\tournament",
-    "\\src\\app\\shared"
+    "\\src\\app\\modules\\admin\\user",
+    "\\src\\app\\modules\\admin\\user\\list",
+    "\\src\\app\\shared\\models"
   ],
-  "SelectedNode": "\\src\\app\\modules\\admin\\tournament\\new-tournament\\new-tournament.component.html",
+  "SelectedNode": "\\src\\app\\core\\services\\account.service.ts",
   "PreviewInSolutionExplorer": false
 }
