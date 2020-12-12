@@ -39,7 +39,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Competition</mat-label>
           <mat-select [(value)]="model.competitionID">
-            <mat-option *ngFor="let competition of competitions" value={{model.competitionID}}>{{competition.name}} </mat-option>
+            <mat-option *ngFor="let competition of competitions" value={{competition.competitionID}}>{{competition.name}} </mat-option>
           </mat-select>
         </mat-form-field>
       </div>

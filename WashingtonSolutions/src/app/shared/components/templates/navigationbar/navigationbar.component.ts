@@ -30,7 +30,8 @@ export class NavigationbarComponent implements OnInit {
     { link: '/admin/game/list', title: 'Wedstrijden' },
     { link: '/table', title: 'Tafels' },
     { link: '/group', title: 'Ploegen' },
-    { link: '/admin/competition', title: 'Competities' }
+    { link: '/admin/competition', title: 'Competities' },
+    { link: '/tournament', title: 'Toernooien' }
   ]
 
   constructor(
