@@ -14,7 +14,7 @@ export class NavigationbarComponent implements OnInit {
   navUser = [
     { link: '/', title: 'Mijn wedstrijden' },
     { link: '/', title: 'Mijn ploeg' },
-    { link: '/', title: 'link' },
+    { link: '/user/profile/edit', title: 'Mijn gebruiker' },
     { link: '/', title: 'link' },
     { link: '/', title: 'link' }
   ]
@@ -26,11 +26,11 @@ export class NavigationbarComponent implements OnInit {
     { link: '/', title: 'link' }
   ]
   navAdmin = [
-    { link: '/admin/list', title: 'Gebruikers' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' }
+    { link: '/admin/user/list', title: 'Gebruikers' },
+    { link: '/admin/game/list', title: 'Wedstrijden' },
+    { link: '/table', title: 'Tafels' },
+    { link: '/group', title: 'Ploegen' },
+    { link: '/admin/competition', title: 'Competities' }
   ]
 
   constructor(

@@ -21,6 +21,9 @@ import { LoginComponent } from './modules/home/login/login.component';
 import { TableModule } from './modules/admin/table/table.module';
 import { TournamentModule } from './modules/admin/tournament/tournament.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GameModule } from './modules/admin/game/game.module';
+import { GroupComponent } from './modules/admin/group/group.component';
+import { ProfileModule } from './modules/user/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     NavigationbarComponent,
 
-    AlertComponent
-    //LoginComponent,
-
+    AlertComponent,
+    GroupComponent
   ],
 
   imports: [
@@ -43,11 +45,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     TableModule,
     TournamentModule,
+    NgbModule,
+    CompetitionModule,
+    HomeModule,
+    UserModule,
+    GameModule,
+    ProfileModule
 
-    NgbModule
   ],
   exports: [
-    SharedModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

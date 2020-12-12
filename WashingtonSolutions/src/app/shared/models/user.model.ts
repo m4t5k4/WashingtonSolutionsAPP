@@ -8,9 +8,9 @@ export class User {
       public username: string, 
       public password:string, 
       public email: string, 
-      public birthday: Date,
+      public dob: string,
       public token: string, 
-      public userPicture?: string ) {
+      public userPictureID: number ) {
   }
 
 }

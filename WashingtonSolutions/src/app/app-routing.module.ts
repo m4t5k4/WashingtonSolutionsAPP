@@ -7,22 +7,41 @@ import { TableComponent } from './modules/admin/table/table/table.component';
 import { NewTableComponent } from './modules/admin/table/new-table/new-table.component';
 import { EditTableComponent } from './modules/admin/table/edit-table/edit-table.component';
 import { ManageCompetitionComponent } from './modules/admin/competition/manage-competition/manage-competition.component';
+import { AddCompetitionComponent } from './modules/admin/competition/add-competition/add-competition.component';
+import { EditCompetitionComponent } from './modules/admin/competition/edit-competition/edit-competition.component';
 import { RegisterComponent } from './modules/home/register/register.component';
-import { ListComponent } from './modules/admin/user/list/list.component';
-import { DetailComponent } from './modules/admin/user/detail/detail.component';
+//import { ListComponent } from './modules/admin/user/list/list.component';
+//import { DetailComponent } from './modules/admin/user/detail/detail.component';
+// (in comment gezet bij merge Bram)
 import { TournamentComponent } from './modules/admin/tournament/tournament/tournament.component';
 import { NewTournamentComponent } from './modules/admin/tournament/new-tournament/new-tournament.component';
-
+import { ListComponent as UserListComponent } from './modules/admin/user/list/list.component';
+import { DetailComponent as UserDetailComponent } from './modules/admin/user/detail/detail.component';
+import { ListComponent as GameListComponent } from './modules/admin/game/list/list.component';
+import { GroupComponent } from './modules/admin/group/group.component';
+import { EditComponent as ProfileEditComponent } from './modules/user/profile/edit/edit.component';
+import { DetailComponent as GameDetailComponent } from './modules/admin/game/detail/detail.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'competition', component: ManageCompetitionComponent},
+  
   { path: 'register', component: RegisterComponent},
-  { path: 'admin/list', component: ListComponent},
-  { path: 'admin/edit/:id', component: DetailComponent},
-  { path: 'admin/add', component: DetailComponent },
-  { path: 'login', component: LoginComponent },
+  
+  { path: 'admin/user/list', component: UserListComponent },
+  { path: 'admin/user/edit/:id', component: UserDetailComponent },
+  { path: 'admin/user/add', component: UserDetailComponent },
+  
+  { path: 'admin/competition', component: ManageCompetitionComponent},
+  { path: 'admin/competition/add', component: AddCompetitionComponent},
+  { path: 'admin/competition/edit/:id', component: EditCompetitionComponent},
+
+  { path: 'admin/game/list', component: GameListComponent },
+  { path: 'admin/game/edit/:id', component: GameDetailComponent },
+  { path: 'admin/game/add', component: GameDetailComponent },
+
+  { path: 'user/profile/edit', component: ProfileEditComponent },
+
   { path: 'table', component: TableComponent },
   { path: 'table/add', component: NewTableComponent },
   { path: 'table/:id', component: EditTableComponent },
@@ -31,11 +50,10 @@ const routes: Routes = [
   { path: 'tournament/:id', component: NewTournamentComponent },
   //TODO: childrenroutes
 
+  { path: 'group', component: GroupComponent },
 
   //moet laatst blijven staan.
   { path: '**', component: Error404Component },
-  
-  
 ];
 
 

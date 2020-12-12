@@ -1,0 +1,99 @@
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Manage <b>Groups</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a (click)="openAdd(contentAdd)" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Add New Team</span></a>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="invalidModify" class="alert alert-danger">Invalid filed to modify record.</div>
+    <div *ngIf="notSucces" class="alert alert-danger">Invalid filed to add record.</div>
+    <div *ngIf="succes" class="alert alert-success">succesfully add record.</div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Company name</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let groupItem of groupItems">
+                <td><img [src]="groupItem.teamPicture" onerror="this.src='https://picsum.photos/200';" alt="team picture" width="70px"></td>
+                <td>{{ groupItem.name }}</td>
+                <td>{{ groupItem.companyName }}</td>
+                <td>{{ groupItem.location }}</td>
+                <td>
+                    <a class="edit" data-toggle="modal" (click)="open(content, groupItem)">
+                        modify
+                    </a>
+                    <a (click)="delete(groupItem)" class="delete" data-toggle="modal">
+                        delete 
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="modify(f.value)">
+        <div class="form-group">
+            <label for="name"><b>name</b></label>
+            <input type="text" placeholder="name" ngModel name="name" id="name" required>
+      
+            <label for="companyName"><b>company name</b></label>
+            <input type="text" placeholder="company name" ngModel name="companyName" id="companyName" required>
+        
+            <label for="location"><b>location</b></label>
+            <input type="text" placeholder="location" ngModel name="location" id="location" required>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </ng-template>
+
+  <ng-template #contentAdd let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile Add</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #n="ngForm" (ngSubmit)="aad(n.value)">
+        <div class="form-group">
+            <label for="name"><b>name</b></label>
+            <input type="text" placeholder="name" ngModel name="name" id="name" required>
+      
+            <label for="companyName"><b>company name</b></label>
+            <input type="text" placeholder="company name" ngModel name="companyName" id="companyName" required>
+        
+            <label for="location"><b>location</b></label>
+            <input type="text" placeholder="location" ngModel name="location" id="location" required>
+      
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </ng-template>
