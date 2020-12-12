@@ -56,7 +56,7 @@ export class AccountService {
   }
 
   getByGroupId(id: number) {
-    return this.http.get<User>(`${environment.apiUrl}/users/GetByGroup/${id}`);
+    return this.http.get<User[]>(`${environment.apiUrl}/users/GetByGroup/${id}`);
   }
 
   update (id, params) {
@@ -88,6 +88,11 @@ export class AccountService {
 
   kick(user: User) {
     user.groupID = null;
+    return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
+  }
+
+  addToGroup(user: User, groupID: number) {
+    user.groupID = groupID;
     return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
   }
 }

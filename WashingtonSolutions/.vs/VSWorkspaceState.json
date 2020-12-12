@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\core",
-    "\\src\\app\\core\\services",
     "\\src\\app\\modules",
-    "\\src\\app\\modules\\admin",
-    "\\src\\app\\modules\\admin\\user",
-    "\\src\\app\\modules\\admin\\user\\list",
-    "\\src\\app\\shared\\models"
+    "\\src\\app\\modules\\captain",
+    "\\src\\app\\modules\\captain\\captain",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\components",
+    "\\src\\app\\shared\\components\\templates",
+    "\\src\\app\\shared\\components\\templates\\navigationbar"
   ],
-  "SelectedNode": "\\src\\app\\core\\services\\account.service.ts",
+  "SelectedNode": "\\src\\app\\modules\\captain\\captain\\captain.component.ts",
   "PreviewInSolutionExplorer": false
 }
