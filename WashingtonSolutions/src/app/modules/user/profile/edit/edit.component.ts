@@ -97,8 +97,9 @@ export class EditComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
 
-      this.fileService.uploadFile(file).subscribe(
+      /* this.fileService.uploadFile(file).subscribe(
         data => {
+          console.log(data);
           if (data) {
             switch (data.type) {
               case HttpEventType.UploadProgress:
@@ -117,7 +118,9 @@ export class EditComponent implements OnInit {
           this.inputFile.nativeElement.value = '';
 
         }
-      );
+      ); */
+
+      this.fileService.upload(file).subscribe(data => console.log(data));
     }
   }
 

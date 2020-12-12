@@ -25,7 +25,7 @@
       </div>
       <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
-      <div class="input-group form-group" [disabled]="endDisabled">
+      <div class="input-group form-group">
 
         <input required class="form-control" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker" [disabled]="endDisabled">
 

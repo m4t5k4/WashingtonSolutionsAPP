@@ -28,4 +28,11 @@ export class FileService {
         reportProgress: true
       }));
   }
+
+  public upload (file: Blob): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<string>(`${environment.apiUrl}/file/upload`, formData);
+  }
 }
