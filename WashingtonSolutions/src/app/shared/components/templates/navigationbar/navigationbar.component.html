@@ -42,14 +42,15 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Search</button>
       </form>
       <div style="float: right; display: flex" *ngIf="!user">
         <a class="nav-item nav-link" [routerLink]="['/register']">Registreren</a>
         <a class="nav-item nav-link" [routerLink]="['/login']">Aanmelden</a>
       </div>
       <div style="float: right; display: flex" *ngIf="user">
-        <h3>Welkom {{user.firstName}}</h3>
+        <h3 class="mr-2">welkom {{user.firstName}}</h3>
+        <img *ngIf="this.imageUrl" [src]="this.imageUrl" class="avatar">
         <a class="nav-item nav-link" (click)="logout()">Uitloggen</a>
       </div>
     </div>

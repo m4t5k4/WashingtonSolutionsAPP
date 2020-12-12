@@ -1,7 +1,7 @@
 <div class="container">
     <div class="card item" style="width: 36rem;">
-        <img *ngIf="this.imageUrl && !imgURL" [src]="this.imageUrl" class="avatar">
-        <img [src]="imgURL" class="avatar" *ngIf="imgURL">
+        <img *ngIf="this.imageUrl && !imgURL" [src]="this.imageUrl" class="avatar mt-3">
+        <img [src]="imgURL" class="avatar mt-3" *ngIf="imgURL">
         <div class="d-flex justify-content-center">
             <span *ngIf="!this.imageUrl" class="spinner-border m-5" style="width: 3rem; height: 3rem;"></span>
         </div>
@@ -64,21 +64,17 @@
                             (click)="d.toggle()">
                     </div>
                     <div class="form-group col">
-                        <label for="userPictureID">Image ID</label>
-                        <input type="text" formControlName="userPictureID" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="image">Image</label>
+                        <label for="image">Foto</label>
                         <span style="color:red;" *ngIf="message">{{message}}</span>
-                        <input name="image" #inputFile #file type="file" accept='image/*' (change)="preview(file.files)"
+                        <input style="border: 0px;" name="image" #inputFile #file type="file" accept='image/*' (change)="preview(file.files)"
                             class="form-control" />
                     </div>
                     <div class="form-group col">
-                        <a class="btn btn-link" (click)="upload(file.files)">upload foto naar api</a>
-                        <a class="btn btn-link" (click)="delete()">verwijderen</a>
                     </div>
                 </div>
 

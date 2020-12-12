@@ -44,8 +44,7 @@ export class EditComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', Validators.required],
-      dob: ['', Validators.required],
-      userPictureID: []
+      dob: ['', Validators.required]
     });
 
     this.accountService.user
@@ -84,9 +83,8 @@ export class EditComponent implements OnInit {
     let values = this.form.value;
     let ngbDate = values.dob;
     let date = this.ngbDateParserFormatter.format(ngbDate);
-    console.log(date);
 
-    let userPictureID = values.userPictureID;
+    let userPictureID = this.user.userPictureID;
     if (this.imgURL) {
       const file = files[0];
       this.fileService.upload(file).subscribe(data => {
@@ -111,7 +109,7 @@ export class EditComponent implements OnInit {
           .subscribe({
             next: () => {
               this.alertService.success('Update succesvol', { keepAfterRouteChange: true });
-              this.router.navigate(['../../list'], { relativeTo: this.route });
+              this.router.navigate(['/']);
             },
             error: error => {
               this.alertService.error(error);
@@ -145,7 +143,7 @@ export class EditComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
 
-      /* this.fileService.uploadFile(file).subscribe(
+      this.fileService.uploadFile(file).subscribe(
         data => {
           console.log(data);
           if (data) {
@@ -166,9 +164,7 @@ export class EditComponent implements OnInit {
           this.inputFile.nativeElement.value = '';
 
         }
-      ); */
-
-      this.fileService.upload(file).subscribe(data => console.log(data));
+      );
     }
   }
 
