@@ -109,8 +109,8 @@ export class NewTournamentComponent implements OnInit {
     this.loading = true;
 
     //convert dates
-    this.model.startdate = this.convertDate(this.startdate);
-    this.model.enddate = this.convertDate(this.enddate);
+    this.model.startDate = this.convertDate(this.startdate);
+    this.model.endDate = this.convertDate(this.enddate);
     this.model.competitionID = Number(this.model.competitionID) //er is waarschijnlijk een betere manier om dit te doen.
 
     //validate form
@@ -127,26 +127,26 @@ export class NewTournamentComponent implements OnInit {
       return;
     }
 
-    if (!this.model.startdate) {
+    if (!this.model.startDate) {
       console.log("selecteer een startdatum")
       this.loading = false;
       return;
     }
 
-    if (!this.model.enddate) {
+    if (!this.model.endDate) {
       console.log("selecteer een einddatum")
       this.loading = false;
       return;
     }
 
-    if (this.model.startdate >= this.model.enddate) {
+    if (this.model.startDate >= this.model.endDate) {
       console.log("startdate moet kleiner zijn dan enddate")
       this.loading = false;
       return;
     }
 
     
-    if (this.model.startdate < this.today && !this.isEdit) {
+    if (this.model.startDate < this.today && !this.isEdit) {
       console.log("startdate mag niet voor vandaag zijn.")
       this.loading = false;
       return;
@@ -154,8 +154,8 @@ export class NewTournamentComponent implements OnInit {
     // stop here if form is invalid
 
     console.log(this.model.name)
-    console.log(this.model.startdate)
-    console.log(this.model.enddate)
+    console.log(this.model.startDate)
+    console.log(this.model.endDate)
     console.log(this.model.competitionID)
 
     console.log(this.model)

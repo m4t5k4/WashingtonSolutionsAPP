@@ -17,7 +17,7 @@ export class TournamentComponent implements OnInit {
 
   tournaments: Tournament[];
   date;
-  columnsToDisplay = ['tournamentID', 'name', 'startdate', 'enddate', 'competition','winner', 'verwijderen'];
+  columnsToDisplay = ['tournamentID', 'name', 'startdate', 'enddate', 'competition','winner', 'acties'];
   loaded = false;
 
   //CRUD METHODES

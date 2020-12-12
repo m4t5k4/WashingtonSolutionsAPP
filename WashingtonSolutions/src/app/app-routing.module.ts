@@ -12,7 +12,6 @@ import { ListComponent } from './modules/admin/user/list/list.component';
 import { DetailComponent } from './modules/admin/user/detail/detail.component';
 import { TournamentComponent } from './modules/admin/tournament/tournament/tournament.component';
 import { NewTournamentComponent } from './modules/admin/tournament/new-tournament/new-tournament.component';
-import { EditTournamentComponent } from './modules/admin/tournament/edit-tournament/edit-tournament.component';
 
 
 const routes: Routes = [

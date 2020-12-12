@@ -1,5 +1,8 @@
 <div class="card">
-  <h4 class="card-header">Nieuwe tafel aanmaken</h4>
+  <h4 class="card-header">
+    <span *ngIf="isEdit">Toernooi bewerken</span>
+    <span *ngIf="!isEdit">Nieuw toernooi aanmaken</span>
+  </h4>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
 
@@ -12,26 +15,25 @@
       </div>
 
 
-      <div class="input-group form-group" >
+      <div class="input-group form-group">
 
-        <input class="form-control" required  name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker" [disabled]="startDisabled">
+        <input class="form-control" required name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker" [disabled]="startDisabled">
 
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button" [disabled]="startDisabled">📅</button>
         </div>
-
       </div>
+      <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
       <div class="input-group form-group" [disabled]="endDisabled">
 
-        <input required class="form-control"  name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker" [disabled]="endDisabled">
+        <input required class="form-control" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker" [disabled]="endDisabled">
 
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button" [disabled]="endDisabled">📅</button>
         </div>
-
-
       </div>
+      <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
       <div class="form-group">
         <mat-form-field appearance="fill">
@@ -45,7 +47,9 @@
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          Aanmaken
+          <span *ngIf="isEdit">Bewerken</span>
+          <span *ngIf="!isEdit">Aanmaken</span>
+
         </button>
       </div>
 

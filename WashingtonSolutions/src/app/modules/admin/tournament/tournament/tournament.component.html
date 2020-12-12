@@ -44,9 +44,10 @@
 
 
 
-    <ng-container matColumnDef="verwijderen">
+    <ng-container matColumnDef="acties">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let tournament">
+        <button class="btn btn-primary">Bekijk/Beheer games</button>
         <button class="btn btn-danger" (click)="deleteTournament(tournament.tournamentID)">Verwijder</button>
         <button class="btn btn-primary" (click)="editTournament(tournament.tournamentID)">Pas aan</button>
       </td>
