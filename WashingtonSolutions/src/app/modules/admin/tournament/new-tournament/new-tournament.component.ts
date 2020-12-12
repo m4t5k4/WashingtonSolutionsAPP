@@ -59,19 +59,19 @@ export class NewTournamentComponent implements OnInit {
         if (result.tournamentID) {
           this.isEdit = true;
           this.model = result;
-          var x = result.startDate.split("-", 3);
-          var y = result.endDate.split("-", 3)
+          var x = String(result.startDate).split("-", 3);
+          var y = String(result.endDate).split("-", 3)
             this.startdate = { year: Number(x[0]), month: Number(x[1]), day: Number(x[2].substr(0, 2))}; //bug: wordt niet ingevuld in de input
           this.enddate = { year: Number(y[0]), month: Number(y[1]), day: Number(y[2].substr(0, 2)) }
           //als de start/einddatum al voorbij is kan de startdatum niet meer aangepast worden.
-          console.log(this.parseDate(result.startDate)) //nog aanpassen in model
+          console.log(this.parseDate(String(result.startDate))) //nog aanpassen in model
           console.log(this.today.getTime())
 
-          if (this.parseDate(result.startDate).getTime() < this.today.getTime()) {
+          if (this.parseDate(String(result.startDate)).getTime() < this.today.getTime()) {
             console.log("start")
             this.startDisabled = true;
           }
-          if (this.parseDate(result.endDate).getTime() < this.today.getTime()) {
+          if (this.parseDate(String(result.endDate)).getTime() < this.today.getTime()) {
             console.log("end")
             this.endDisabled = true;
           }
