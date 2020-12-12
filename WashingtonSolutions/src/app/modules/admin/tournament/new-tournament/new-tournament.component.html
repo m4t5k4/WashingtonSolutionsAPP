@@ -1,5 +1,4 @@
 <div class="card">
-  {{model | json }}
   <h4 class="card-header">Nieuwe tafel aanmaken</h4>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
@@ -12,7 +11,6 @@
 
       </div>
 
-      <div>vaild: {{nameControl.valid}}</div>
 
       <div class="input-group form-group" >
 
@@ -39,7 +37,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Competition</mat-label>
           <mat-select [(value)]="model.competitionID">
-            <mat-option *ngFor="let competition of competitions" value={{competition.competitionID}}>{{competition.name}} </mat-option>
+            <mat-option *ngFor="let competition of competitions" value={{model.competitionID}}>{{competition.name}} </mat-option>
           </mat-select>
         </mat-form-field>
       </div>

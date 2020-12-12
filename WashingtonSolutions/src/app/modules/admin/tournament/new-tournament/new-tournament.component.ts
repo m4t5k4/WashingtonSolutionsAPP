@@ -61,8 +61,8 @@ export class NewTournamentComponent implements OnInit {
           this.model = result;
           var x = result.startDate.split("-", 3);
           var y = result.endDate.split("-", 3)
-          this.startdate = x[0] + "-" + x[1] + "-" + x[2].substr(0, 1); //bug: wordt niet ingevuld in de input
-          this.enddate = y[0] + "-" + y[1] + "-" + y[2].substr(0, 1)
+            this.startdate = { year: Number(x[0]), month: Number(x[1]), day: Number(x[2].substr(0, 2))}; //bug: wordt niet ingevuld in de input
+          this.enddate = { year: Number(y[0]), month: Number(y[1]), day: Number(y[2].substr(0, 2)) }
           //als de start/einddatum al voorbij is kan de startdatum niet meer aangepast worden.
           console.log(this.parseDate(result.startDate)) //nog aanpassen in model
           console.log(this.today.getTime())
@@ -84,7 +84,7 @@ export class NewTournamentComponent implements OnInit {
   parseDate(date: string) {
     var x = date.split("-", 3)
     console.log(x)
-    return new Date(Number(x[0]), Number(x[1]), Number(x[2].substr(0, 1)));
+    return new Date(Number(x[0]), Number(x[1]), Number(x[2].substr(0, 2)));
   }
 
   getCompetitions() {
