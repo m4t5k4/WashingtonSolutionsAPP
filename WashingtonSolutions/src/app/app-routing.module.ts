@@ -10,6 +10,11 @@ import { ManageCompetitionComponent } from './modules/admin/competition/manage-c
 import { AddCompetitionComponent } from './modules/admin/competition/add-competition/add-competition.component';
 import { EditCompetitionComponent } from './modules/admin/competition/edit-competition/edit-competition.component';
 import { RegisterComponent } from './modules/home/register/register.component';
+//import { ListComponent } from './modules/admin/user/list/list.component';
+//import { DetailComponent } from './modules/admin/user/detail/detail.component';
+// (in comment gezet bij merge Bram)
+import { TournamentComponent } from './modules/admin/tournament/tournament/tournament.component';
+import { NewTournamentComponent } from './modules/admin/tournament/new-tournament/new-tournament.component';
 import { ListComponent as UserListComponent } from './modules/admin/user/list/list.component';
 import { DetailComponent as UserDetailComponent } from './modules/admin/user/detail/detail.component';
 import { ListComponent as GameListComponent } from './modules/admin/game/list/list.component';
@@ -38,8 +43,11 @@ const routes: Routes = [
   { path: 'user/profile/edit', component: ProfileEditComponent },
 
   { path: 'table', component: TableComponent },
-  { path: 'addtable', component: NewTableComponent },
+  { path: 'table/add', component: NewTableComponent },
   { path: 'table/:id', component: EditTableComponent },
+  { path: 'tournament', component: TournamentComponent },
+  { path: 'tournament/add', component: NewTournamentComponent },
+  { path: 'tournament/:id', component: NewTournamentComponent },
   //TODO: childrenroutes
 
   { path: 'group', component: GroupComponent },
@@ -47,6 +55,7 @@ const routes: Routes = [
   //moet laatst blijven staan.
   { path: '**', component: Error404Component },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
