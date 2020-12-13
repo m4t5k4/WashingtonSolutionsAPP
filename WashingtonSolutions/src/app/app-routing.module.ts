@@ -79,8 +79,6 @@ const routes: Routes = [
   { path: 'tournament/:id', component: NewTournamentComponent },
   //TODO: childrenroutes
 
-  { path: 'group', component: GroupComponent },
-
   { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   { path: 'user/show_score', component: ShowScoreComponent, canActivate: [UserAuthGuard ,AuthGuard] },
   { path: 'user/create_team', component: CreateTeamComponent, canActivate: [UserAuthGuard ,AuthGuard] },
