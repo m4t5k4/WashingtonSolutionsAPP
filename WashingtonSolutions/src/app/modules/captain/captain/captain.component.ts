@@ -5,6 +5,8 @@ import { AlertService } from '../../../core/services/alert.service';
 import { TeamService } from '../../../core/services/team.service';
 import { User } from '../../../shared/models/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Team } from '../../../shared/models/team.model';
+import { TeamUser } from '../../../shared/models/team-user.model';
 
 @Component({
   selector: 'app-captain',
@@ -14,6 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CaptainComponent implements OnInit {
 
   form: FormGroup;
+  formteams: FormGroup;
   users = null;
   user: User;
   loading = false;
@@ -38,6 +41,11 @@ export class CaptainComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       userID: ['', Validators.required]
+    });
+    this.formteams = this.formBuilder.group({
+      teamName: ['', Validators.required],
+      userIDA: ['', Validators.required],
+      userIDB: ['']
     });
   }
   /**
@@ -100,7 +108,43 @@ export class CaptainComponent implements OnInit {
     })
   }
 
-  onSubmitTeam() { }
+  onSubmitTeam() {
+    this.submitted = true;
+    // reset alerts on submit
+    this.alertService.clear();
+
+    // stop here if form is invalid
+    if (this.formteams.invalid) {
+      return;
+    }
+    this.loading = true;
+    console.log(this.formteams.value.teamName)
+    console.log(this.formteams.value.userIDA)
+    console.log(this.formteams.value.userIDB)
+
+    var team = new Team(0, this.formteams.value.teamName, this.user.groupID)
+    console.log(team)
+    this.teamService.addTeam(team).subscribe(result => {
+      console.log(result)
+      var team: any = result
+      var teamID = team.teamID
+      console.log(teamID)
+
+      //gebruiker(s) toevoegen aan dit team.
+
+      var teamUserA = new TeamUser(0, this.formteams.value.userIDA, teamID)
+      this.teamService.addTeamUser(teamUserA).subscribe(res=>{
+        console.log(res)
+      })
+      if (this.formteams.value.userIDB) {
+        var teamUserB = new TeamUser(0, this.formteams.value.userIDB, teamID)
+        this.teamService.addTeamUser(teamUserB).subscribe(res => {
+          console.log(res)
+        })
+      }
+      this.loading = false;
+    })
+  }
 
 
   gebruiksbtn() {

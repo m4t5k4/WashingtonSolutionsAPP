@@ -54,18 +54,29 @@
     <div class="card-body">
       <h2>Maak een nieuw Team</h2>
 
-      <form [formGroup]="form" (ngSubmit)="onSubmitTeam()">
+      <form [formGroup]="formteams" (ngSubmit)="onSubmitTeam()">
+        <div class="form-group">
+          <label for="teamName">TeamNaam</label>
+          <input type="text" formControlName="teamName" class="form-control" />
+        </div>
+
         <div class="form-group col">
-          <label for="noGroupUsers">Users</label>
-          <select name="noGroupUsers" id="noGroupUsers" formControlName="userID" class="form-control">
-            <option *ngFor="let user of noGroupUsers" value="{{user.userID}}">{{user.username}}</option>
+          <label for="noGroupUsers">Gebruiker 1 (verplicht)</label>
+          <select name="noGroupUsers" id="noGroupUsers" formControlName="userIDA" class="form-control">
+            <option *ngFor="let user of users" value="{{user.userID}}">{{user.username}}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label for="noGroupUsers">Gebruiker 2 (optitioneel)</label>
+          <select name="noGroupUsers" id="noGroupUsers" formControlName="userIDB" class="form-control">
+            <option *ngFor="let user of users" value="{{user.userID}}">{{user.username}}</option>
           </select>
         </div>
 
         <div class="form-group">
           <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Voeg nieuwe gebruiker toe.
+            Maak Nieuw team aan
           </button>
         </div>
       </form>

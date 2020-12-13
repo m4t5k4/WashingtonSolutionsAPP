@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Team } from '../../shared/models/team.model';
+import { TeamUser } from '../../shared/models/team-user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -35,5 +36,9 @@ export class TeamService {
 
   putTeam(team) {
     return this.http.put(`${environment.apiUrl}/teams/${team.id}`, team);
+  }
+
+  addTeamUser(teamUser: TeamUser) {
+    return this.http.post(`${environment.apiUrl}/teams/teamuser`, teamUser)
   }
 }
