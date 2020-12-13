@@ -41,8 +41,9 @@
             <td mat-cell *matCellDef="let table">
               <!-- Knop voor gebruiker te vervijderen -->
               <!-- admins kunnen elkaar niet vervijderen -->
-              <button class="btn btn-danger m-1" (click)="deleteTable(table.tableID)">Verwijder</button>
+              
               <button class="btn btn-primary m-1" routerLink="edit/{{table.tableID}}" >Pas aan</button>
+              <button class="btn btn-danger m-1" (click)="deleteTable(table.tableID)">Verwijder</button>
             </td>
           </ng-container>
       

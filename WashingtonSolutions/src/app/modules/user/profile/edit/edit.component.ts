@@ -86,7 +86,7 @@ export class EditComponent implements OnInit {
     let date = this.ngbDateParserFormatter.format(ngbDate);
 
     let userPictureID = this.user.userPictureID;
-    if (this.imgURL) {
+    if (this.imgURL) {//als er een nieuwe foto is
       const file = files[0];
       this.fileService.upload(file).subscribe(data => {
         userPictureID = data.fileID;
@@ -119,6 +119,33 @@ export class EditComponent implements OnInit {
             }
           });
       });
+    } else {
+      var updateUser = {
+        roleID: this.user.roleID,
+        username: values.username,
+        password: values.password,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        dob: date + "T00:00:00",
+        userID: this.user.userID,
+        userPictureID: userPictureID,
+        groupID: this.user.groupID
+      }
+      console.log(updateUser);
+      this.accountService.update(this.user.userID, updateUser)
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            this.alertService.success('Update succesvol', { keepAfterRouteChange: true });
+            this.router.navigate(['/']);
+          },
+          error: error => {
+            this.alertService.error(error);
+            this.loading = false;
+            console.log(updateUser);
+          }
+        });
     }
   }
 
