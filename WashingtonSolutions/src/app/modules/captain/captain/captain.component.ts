@@ -36,7 +36,7 @@ export class CaptainComponent implements OnInit {
       userID: ['', Validators.required]
     });
   }
-
+  /**
   kickUser(id: number) {
     const user = this.users.find(x => x.userID === id);
     user.isKicking = true;
@@ -49,6 +49,7 @@ export class CaptainComponent implements OnInit {
       });
     this.loading = false;
   }
+  */
 
   getUsers() {
     //lijst met gebruikers in groep
