@@ -171,11 +171,11 @@ export class NewChallengeComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this._alertService.success('Wedstrijd succesvol toegevoegd', { keepAfterRouteChange: true });
+          this._alertService.success('Challenge send', { keepAfterRouteChange: true });
           this.router.navigate(['user/challenge']);
         },
         error: error => {
-          this._alertService.error(error);
+          this._alertService.error('er is iets fout gegaan');
           this.loading = false;
         }
       });

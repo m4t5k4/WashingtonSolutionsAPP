@@ -6,8 +6,8 @@
     <p>GameID: {{game.gameID}}</p>
     <p>{{ groups[teams[game.teamAID - 1].groupID - 1].name }}</p>
     <p>{{ groups[teams[game.teamBID - 1].groupID - 1].name }}</p>
-    <button class="btn btn-succes">Accept</button>
-    <button class="btn btn-danger">Reject</button>
+    <button class="btn btn-succes" (click)="accept(game.gameID)">Accept</button>
+    <button class="btn btn-danger" (click)="reject(game.gameID)">Reject</button>
   </div>
 </div>
 <h3>Uitgaande Challenges</h3>

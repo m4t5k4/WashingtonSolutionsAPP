@@ -56,7 +56,7 @@ export class NewTournamentComponent implements OnInit {
           catchError(err => {
             this.router.navigateByUrl("/tournament");
             return throwError(err);
-            //stuurt mensen terug als hettournooi niet bestaad.
+            //stuurt mensen terug als het tournooi niet bestaad.
           })
         )
         .subscribe(result => {
