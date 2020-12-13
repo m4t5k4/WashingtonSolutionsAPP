@@ -10,6 +10,7 @@ import { Table } from 'src/app/shared/models/table.model';
 import { Team } from 'src/app/shared/models/team.model';
 import { GameService } from '../../../core/services/game.service';
 import { Game } from '../../../shared/models/game.model';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-game',
@@ -18,14 +19,18 @@ import { Game } from '../../../shared/models/game.model';
 })
 export class GameComponent implements OnInit {
 
-  games: Game[];
+  games: Game[] = []; //moet op voorhand gedeclareerd zijn
   gameTypes: GameType[];
   tables: Table[];
   teams: Team[];
   groups: Group[];
+  //userdata
+  userTeams: Team[] = []; //teams waar de user in zit
+  teamUsers
+  groupID;
 
-  constructor(private _gameService: GameService, private _tableService: TableService, private _competitionService: CompetitionService, private _teamService: TeamService, private _groupService: GroupService, private router: Router) {
-    this.getGames();
+  constructor(private _gameService: GameService, private _tableService: TableService, private _competitionService: CompetitionService, private _teamService: TeamService, private _groupService: GroupService, private router: Router, private _accountservice: AccountService) {
+    this.getData();
     this.getGameTypes();
     this.getTables();
     this.getTeams();
@@ -33,6 +38,34 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getData() {
+    this._accountservice.getUser()
+      .subscribe(result => {
+        this.teamUsers = result.teamUsers
+        this.groupID = result.groupID
+        console.log(this.groupID)
+        console.log(result.teamUsers)
+        //als dit een uncompilable error geeft moet ik dit nog toev. aan het model user.
+
+        for (let t of this.teamUsers) {
+          //2de observable moet gebeuren als 1ste gedaan is.
+          this._teamService.getTeam(t.teamID).subscribe(res => {
+            console.log(res)
+            this.userTeams.push(res)
+            console.log("teams:")
+            console.log(this.userTeams)
+            //Games van dit team toevoegen aan this.games
+            this._gameService.getGames().subscribe(r => {
+              console.log(r)
+              this.games = this.games.concat(r)
+              console.log("games:")
+              console.log(this.games)
+            })
+          })
+        }
+      })
   }
 
   getGames() {

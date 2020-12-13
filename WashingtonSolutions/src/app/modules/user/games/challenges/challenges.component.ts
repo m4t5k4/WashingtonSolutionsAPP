@@ -32,7 +32,7 @@ export class ChallengesComponent implements OnInit {
   games: Game[] = []; //moet op voorhand gedeclareerd zijn
   gameTypes: GameType[];
   tables: Table[];
-  teams: Team[] = [];
+  userTeams: Team[] = []; //teams waar de user in zit
   groups: Group[];
   teamUsers
   groupID;
@@ -54,9 +54,9 @@ export class ChallengesComponent implements OnInit {
           //2de observable moet gebeuren als 1ste gedaan is.
           this._teamService.getTeam(t.teamID).subscribe(res => {
             console.log(res)
-            this.teams.push(res)
+            this.userTeams.push(res)
             console.log("teams:")
-            console.log(this.teams)
+            console.log(this.userTeams)
             //Games van dit team toevoegen aan this.games
             this._gameService.getGames().subscribe(r => {
               console.log(r)
