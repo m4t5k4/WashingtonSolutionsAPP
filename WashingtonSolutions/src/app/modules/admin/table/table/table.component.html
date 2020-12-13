@@ -20,7 +20,7 @@
                       <td>{{ table.address }}</td>
                       <td>{{ users[table.contactPersonID - 1].firstName }} {{ users[table.contactPersonID - 1].lastName }}</td>
                       <td style="white-space: nowrap">
-                          <a routerLink="edit/{{table.tableID}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                          <a routerLink="edit/{{table.tableID}}" class="btn btn-sm btn-primary mr-1">Wijzigen</a>
                           <button class="btn btn-sm btn-danger m-1" (click)="deleteTable(table.tableID)">Verwijder</button>
                       </td>
                   </tr>
