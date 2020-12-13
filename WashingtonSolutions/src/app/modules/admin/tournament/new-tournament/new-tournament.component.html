@@ -1,59 +1,58 @@
-<div class="card">
-  <h4 class="card-header">
-    <span *ngIf="isEdit">Toernooi bewerken</span>
-    <span *ngIf="!isEdit">Nieuw toernooi aanmaken</span>
-  </h4>
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()">
+<div class="container">
+  <div class="card">
+    <h4 class="card-header">
+      <span *ngIf="isEdit">Toernooi bewerken</span>
+      <span *ngIf="!isEdit">Nieuw toernooi aanmaken</span>
+    </h4>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()">
 
-      <div class="input-group form-group">
-        <label for="name">Naam</label>
-        <input type="text" class="form-control" id="name"
-               required
-               [(ngModel)]="model.name" name="name" #nameControl="ngModel">
-
-      </div>
-
-
-      <div class="input-group form-group">
-
-        <input class="form-control" required name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker" [disabled]="startDisabled">
-
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button" [disabled]="startDisabled">📅</button>
+        <div class="form-group">
+          <label for="name">Naam</label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+          #nameControl="ngModel">
         </div>
-      </div>
-      <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
-      <div class="input-group form-group">
 
-        <input required class="form-control" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker" [disabled]="endDisabled">
-
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button" [disabled]="endDisabled">📅</button>
+        <div class="input-group form-group">
+          <input class="form-control" required name="dp" [(ngModel)]="startdate" ngbDatepicker #d="ngbDatepicker"
+            [disabled]="startDisabled" placeholder="Startdatum">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"
+              [disabled]="startDisabled">📅</button>
+          </div>
         </div>
-      </div>
-      <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
-      <div class="form-group">
-        <mat-form-field appearance="fill">
-          <mat-label>Competition</mat-label>
-          <mat-select [(value)]="model.competitionID">
-            <mat-option *ngFor="let competition of competitions" value={{competition.competitionID}}>{{competition.name}} </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+        <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
-      <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          <span *ngIf="isEdit">Bewerken</span>
-          <span *ngIf="!isEdit">Aanmaken</span>
+        <div class="input-group form-group">
+          <input required class="form-control" name="enddate" [(ngModel)]="enddate" ngbDatepicker #e="ngbDatepicker"
+            [disabled]="endDisabled" placeholder="Einddatum">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"
+              [disabled]="endDisabled">📅</button>
+          </div>
+        </div>
 
-        </button>
-      </div>
+        <div *ngIf="startDisabled">Datum gepasseert, bewerken onmogelijk</div>
 
-    </form>
+        <div class="form-group">
+          <label for="competitie">Competitie</label>
+          <select class="form-control" id="competitie" [(value)]="model.competitionID">
+            <option *ngFor="let competition of competitions" value={{competition.competitionID}}>
+              {{competition.name}} </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <span *ngIf="isEdit">Bewerken</span>
+            <span *ngIf="!isEdit">Aanmaken</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
   </div>
 </div>
-<p>TODO: Fix dieje layout!</p>
