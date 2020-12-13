@@ -58,7 +58,7 @@ export class ChallengesComponent implements OnInit {
             //Games van dit team toevoegen aan this.games
             this._gameService.getGames().subscribe(r => {
               console.log(r)
-              this.games.push(r) //geeft error maar werkt wel.
+              this.games = this.games.concat(r)
               console.log("games:")
               console.log(this.games)
             })
