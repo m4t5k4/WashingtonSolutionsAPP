@@ -1,4 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CompetitionService } from 'src/app/core/services/competition.service';
+import { GroupService } from 'src/app/core/services/group.service';
+import { TableService } from 'src/app/core/services/table.service';
+import { TeamService } from 'src/app/core/services/team.service';
+import { GameType } from 'src/app/shared/models/game-type.model';
+import { Group } from 'src/app/shared/models/group.model';
+import { Table } from 'src/app/shared/models/table.model';
+import { Team } from 'src/app/shared/models/team.model';
+import { GameService } from 'src/app/core/services/game.service';
+import { Game } from 'src/app/shared/models/game.model';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-challenges',
@@ -7,9 +19,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChallengesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _gameService: GameService,
+    private _tableService: TableService,
+    private _competitionService: CompetitionService,
+    private _teamService: TeamService,
+    private _groupService: GroupService,
+    private _accountservice: AccountService,
+    private router: Router
+  ) { }
+
+  games: Game[];
+  gameTypes: GameType[];
+  tables: Table[];
+  teams: Team[] = [];
+  groups: Group[];
+  teamUsers
 
   ngOnInit(): void {
+    this._accountservice.getUser()
+      .subscribe(result => {
+        this.teamUsers = result.teamUsers
+        console.log(result.teamUsers)
+        //als dit een uncompilable error geeft moet ik dit nog toev. aan het model user.
+
+        for (let t of this.teamUsers) {
+          this._teamService.getTeam(t.teamID).subscribe(res => {
+            console.log(res)
+            this.teams.push(res)
+            console.log("teams:")
+            console.log(this.teams)
+          })
+          //als dit geen errors geeft geloof ik het niet
+        }
+      })
   }
 
 }

@@ -3,14 +3,15 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\core",
     "\\src\\app\\modules",
-    "\\src\\app\\modules\\captain",
-    "\\src\\app\\modules\\captain\\captain",
-    "\\src\\app\\shared",
-    "\\src\\app\\shared\\components",
-    "\\src\\app\\shared\\components\\templates",
-    "\\src\\app\\shared\\components\\templates\\navigationbar"
+    "\\src\\app\\modules\\admin",
+    "\\src\\app\\modules\\admin\\user",
+    "\\src\\app\\modules\\admin\\user\\list",
+    "\\src\\app\\modules\\user",
+    "\\src\\app\\modules\\user\\games",
+    "\\src\\app\\modules\\user\\games\\challenges"
   ],
-  "SelectedNode": "\\src\\app\\modules\\captain\\captain\\captain.component.ts",
+  "SelectedNode": "\\src\\app\\core\\services",
   "PreviewInSolutionExplorer": false
 }
