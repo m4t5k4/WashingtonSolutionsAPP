@@ -35,16 +35,18 @@ export class ChallengesComponent implements OnInit {
   teams: Team[] = [];
   groups: Group[];
   teamUsers
+  groupID;
 
   ngOnInit(): void {
     this.getData()
   }
 
   getData() {
-
     this._accountservice.getUser()
       .subscribe(result => {
         this.teamUsers = result.teamUsers
+        this.groupID = result.groupID
+        console.log(this.groupID)
         console.log(result.teamUsers)
         //als dit een uncompilable error geeft moet ik dit nog toev. aan het model user.
 
