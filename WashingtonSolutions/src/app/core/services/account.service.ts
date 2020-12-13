@@ -111,7 +111,7 @@ export class AccountService {
 
   isCapiten() { 
     if(this.user1){
-      if (this.user1.role.name == "Capiten"){
+      if (this.user1.role.name == "Captain"){
         return true;
       }else{
         return false;
