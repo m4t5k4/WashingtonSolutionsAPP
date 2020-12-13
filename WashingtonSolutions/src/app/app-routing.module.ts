@@ -34,21 +34,21 @@ const routes: Routes = [
   
   { path: 'register', component: RegisterComponent},
   
-  { path: 'admin/user/list', component: UserListComponent, canActivate: [AuthGuard, AdminAuthGuard] },
-  { path: 'admin/user/edit/:id', component: UserDetailComponent, canActivate: [AuthGuard, AdminAuthGuard] },
-  { path: 'admin/user/add', component: UserDetailComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/user/list', component: UserListComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/user/edit/:id', component: UserDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/user/add', component: UserDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   
-  { path: 'admin/competition', component: ManageCompetitionComponent, canActivate: [AuthGuard, AdminAuthGuard]},
-  { path: 'admin/competition/add', component: AddCompetitionComponent, canActivate: [AuthGuard, AdminAuthGuard]},
-  { path: 'admin/competition/edit/:id', component: EditCompetitionComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+  { path: 'admin/competition', component: ManageCompetitionComponent, canActivate: [AdminAuthGuard, AuthGuard]},
+  { path: 'admin/competition/add', component: AddCompetitionComponent, canActivate: [AdminAuthGuard, AuthGuard]},
+  { path: 'admin/competition/edit/:id', component: EditCompetitionComponent, canActivate: [AdminAuthGuard, AuthGuard]},
 
-  { path: 'admin/game/list', component: GameListComponent, canActivate: [AuthGuard, AdminAuthGuard] },
-  { path: 'admin/game/edit/:id', component: GameDetailComponent, canActivate: [AuthGuard, AdminAuthGuard] },
-  { path: 'admin/game/add', component: GameDetailComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'admin/game/list', component: GameListComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/game/edit/:id', component: GameDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/game/add', component: GameDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
 
   { path: 'user/profile/edit',
     component: ProfileEditComponent,
-    canActivate: [AuthGuard, UserAuthGuard]},
+    canActivate: [UserAuthGuard, AuthGuard]},
 
   { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
   { path: 'table/add', component: NewTableComponent, canActivate: [AuthGuard] },
@@ -58,7 +58,7 @@ const routes: Routes = [
   { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },
   //TODO: childrenroutes
 
-  { path: 'group', component: GroupComponent, canActivate: [AuthGuard, AdminAuthGuard] },
+  { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },
   { path: 'user/create_team', component: CreateTeamComponent, canActivate: [AuthGuard] },
   { path: 'no-access', component: Error403Component },
