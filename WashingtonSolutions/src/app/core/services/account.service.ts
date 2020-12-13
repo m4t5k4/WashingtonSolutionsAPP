@@ -57,6 +57,11 @@ export class AccountService {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
+  getUser() {
+    return this.http.get<User>(`${environment.apiUrl}/users/${this.userValue.userID}`);
+    //gemaakt voor UserTeams te testen
+  }
+
   getByGroupId(id: number) {
     return this.http.get<User[]>(`${environment.apiUrl}/users/GetByGroup/${id}`);
   }
