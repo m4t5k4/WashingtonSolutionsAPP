@@ -1,6 +1,6 @@
 <div class="container">
-  <button class="btn btn-success"  (click)="gebruiksbtn()">Gebruikers Beheren</button>
-  <button class="btn btn-success"  (click)="teamsbtn()">Teams Beheren</button>
+  <button class="btn btn-primary m-1"  (click)="gebruiksbtn()">Gebruikers Beheren</button>
+  <button class="btn btn-primary m-1"  (click)="teamsbtn()">Teams Beheren</button>
 
   <div class="card item" style="width: 80vw" *ngIf="gebruikerView else teamsView">
 
@@ -52,6 +52,28 @@
 
   <ng-template #teamsView class="card item" style="width: 80vw">
     <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 12%">TeamID</th>
+            <th style="width: 12%">TeamNaam</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of teams">
+            <td>{{team.teamID}}</td>
+            <td>{{team.teamName}}</td>
+          </tr>
+          <tr *ngIf="!teams">
+            <td colspan="4" class="text-center">
+              <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
       <h2>Maak een nieuw Team</h2>
 
       <form [formGroup]="formteams" (ngSubmit)="onSubmitTeam()">

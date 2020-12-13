@@ -19,6 +19,7 @@ export class CaptainComponent implements OnInit {
   formteams: FormGroup;
   users = null;
   user: User;
+  teams: Team[];
   loading = false;
   noGroupUsers: User[];
   submitted = false;
@@ -32,11 +33,14 @@ export class CaptainComponent implements OnInit {
     private alertService: AlertService,
     private teamService: TeamService
   ) {
-    this.accountService.user.subscribe(x => this.user = x);}
+    this.accountService.user.subscribe(x => this.user = x);
+    
+  }
 
   ngOnInit(): void {
     console.log(this.user.groupID)
     this.getUsers()
+    this.getTeams()
 
 
     this.form = this.formBuilder.group({
@@ -63,7 +67,9 @@ export class CaptainComponent implements OnInit {
   }
   */
   getTeams() {
-
+    this.teamService.getTeamsByGroup(this.user.groupID).subscribe(result => {
+      this.teams = result;
+    })
   }
 
   getUsers() {
@@ -115,8 +121,16 @@ export class CaptainComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.formteams.invalid) {
+      this.submitted = false;
       return;
     }
+
+    if (this.formteams.value.userIDA === this.formteams.value.userIDB) {
+      this.alertService.error("gebruiker A en B mogen niet overeenkomen")
+      this.submitted = false;
+      return;
+    }
+
     this.loading = true;
     console.log(this.formteams.value.teamName)
     console.log(this.formteams.value.userIDA)
@@ -143,6 +157,7 @@ export class CaptainComponent implements OnInit {
         })
       }
       this.loading = false;
+      this.submitted = false;
     })
   }
 
