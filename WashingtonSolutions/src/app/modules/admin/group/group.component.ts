@@ -3,6 +3,7 @@ import { Component, OnInit  } from '@angular/core';
 import { Group } from '../../../shared/models/group.model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-group',
@@ -53,7 +54,7 @@ export class GroupComponent implements OnInit {
   }
 
   getGroup(){
-    this.http.get<any>('https://kickerapi.azurewebsites.net/api/groups').subscribe(
+    this.http.get<any>(`${environment.apiUrl}/groups`).subscribe(
       response => {
         console.log(response);
         this.groupItems = response;
@@ -63,7 +64,7 @@ export class GroupComponent implements OnInit {
 
   delete(object){
     console.log(object.groupID);
-    this.http.delete('https://kickerapi.azurewebsites.net/api/Groups/' + object.groupID).subscribe(
+    this.http.delete(`${environment.apiUrl}/groups` + object.groupID).subscribe(
       response => {
         const index = this.groupItems.indexOf(object);
         this.groupItems.splice(index, 1);
@@ -82,7 +83,7 @@ export class GroupComponent implements OnInit {
     console.log(x);
     console.log(xx);
     console.log(this.modifyGroup);
-    return this.http.put('https://kickerapi.azurewebsites.net/api/Groups/' + this.modifyGroup.groupID,
+    return this.http.put(`${environment.apiUrl}/groups` + this.modifyGroup.groupID,
     xx).subscribe(result => {
       if (result){
         this.ngOnInit();
@@ -96,7 +97,7 @@ export class GroupComponent implements OnInit {
 
   aad(x){
     console.log("testAdd");
-    return this.http.post('https://kickerapi.azurewebsites.net/api/Groups/',
+    return this.http.post(`${environment.apiUrl}/groups`,
     x).subscribe(result => {
       if (result){
         this.ngOnInit();
