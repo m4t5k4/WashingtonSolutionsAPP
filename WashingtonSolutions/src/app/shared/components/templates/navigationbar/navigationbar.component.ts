@@ -14,16 +14,16 @@ export class NavigationbarComponent implements OnInit {
   navUser = [
     { link: '/', title: 'Mijn wedstrijden' },
     { link: '/', title: 'Mijn ploeg' },
-    { link: '/user/profile/edit', title: 'Mijn gebruiker' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' }
+    { link: '/user/profile/edit', title: 'Mijn gebruiker' }
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' }
   ]
   navCaptain = [
-    { link: '/', title: 'Mijn ploeg' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' }
+    { link: '/', title: 'Mijn ploeg' }
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' }
   ]
   navAdmin = [
     { link: '/admin/user/list', title: 'Gebruikers' },
@@ -35,7 +35,7 @@ export class NavigationbarComponent implements OnInit {
   ]
 
   constructor(
-    private accountService: AccountService
+    public accountService: AccountService
   ) {
     this.accountService.user.subscribe(x => this.user = x);
    }

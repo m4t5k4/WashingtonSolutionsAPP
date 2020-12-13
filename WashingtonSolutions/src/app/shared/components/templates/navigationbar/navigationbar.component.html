@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-    <a class="navbar-brand" href="#">KickerAPP</a>
+<nav class="navbar navbar-expand-lg navbar-light ">
+    <a class="navbar-brand" style="color: #DE3163;">KickerAPP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,7 +9,8 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
         </li>
-        <div ngbDropdown class="d-inline-block nav-item">
+
+        <div ngbDropdown class="nav-item" *ngIf="accountService.isUser()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
             Gebruiker
           </a>
@@ -19,7 +20,8 @@
             </a>
           </div>
         </div>
-        <div ngbDropdown class="d-inline-block nav-item">
+
+        <div ngbDropdown class="nav-item" *ngIf="accountService.isCapiten()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
             Kapitein
           </a>
@@ -29,7 +31,8 @@
             </a>
           </div>
         </div>
-        <div ngbDropdown class="d-inline-block nav-item">
+
+        <div ngbDropdown class="nav-item"  *ngIf="accountService.isAdmin()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
             Admin
           </a>
@@ -39,18 +42,17 @@
             </a>
           </div>
         </div>
+
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      
       <div style="float: right; display: flex" *ngIf="!user">
         <a class="nav-item nav-link" [routerLink]="['/register']">Registreren</a>
-        <a class="nav-item nav-link" [routerLink]="['/login']">Aanmelden</a>
+        <a  class="nav-item nav-link text-dark" [routerLink]="['/login']">Aanmelden</a>
       </div>
       <div style="float: right; display: flex" *ngIf="user">
-        <h3>Welkom {{user.firstName}}</h3>
-        <a class="nav-item nav-link" (click)="logout()">Uitloggen</a>
+        <p class="text-dark h3">Welkom {{user.firstName}}</p>
+        <a href="" class="nav-item nav-link text-dark" (click)="logout()">Uitloggen</a>
       </div>
+      
     </div>
   </nav>

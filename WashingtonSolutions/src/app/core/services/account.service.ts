@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 export class AccountService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
+  user1: User;
 
   constructor(
     private router: Router,
@@ -20,6 +21,7 @@ export class AccountService {
   ) { 
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
+    this.user.subscribe(x => this.user1 = x);
   }
 
   public get userValue (): User {
@@ -80,5 +82,50 @@ export class AccountService {
         }
         return x;
       }));
+  }
+
+  isAdmin() { 
+    if(this.user1){
+      if (this.user1.role.name == "Admin"){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+
+  isUser() { 
+    
+    if(this.user1){
+      if (this.user1.role.name == "User"){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+
+  isCapiten() { 
+    if(this.user1){
+      if (this.user1.role.name == "Capiten"){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+
+  isLogedIn() { 
+    if(this.user1){
+        return true;
+      }else{
+        return false;
+      }
   }
 }

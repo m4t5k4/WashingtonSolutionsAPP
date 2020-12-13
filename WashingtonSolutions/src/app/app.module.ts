@@ -24,6 +24,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameModule } from './modules/admin/game/game.module';
 import { GroupComponent } from './modules/admin/group/group.component';
 import { ProfileModule } from './modules/user/profile/profile.module';
+import { ShowScoreComponent } from './modules/user/show-score/show-score.component';
+import { CreateTeamComponent } from './modules/user/create-team/create-team.component';
+import { NoAccessComponent } from './shared/components/no-access/no-access.component';
+import { AuthGuard } from './core/guards/auth-guard.service';
+import { UserAuthGuard } from './core/guards/user-auth-guard.service';
+import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,10 @@ import { ProfileModule } from './modules/user/profile/profile.module';
     NavigationbarComponent,
 
     AlertComponent,
-    GroupComponent
+    GroupComponent,
+    ShowScoreComponent,
+    CreateTeamComponent,
+    NoAccessComponent,
   ],
 
   imports: [
@@ -55,7 +64,12 @@ import { ProfileModule } from './modules/user/profile/profile.module';
   ],
   exports: [
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AuthGuard,
+    UserAuthGuard,
+    AdminAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

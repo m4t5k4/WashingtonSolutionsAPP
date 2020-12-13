@@ -8,6 +8,9 @@ export class User {
       public username: string, 
       public password:string, 
       public email: string, 
+      public role: {
+        roleID: number, name: string
+      }, 
       public dob: string,
       public token: string, 
       public userPictureID: number ) {
