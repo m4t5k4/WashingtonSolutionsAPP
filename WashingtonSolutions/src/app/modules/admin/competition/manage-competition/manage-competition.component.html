@@ -1,26 +1,26 @@
 <div class="container mt-5">
-  <h1>Manage Competitions</h1>
+  <h1>Competities beheren</h1>
 
   <button class="btn btn-primary mb-2" routerLink="/admin/competition/add" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-    Add Competition
+    Competitie toevoegen
   </button>
 
   <table class="table table-striped table-hover">
     <thead>
-      <th>Name</th>
+      <th>Naam</th>
       <th>Type</th>
-      <th>Winner</th>
-      <th>Actions</th>
+      <th>Winnaar</th>
+      <th></th>
     </thead>
     <tbody>
       <tr *ngFor="let competition of competitions">
         <td>{{ competition.name }}</td>
         <td>{{ gameTypes[competition.gameTypeID - 1].name }}</td>
-        <td *ngIf="! competition.winnerID">No winner yet!</td>
+        <td *ngIf="! competition.winnerID">Nog geen winnaar!</td>
         <td *ngIf="competition.winnerID">{{ groups[competition.winnerID - 1].name }}</td>
         <td>
-          <button class="btn btn-info mr-2" (click)="editCompetition(competition.competitionID)">Edit</button>
-          <button class="btn btn-danger" (click)="deleteCompetition(competition.competitionID)">Delete</button>
+          <button class="btn btn-info mr-2" (click)="editCompetition(competition.competitionID)">Wijzigen</button>
+          <button class="btn btn-danger" (click)="deleteCompetition(competition.competitionID)">Verwijderen</button>
         </td>
       </tr>
       <tr *ngIf="!competitions">
