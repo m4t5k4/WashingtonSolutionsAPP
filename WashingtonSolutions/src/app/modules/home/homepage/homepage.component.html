@@ -36,6 +36,26 @@
     <div *ngIf="user.roleID == 1">
       <h1>Welkom, {{ user.firstName }}</h1>
       <hr>
+      <div class="row">
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('user/games')">Mijn wedstrijden</button>
+        </div>
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo(null)">Mijn ploeg</button>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('user/profile/edit')">Mijn profiel</button>
+        </div><div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo(null)">Ploeg beheren</button>
+        </div>
+      </div>
     </div>
     <!-- Admin -->
     <div *ngIf="user.roleID == 2">
@@ -79,7 +99,8 @@
     <hr>
     <div class="row">
       <div class="col-lg mb-3">
-        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase" (click)="redirectTo('login')">Login</button>
+        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+          (click)="redirectTo('login')">Login</button>
       </div>
       <div class="col-lg mb-3">
         <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
