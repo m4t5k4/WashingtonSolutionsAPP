@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-    <a class="navbar-brand" style="color: #ffffff;">KickerAPP</a>
+    <a class="navbar-brand" style="color: #ffffff;" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">KickerAPP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,7 +12,7 @@
 
         <div ngbDropdown class="nav-item" *ngIf="accountService.isUser()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
-            Gebruiker
+            User
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown">
             <a class="nav-item nav-link" *ngFor="let item of navUser" [routerLink]="[item.link]" ngbDropdownItem>
@@ -23,7 +23,7 @@
 
         <div ngbDropdown class="nav-item" *ngIf="accountService.isCaptain()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
-            Kapitein
+            Captain
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown">
             <a class="nav-item nav-link" *ngFor="let item of navCaptain" [routerLink]="[item.link]" ngbDropdownItem>
@@ -50,7 +50,7 @@
         <a  class="nav-item nav-link text-dark" [routerLink]="['/login']">Aanmelden</a>
       </div>
       <div style="float: right; display: flex" *ngIf="user">
-        <h3 class="mr-2">welkom {{user.firstName}}</h3>
+        <p class="mr-2 nav-item nav-link">Welcome, {{user.firstName}}</p>
         <img *ngIf="this.imageUrl" [src]="this.imageUrl" class="avatar">
         <a href="" class="nav-item nav-link" (click)="logout()">Uitloggen</a>
       </div>
