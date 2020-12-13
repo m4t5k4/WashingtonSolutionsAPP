@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AccountService } from '../../../core/services/account.service';
 import { AlertService } from '../../../core/services/alert.service';
+import { TeamService } from '../../../core/services/team.service';
 import { User } from '../../../shared/models/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -19,11 +20,14 @@ export class CaptainComponent implements OnInit {
   noGroupUsers: User[];
   submitted = false;
 
+  gebruikerView = true;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private alertService: AlertService,
+    private teamService: TeamService
   ) {
     this.accountService.user.subscribe(x => this.user = x);}
 
@@ -50,6 +54,9 @@ export class CaptainComponent implements OnInit {
     this.loading = false;
   }
   */
+  getTeams() {
+
+  }
 
   getUsers() {
     //lijst met gebruikers in groep
@@ -66,7 +73,7 @@ export class CaptainComponent implements OnInit {
         )
   }
 
-  onSubmit() {
+  onSubmitGebr() {
     this.submitted = true;
     // reset alerts on submit
     this.alertService.clear();
@@ -91,6 +98,16 @@ export class CaptainComponent implements OnInit {
       this.loading = false;
 
     })
+  }
+
+  onSubmitTeam() { }
+
+
+  gebruiksbtn() {
+    this.gebruikerView = true
+  }
+  teamsbtn() {
+    this.gebruikerView = false
   }
 
 }
