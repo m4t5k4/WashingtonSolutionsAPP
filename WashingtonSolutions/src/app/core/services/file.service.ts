@@ -29,10 +29,10 @@ export class FileService {
       }));
   }
 
-  public upload (file: Blob): Observable<string> {
+  public upload (file: Blob): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post<string>(`${environment.apiUrl}/file/upload`, formData);
+    return this.http.post(`${environment.apiUrl}/file/upload`, formData);
   }
 }

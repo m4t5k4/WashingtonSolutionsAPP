@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FileService } from 'src/app/core/services/file.service';
 import { AccountService } from '../../../../core/services/account.service';
 import { User } from '../../../models/user.model';
 
@@ -10,9 +11,10 @@ import { User } from '../../../models/user.model';
 })
 export class NavigationbarComponent implements OnInit {
   user: User;
+  imageUrl: string;
 
   navUser = [
-    { link: '/', title: 'Mijn wedstrijden' },
+    { link: '/user/games', title: 'Mijn wedstrijden' },
     { link: '/', title: 'Mijn ploeg' },
     { link: '/user/profile/edit', title: 'Mijn gebruiker' },
     { link: '/', title: 'link' },
@@ -35,9 +37,14 @@ export class NavigationbarComponent implements OnInit {
   ]
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private fileService: FileService
   ) {
-    this.accountService.user.subscribe(x => this.user = x);
+    this.accountService.user.subscribe(x => {
+      this.user = x;
+      this.fileService.getFile(x.userPictureID)
+        .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/' + x.path);
+    });
    }
 
   ngOnInit(): void {

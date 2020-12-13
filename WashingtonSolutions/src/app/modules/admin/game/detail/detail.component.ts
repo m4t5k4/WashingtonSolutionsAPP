@@ -109,7 +109,13 @@ export class DetailComponent implements OnInit {
     if (!this.isAddMode) {
       this.gameService.getGame(this.id)
         .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
+        .subscribe(x => {
+          this.form.patchValue(x);
+          let date = this.ngbDateParserFormatter.parse(x.date);
+          this.form.patchValue({
+            date: date
+          })
+        });
     }
   }
 
