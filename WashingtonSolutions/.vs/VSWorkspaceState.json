@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\core",
-    "\\src\\app\\core\\services",
     "\\src\\app\\modules",
-    "\\src\\app\\modules\\admin",
-    "\\src\\app\\modules\\admin\\tournament",
-    "\\src\\app\\modules\\admin\\tournament\\tournament",
-    "\\src\\app\\shared"
+    "\\src\\app\\modules\\captain",
+    "\\src\\app\\modules\\captain\\captain",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\components",
+    "\\src\\app\\shared\\components\\templates",
+    "\\src\\app\\shared\\components\\templates\\navigationbar"
   ],
-  "SelectedNode": "\\src\\app\\modules\\admin\\tournament\\new-tournament\\new-tournament.component.html",
+  "SelectedNode": "\\src\\app\\modules\\captain\\captain\\captain.component.ts",
   "PreviewInSolutionExplorer": false
 }

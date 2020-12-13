@@ -25,6 +25,7 @@ import { GameModule } from './modules/admin/game/game.module';
 import { UserGameModule } from './modules/user/games/game.module';
 import { GroupComponent } from './modules/admin/group/group.component';
 import { ProfileModule } from './modules/user/profile/profile.module';
+import { CaptainModule } from './modules/captain/captain.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,8 @@ import { ProfileModule } from './modules/user/profile/profile.module';
     HomeModule,
     UserModule,
     GameModule,
+    ProfileModule,
+    CaptainModule
     UserGameModule,
     ProfileModule
 

@@ -55,6 +55,10 @@ export class AccountService {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
+  getByGroupId(id: number) {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/GetByGroup/${id}`);
+  }
+
   update (id, params) {
     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
       .pipe(map(x => {
@@ -80,5 +84,15 @@ export class AccountService {
         }
         return x;
       }));
+  }
+
+  kick(user: User) {
+    user.groupID = null;
+    return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
+  }
+
+  addToGroup(user: User, groupID: number) {
+    user.groupID = groupID;
+    return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
   }
 }
