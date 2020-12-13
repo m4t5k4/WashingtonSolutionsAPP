@@ -53,7 +53,7 @@ import { CaptainModule } from './modules/captain/captain.module';
     UserModule,
     GameModule,
     ProfileModule,
-    CaptainModule
+    CaptainModule,
     UserGameModule,
     ProfileModule
 

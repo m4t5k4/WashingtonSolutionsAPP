@@ -8,6 +8,7 @@ import { FileService } from '../../../../core/services/file.service';
 import { first } from 'rxjs/operators';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-edit',
@@ -60,7 +61,7 @@ export class EditComponent implements OnInit {
         console.log(this.form.value);
         this.fileService.getFile(x.userPictureID)
           .pipe(first())
-          .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/' + x.path);
+          .subscribe(x => this.imageUrl = environment.apiUrl.slice(0, -3) + x.path);
       });
   }
 

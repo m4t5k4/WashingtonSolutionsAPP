@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileService } from 'src/app/core/services/file.service';
 import { AccountService } from '../../../../core/services/account.service';
 import { User } from '../../../models/user.model';
-
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-navigationbar',
@@ -23,8 +23,6 @@ export class NavigationbarComponent implements OnInit {
   navCaptain = [
     { link: '/', title: 'Mijn ploeg' },
     { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' },
     { link: '/', title: 'link' }
   ]
   navAdmin = [
@@ -43,7 +41,7 @@ export class NavigationbarComponent implements OnInit {
     this.accountService.user.subscribe(x => {
       this.user = x;
       this.fileService.getFile(x.userPictureID)
-        .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/' + x.path);
+        .subscribe(x => this.imageUrl = environment.apiUrl.slice(0,-3) + x.path);
     });
    }
 

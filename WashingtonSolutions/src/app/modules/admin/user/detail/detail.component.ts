@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 import { AlertService } from '../../../../core/services/alert.service';
 import { AccountService } from '../../../../core/services/account.service';
@@ -9,6 +9,7 @@ import { FileService } from '../../../../core/services/file.service';
 import { GroupService } from '../../../../core/services/group.service';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 interface Option {
     value: number;
@@ -81,9 +82,7 @@ export class DetailComponent implements OnInit {
           this.form.patchValue({
             dob: date
           });
-          this.fileService.getFile(x.userPictureID)
-            .pipe(first())
-            .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/uploads/' + x.path);
+          this.fileService.getFile(x.userPictureID).subscribe(x => this.imageUrl = environment.apiUrl.slice(0, -3) + x.path);
         });
     }
 
