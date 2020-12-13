@@ -1,3 +1,43 @@
-<div class="container">
-    <h3 class="item">Dit is de Thuispagina</h3>
+<div class="container mt-5">
+  <!-- Logged in -->
+  <div *ngIf="user">
+    <div *ngIf="user.roleID == 3">
+      <h1>Welcome, {{ user.firstName }}</h1>
+      <hr>
+      <!-- User has group -->
+      <div *ngIf="user.groupID">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+      </div>
+      <!-- User had no group yet -->
+      <div *ngIf="! user.groupID">
+        <div class="row">
+          <div class="col-lg mb-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+              (click)="toJoinGroup()">Join group</button>
+          </div>
+          <div class="col-lg mb-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+              (click)="toMakeGroup()">Make group</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Not logged in -->
+  <div *ngIf="! user">
+    <h1>Welcome</h1>
+    <hr>
+    <div class="row">
+      <div class="col-lg mb-3">
+        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase" (click)="toLogin()">Log
+          in</button>
+      </div>
+      <div class="col-lg mb-3">
+        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+          (click)="toRegister()">Register</button>
+      </div>
+    </div>
+  </div>
 </div>

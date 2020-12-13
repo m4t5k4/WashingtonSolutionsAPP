@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/core/services/account.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+
+
+  constructor(private _accountService: AccountService, private router: Router) {
+    this._accountService.user.subscribe(result => this.user = result);
+  }
 
   ngOnInit(): void {
+  }
+
+  toLogin() {
+    this.router.navigateByUrl("/login");
+  }
+
+  toRegister() {
+    this.router.navigateByUrl("/register");
+  }
+
+  toMakeGroup() {
+
+  }
+
+  toJoinGroup() {
+
   }
 
 }
