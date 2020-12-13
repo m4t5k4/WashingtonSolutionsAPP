@@ -10,7 +10,7 @@
           <a class="nav-link" [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
         </li>
 
-        <div ngbDropdown class="nav-item" *ngIf="accountService.isUser()">
+        <div ngbDropdown class="nav-item" *ngIf="accountService.isUser() || accountService.isCaptain()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
             User
           </a>
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div ngbDropdown class="nav-item" *ngIf="accountService.isCaptain()">
+        <div ngbDropdown class="nav-item" *ngIf="accountService.isCaptain() || accountService.isAdmin()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
             Captain
           </a>
@@ -45,11 +45,11 @@
 
       </ul>
       
-      <div style="float: right; display: flex" *ngIf="!user">
+      <div style="float: right; display: flex" *ngIf="!accountService.isLogedIn()">
         <a class="nav-item nav-link" [routerLink]="['/register']">Registreren</a>
         <a  class="nav-item nav-link text-dark" [routerLink]="['/login']">Aanmelden</a>
       </div>
-      <div style="float: right; display: flex" *ngIf="user">
+      <div style="float: right; display: flex" *ngIf="accountService.isLogedIn()">
         <p class="mr-2 nav-item nav-link">Welcome, {{user.firstName}}</p>
         <img *ngIf="this.imageUrl" [src]="this.imageUrl" class="avatar">
         <a href="" class="nav-item nav-link" (click)="logout()">Uitloggen</a>
