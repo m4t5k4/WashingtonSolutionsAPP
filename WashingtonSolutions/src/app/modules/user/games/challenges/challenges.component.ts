@@ -29,16 +29,21 @@ export class ChallengesComponent implements OnInit {
     private router: Router
   ) { }
 
+  teams: Team[];
   games: Game[] = []; //moet op voorhand gedeclareerd zijn
   gameTypes: GameType[];
   tables: Table[];
-  teams: Team[] = [];
+  userTeams: Team[] = []; //teams waar de user in zit
   groups: Group[];
   teamUsers
   groupID;
 
   ngOnInit(): void {
-    this.getData()
+    this.getData();
+    this.getGameTypes();
+    this.getTables();
+    this.getTeams();
+    this.getGroups();
   }
 
   getData() {
@@ -54,9 +59,9 @@ export class ChallengesComponent implements OnInit {
           //2de observable moet gebeuren als 1ste gedaan is.
           this._teamService.getTeam(t.teamID).subscribe(res => {
             console.log(res)
-            this.teams.push(res)
+            this.userTeams.push(res)
             console.log("teams:")
-            console.log(this.teams)
+            console.log(this.userTeams)
             //Games van dit team toevoegen aan this.games
             this._gameService.getGames().subscribe(r => {
               console.log(r)
@@ -68,5 +73,41 @@ export class ChallengesComponent implements OnInit {
         }
       })
   }
+
+  getGameTypes() {
+    // subscribe to GET gameTypes
+    this._competitionService.getGameTypes().subscribe(
+      result => {
+        this.gameTypes = result;
+      }
+    )
+  };
+
+  getTables() {
+    // subscribe to GET tables
+    this._tableService.getTables().subscribe(
+      result => {
+        this.tables = result;
+      }
+    )
+  }
+
+  getTeams() {
+    // subscribe to GET teams
+    this._teamService.getTeams().subscribe(
+      result => {
+        this.teams = result;
+      }
+    )
+  }
+
+  getGroups() {
+    this._groupService.getGroups().subscribe(
+      result => {
+        this.groups = result;
+      }
+    )
+  }
+
 
 }

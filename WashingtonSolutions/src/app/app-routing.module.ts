@@ -30,6 +30,7 @@ import { CaptainComponent } from './modules/captain/captain/captain.component';
 import { GameComponent } from './modules/user/games/game.component';
 import { UserGameDetailComponent } from './modules/user/games/details/user-game-detail/user-game-detail.component';
 import { ChallengesComponent } from './modules/user/games/challenges/challenges.component';
+import { NewChallengeComponent } from './modules/user/games/new-challenge/new-challenge.component';
 
 
 import { Error403Component } from './shared/components/error/error403/error403.component';
@@ -64,14 +65,23 @@ const routes: Routes = [
   { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/add', component: NewTournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },
-  { path: 'user/profile/edit', component: ProfileEditComponent },
-  { path: 'user/games' , component: GameComponent},
-  { path: 'user/games/edit/:id', component: UserGameDetailComponent },
-  { path: 'user/challenge', component: ChallengesComponent },
+  { path: 'user/profile/edit', component: ProfileEditComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/games' , component: GameComponent, canActivate: [UserAuthGuard ,AuthGuard]},
+  { path: 'user/games/edit/:id', component: UserGameDetailComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/challenge', component: ChallengesComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/challenge/new', component: NewChallengeComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  
+  { path: 'table', component: TableComponent },
+  { path: 'table/add', component: NewTableComponent },
+  { path: 'table/:id', component: EditTableComponent },
+  { path: 'tournament', component: TournamentComponent },
+  { path: 'tournament/add', component: NewTournamentComponent },
+  { path: 'tournament/:id', component: NewTournamentComponent },
+  //TODO: childrenroutes
 
   { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
-  { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },
-  { path: 'user/create_team', component: CreateTeamComponent, canActivate: [AuthGuard] },
+  { path: 'user/show_score', component: ShowScoreComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/create_team', component: CreateTeamComponent, canActivate: [UserAuthGuard ,AuthGuard] },
   { path: 'no-access', component: Error403Component },
 
   //moet laatst blijven staan.

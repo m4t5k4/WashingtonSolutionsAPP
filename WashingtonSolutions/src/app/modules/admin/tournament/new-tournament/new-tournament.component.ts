@@ -42,6 +42,10 @@ export class NewTournamentComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.form = this.formBuilder.group({
+      competitionID: ['', Validators.required]
+    });
+
     this.getCompetitions()
     var url = this.route.snapshot.paramMap.get("id");
     console.log(url)
@@ -81,6 +85,8 @@ export class NewTournamentComponent implements OnInit {
     
   }
 
+  
+
   parseDate(date: string) {
     var x = date.split("-", 3)
     console.log(x)
@@ -103,7 +109,8 @@ export class NewTournamentComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-
+    console.log(this.form.value.competitionID)
+    this.model.competitionID  = this.form.value.competitionID // voor de zekerheid
     // reset alerts on submit
     this.alertService.clear();
     this.loading = true;
@@ -111,7 +118,7 @@ export class NewTournamentComponent implements OnInit {
     //convert dates
     this.model.startDate = this.convertDate(this.startdate);
     this.model.endDate = this.convertDate(this.enddate);
-    this.model.competitionID = Number(this.model.competitionID) //er is waarschijnlijk een betere manier om dit te doen.
+    //this.model.competitionID = Number(this.model.competitionID) //er is waarschijnlijk een betere manier om dit te doen.
 
     //validate form
     //automatische validatie lukte niet dus tijdelijk zo.
