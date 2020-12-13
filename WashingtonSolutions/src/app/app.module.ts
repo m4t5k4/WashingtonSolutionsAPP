@@ -26,7 +26,6 @@ import { GroupComponent } from './modules/admin/group/group.component';
 import { ProfileModule } from './modules/user/profile/profile.module';
 import { ShowScoreComponent } from './modules/user/show-score/show-score.component';
 import { CreateTeamComponent } from './modules/user/create-team/create-team.component';
-import { NoAccessComponent } from './shared/components/no-access/no-access.component';
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { UserAuthGuard } from './core/guards/user-auth-guard.service';
 import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
@@ -44,7 +43,6 @@ import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
     GroupComponent,
     ShowScoreComponent,
     CreateTeamComponent,
-    NoAccessComponent,
   ],
 
   imports: [

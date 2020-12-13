@@ -23,10 +23,10 @@ import { EditComponent as ProfileEditComponent } from './modules/user/profile/ed
 import { DetailComponent as GameDetailComponent } from './modules/admin/game/detail/detail.component';
 import { ShowScoreComponent } from './modules/user/show-score/show-score.component';
 import { CreateTeamComponent } from './modules/user/create-team/create-team.component';
-import { NoAccessComponent } from './shared/components/no-access/no-access.component';
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { UserAuthGuard } from './core/guards/user-auth-guard.service';
 import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
+import { Error403Component } from './shared/components/error/error403/error403.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -61,7 +61,7 @@ const routes: Routes = [
   { path: 'group', component: GroupComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },
   { path: 'user/create_team', component: CreateTeamComponent, canActivate: [AuthGuard] },
-  { path: 'no-access', component: NoAccessComponent },
+  { path: 'no-access', component: Error403Component },
 
   //moet laatst blijven staan.
   { path: '**', component: Error404Component },
