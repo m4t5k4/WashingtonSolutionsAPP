@@ -24,6 +24,8 @@ import { DetailComponent as GameDetailComponent } from './modules/admin/game/det
 import { CaptainComponent } from './modules/captain/captain/captain.component';
 import { GameComponent } from './modules/user/games/game.component';
 import { UserGameDetailComponent } from './modules/user/games/details/user-game-detail/user-game-detail.component';
+import { ChallengesComponent } from './modules/user/games/challenges/challenges.component';
+
 
 
 const routes: Routes = [
@@ -48,8 +50,9 @@ const routes: Routes = [
 
   { path: 'user/profile/edit', component: ProfileEditComponent },
   { path: 'user/games' , component: GameComponent},
-  { path: 'user/games/edit/:id' , component: UserGameDetailComponent},
-
+  { path: 'user/games/edit/:id', component: UserGameDetailComponent },
+  { path: 'user/challenge', component: ChallengesComponent },
+  
   { path: 'table', component: TableComponent },
   { path: 'table/add', component: NewTableComponent },
   { path: 'table/:id', component: EditTableComponent },
