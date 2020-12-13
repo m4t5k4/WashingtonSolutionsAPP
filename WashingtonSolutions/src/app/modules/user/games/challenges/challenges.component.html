@@ -1,1 +1,23 @@
-<p>challenges works!</p>
+<h1>Challenges</h1>
+
+<h3>Inkomende Challenges</h3>
+<div *ngFor="let game of games">
+  <div *ngIf="game.challengedGroupID != groupID && game.gameStatusID === 2">
+    <p>GameID: {{game.gameID}}</p>
+    <button class="btn btn-succes">Accept</button>
+  </div>
+</div>
+<h3>Uitgaande Challenges</h3>
+<div *ngFor="let game of games">
+  <div *ngIf="game.challengedGroupID == groupID && game.gameStatusID === 2">
+    <p>GameID: {{game.gameID}}</p>
+  </div>
+</div>
+<h3>Declined Challenges</h3>
+<div *ngFor="let game of games">
+  <div *ngIf="game.challengedGroupID == groupID && game.gameStatusID === 5">
+    <p>GameID: {{game.gameID}}</p>
+  </div>
+</div>
+
+<button class="btn btn-succes"></button>
