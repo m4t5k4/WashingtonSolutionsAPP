@@ -17,6 +17,10 @@ export class TeamService {
     return this.http.get<Team[]>(`${environment.apiUrl}/teams`);
   }
 
+  getTeamsByGroup(id : number): Observable<Team[]> {
+    return this.http.get<Team[]>(`${environment.apiUrl}/teams/ByGroup/`+id);
+  }
+
   getTeam (id: number): Observable<Team> {
     return this.http.get<Team>(`${environment.apiUrl}/teams/${id}`);
   }

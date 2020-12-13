@@ -38,7 +38,6 @@ const routes: Routes = [
   
   { path: 'register', component: RegisterComponent },
   { path: 'captain', component: CaptainComponent },
-
   
   { path: 'admin/user/list', component: UserListComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   { path: 'admin/user/edit/:id', component: UserDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
@@ -56,9 +55,10 @@ const routes: Routes = [
     component: ProfileEditComponent,
     canActivate: [UserAuthGuard, AuthGuard]},
 
-  { path: 'admin/table', component: TableComponent, canActivate: [AuthGuard] },
-  { path: 'admin/table/add', component: NewTableComponent, canActivate: [AuthGuard] },
-  { path: 'admin/table/edit/:id', component: EditTableComponent, canActivate: [AuthGuard] },
+  { path: 'admin/table', component: TableComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/table/add', component: NewTableComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/table/edit/:id', component: EditTableComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+
   { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/add', component: NewTournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },

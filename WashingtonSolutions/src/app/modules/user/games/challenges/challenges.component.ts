@@ -109,5 +109,28 @@ export class ChallengesComponent implements OnInit {
     )
   }
 
+  accept(id: number) {
+    this._gameService.getGame(id).subscribe(result => {
+      var game = result
+      game.gameStatusID = 1
+      this._gameService.putGame(id, game).subscribe(res => {
+        console.log(res)
+        //refresh
+        this.getData();
+      })
+    })
+  }
+
+  reject(id: number) {
+    this._gameService.getGame(id).subscribe(result => {
+      var game = result
+      game.gameStatusID = 5
+      this._gameService.putGame(id, game).subscribe(res => {
+        console.log(res)
+        //refresh
+        this.getData();
+      })
+    })
+  }
 
 }

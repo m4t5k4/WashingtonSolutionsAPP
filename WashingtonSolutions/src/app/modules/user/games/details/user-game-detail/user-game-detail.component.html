@@ -2,11 +2,11 @@
   <h1>Wedstrijd Details</h1>
   <hr>
   <div class="row">
-    <p class="col-3 font-weight-bold">Team A:</p>
+    <p class="col-3 font-weight-bold">Ploeg A:</p>
     <p class="col">{{ groups[teams[game.teamAID - 1].groupID - 1].name }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Team B:</p>
+    <p class="col-3 font-weight-bold">Ploeg B:</p>
     <p class="col">{{ groups[teams[game.teamBID - 1].groupID - 1].name }}</p>
   </div>
   <div class="row">
@@ -18,12 +18,12 @@
     <p class="col">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Wedstrijd datum:</p>
-    <p class="col">{{ game.date }}</p>
+    <p class="col-3 font-weight-bold">Datum:</p>
+    <p class="col">{{ game.date | date }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Tafel:</p>
-    <p class="col" *ngIf="tables">{{ tables[game.tableID - 1].tableName }}</p>
+    <p class="col-3 font-weight-bold">Kickertafel:</p>
+    <p class="col">{{ tables[game.tableID - 1].tableName }}</p>
   </div>
   <div class="row">
     <p class="col-3 font-weight-bold">Wedstrijd Type:</p>
