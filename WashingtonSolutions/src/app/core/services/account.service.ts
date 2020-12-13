@@ -75,6 +75,22 @@ export class AccountService {
       }));
   }
 
+  patch (id, params) {
+    return this.http.patch(`${environment.apiUrl}/users/${id}`, params)
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id == this.userValue.userID) {
+          // update local storage
+          const user = { ...this.userValue, ...params };
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // publish updated user to subscribers
+          this.userSubject.next(user);
+        }
+        return x;
+      }));
+  }
+
   delete (id: number) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`)
       .pipe(map(x => {
