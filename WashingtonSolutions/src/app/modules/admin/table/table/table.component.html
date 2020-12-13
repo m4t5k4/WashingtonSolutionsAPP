@@ -42,7 +42,7 @@
               <!-- Knop voor gebruiker te vervijderen -->
               <!-- admins kunnen elkaar niet vervijderen -->
               <button class="btn btn-danger m-1" (click)="deleteTable(table.tableID)">Verwijder</button>
-              <button class="btn btn-primary m-1" (click)="editTable(table.tableID)">Pas aan</button>
+              <button class="btn btn-primary m-1" routerLink="edit/{{table.tableID}}" >Pas aan</button>
             </td>
           </ng-container>
       
@@ -50,7 +50,7 @@
           <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
       
         </table>
-        <a href="/table/add" class="btn btn-success m-1">Nieuwe Tafel</a>
+        <a href="/admin/table/add" class="btn btn-success m-1">Nieuwe Tafel</a>
       </div>
 
     </div>

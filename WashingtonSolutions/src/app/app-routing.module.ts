@@ -58,9 +58,9 @@ const routes: Routes = [
     component: ProfileEditComponent,
     canActivate: [UserAuthGuard, AuthGuard]},
 
-  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
-  { path: 'table/add', component: NewTableComponent, canActivate: [AuthGuard] },
-  { path: 'table/:id', component: EditTableComponent, canActivate: [AuthGuard] },
+  { path: 'admin/table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'admin/table/add', component: NewTableComponent, canActivate: [AuthGuard] },
+  { path: 'admin/table/edit/:id', component: EditTableComponent, canActivate: [AuthGuard] },
   { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/add', component: NewTournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },

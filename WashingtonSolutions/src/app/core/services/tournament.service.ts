@@ -1,4 +1,4 @@
-
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -13,24 +13,24 @@ export class TournamentService {
   constructor(private http: HttpClient) { }
 
   getTournaments(): Observable<Tournament[]> {
-    return this.http.get<Tournament[]>("https://kickerapi.azurewebsites.net/api/tournaments");
+    return this.http.get<Tournament[]>(`${environment.apiUrl}/tournaments`);
 
   }
 
   getTournament(id:number): Observable<Tournament> {
-    return this.http.get<Tournament>("https://kickerapi.azurewebsites.net/api/tournaments/" +id);
+    return this.http.get<Tournament>(`${environment.apiUrl}/tournaments/${id}`);
 
   }
 
   addTournament(tournament: Tournament) {
-    return this.http.post("https://kickerapi.azurewebsites.net/api/tournaments", tournament);
+    return this.http.post(`${environment.apiUrl}/tournaments`, tournament);
   }
 
   deleteTournament(id: number) {
-    return this.http.delete("https://kickerapi.azurewebsites.net/api/tournaments/"+ id);
+    return this.http.delete(`${environment.apiUrl}/tournaments/${id}`);
   }
 
   editTournament(tournament: Tournament) {
-    return this.http.put("https://kickerapi.azurewebsites.net/api/tournaments/" + tournament.tournamentID, tournament );
+    return this.http.put(`${environment.apiUrl}/tournaments/${tournament.tournamentID}`, tournament );
   }
 }

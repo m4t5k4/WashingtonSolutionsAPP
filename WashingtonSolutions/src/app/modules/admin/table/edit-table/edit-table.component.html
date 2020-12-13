@@ -1,4 +1,6 @@
-<div class="card">
+<div class="container">
+
+  <div class="card">
   <h4 class="card-header">Tafel Bewerken</h4>
   <div *ngIf="data" class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -33,8 +35,12 @@
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           Aanpassen
         </button>
+        <a (click)="goBack()" class="btn btn-link">Annuleren</a>
       </div>
 
     </form>
   </div>
+</div>
+
+
 </div>

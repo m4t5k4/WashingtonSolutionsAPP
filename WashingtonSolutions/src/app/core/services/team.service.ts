@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Team } from '../../shared/models/team.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +14,22 @@ export class TeamService {
   ) { }
 
   getTeams(): Observable<Team[]> {
-    return this.http.get<Team[]>("https://kickerapi.azurewebsites.net/api/teams");
+    return this.http.get<Team[]>(`${environment.apiUrl}/teams`);
   }
 
   getTeam (id: number): Observable<Team> {
-    return this.http.get<Team>("https://kickerapi.azurewebsites.net/api/teams/" + id);
+    return this.http.get<Team>(`${environment.apiUrl}/teams/${id}`);
   }
 
   addTeam (team) {
-    return this.http.post("https://kickerapi.azurewebsites.net/api/teams", team)
+    return this.http.post(`${environment.apiUrl}/teams`, team)
   }
 
   deleteTeam (id: number) {
-    return this.http.delete("https://kickerapi.azurewebsites.net/api/teams/" + id);
+    return this.http.delete(`${environment.apiUrl}/teams/${id}`);
   }
 
   putTeam(team) {
-    return this.http.put("https://kickerapi.azurewebsites.net/api/teams/" + team.id, team);
+    return this.http.put(`${environment.apiUrl}/teams/${team.id}`, team);
   }
 }

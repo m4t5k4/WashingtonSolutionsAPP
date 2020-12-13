@@ -24,7 +24,7 @@ export class GameService {
   }
 
   addGame(game) {
-    return this.http.post("https://kickerapi.azurewebsites.net/api/games", game);
+    return this.http.post(`${environment.apiUrl}/games`, game);
   }
 
   putGame (id, params) {

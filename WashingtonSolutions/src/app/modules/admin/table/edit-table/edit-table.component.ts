@@ -75,14 +75,17 @@ export class EditTableComponent implements OnInit {
       .subscribe({
         next: () => {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl("/table");
+          this.router.navigateByUrl("/admin/table");
         },
         error: error => {
           this.alertService.error(error);
           this.loading = false;
         }
       });
+  }
 
+  goBack () {
+    this.router.navigateByUrl("/admin/table")
   }
 
 }

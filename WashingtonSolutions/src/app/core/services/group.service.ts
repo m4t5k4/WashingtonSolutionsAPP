@@ -22,7 +22,7 @@ export class GroupService {
   }
 
   addGroup (group) {
-    return this.http.post("https://kickerapi.azurewebsites.net/api/groups", group);
+    return this.http.post(`${environment.apiUrl}/groups`, group);
   }
 
   putGroup (id, params) {
