@@ -29,7 +29,7 @@ export class ChallengesComponent implements OnInit {
     private router: Router
   ) { }
 
-  games: Game[];
+  games: Game[] = []; //moet op voorhand gedeclareerd zijn
   gameTypes: GameType[];
   tables: Table[];
   teams: Team[] = [];
@@ -37,6 +37,11 @@ export class ChallengesComponent implements OnInit {
   teamUsers
 
   ngOnInit(): void {
+    this.getData()
+  }
+
+  getData() {
+
     this._accountservice.getUser()
       .subscribe(result => {
         this.teamUsers = result.teamUsers
@@ -44,13 +49,20 @@ export class ChallengesComponent implements OnInit {
         //als dit een uncompilable error geeft moet ik dit nog toev. aan het model user.
 
         for (let t of this.teamUsers) {
+          //2de observable moet gebeuren als 1ste gedaan is.
           this._teamService.getTeam(t.teamID).subscribe(res => {
             console.log(res)
             this.teams.push(res)
             console.log("teams:")
             console.log(this.teams)
+            //Games van dit team toevoegen aan this.games
+            this._gameService.getGames().subscribe(r => {
+              console.log(r)
+              this.games.push(r) //geeft error maar werkt wel.
+              console.log("games:")
+              console.log(this.games)
+            })
           })
-          //als dit geen errors geeft geloof ik het niet
         }
       })
   }

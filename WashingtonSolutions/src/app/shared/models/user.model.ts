@@ -10,7 +10,8 @@ export class User {
       public email: string, 
       public dob: string,
       public token: string, 
-      public userPictureID: number ) {
+    public userPictureID: number,
+    public teamUsers?) {
   }
 
 }
