@@ -3,14 +3,14 @@
   <!-- deze nog aan te passen -->
   <div class="form-group col">
     <label for="groupID">Pick own team</label>
-    <select name="groupID" id="groupID" formControlName="groupID" class="form-control" (change)="groupSelect($event.target.value)">
-      <option *ngFor="let group of groups" value="{{group.groupID}}">{{group.name}}</option>
+    <select name="teamID" id="teamID" formControlName="teamID" class="form-control" (change)="myTeamSelect($event.target.value)">
+      <option *ngFor="let team of userTeams" value="{{team.teamID}}">{{team.teamName}}</option>
     </select>
   </div>
   <div class="form-group col">
-    <label for="groupID">Gametype</label>
-    <select name="groupID" id="groupID" formControlName="groupID" class="form-control" (change)="groupSelect($event.target.value)">
-      <option *ngFor="let group of groups" value="{{group.groupID}}">{{group.name}}</option>
+    <label for="gameTypeID">Gametype</label>
+    <select name="gameTypeID" id="gameTypeID" formControlName="gameTypeID" class="form-control" (change)="gameTypeSelect($event.target.value)">
+      <option *ngFor="let gameType of gameTypes" value="{{gameType.gameTypeID}}">{{gameType.name}}</option>
     </select>
   </div>
   <!-- deze nog aan te passen -->

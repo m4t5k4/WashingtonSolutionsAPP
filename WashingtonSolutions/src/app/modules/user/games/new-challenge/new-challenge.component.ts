@@ -31,7 +31,9 @@ export class NewChallengeComponent implements OnInit {
     private _accountservice: AccountService,
     private router: Router
   ) {
+    this.getData();
     this.getGroups();
+    this.getGameTypes()
   }
 
   form: FormGroup;
@@ -46,7 +48,11 @@ export class NewChallengeComponent implements OnInit {
   groupID;
   loading = false;
   //Selectionvariables
-
+  selectedOwnTeamID;
+  selectedOppTeamID;
+  selectedGroupID;
+  selectedGameTypeID;
+  selectedCompetitionID;
   teamGroups: Team[]// de teams van de geselecteerde groep
   
 
@@ -54,6 +60,7 @@ export class NewChallengeComponent implements OnInit {
     this.form = this.formBuilder.group({
       groupID: ['', Validators.required],
       teamID: ['', Validators.required],
+      gameTypeID: ['', Validators.required],
       competitionID: ['', Validators.required]
     });
   }
@@ -132,8 +139,28 @@ export class NewChallengeComponent implements OnInit {
   onSubmit() { }
 
   groupSelect(value: string) {
+    this.selectedGroupID = Number(value)
+    this._teamService.getTeamsByGroup(this.selectedGroupID).subscribe(result => {
+      this.teamGroups = result
+    })
     //als de group geselecteerd wordt zal dit gedisabled worden en worden de teams van deze group gezocht.
     console.log(value)
     //this._teamService.getTeamsByGroup(Number(value))
+  }
+
+  myTeamSelect() {
+
+  }
+
+  oppTeamSelect() {
+
+  }
+
+  gameTypeSelect() {
+
+  }
+
+  competitionSelect() {
+
   }
 }
