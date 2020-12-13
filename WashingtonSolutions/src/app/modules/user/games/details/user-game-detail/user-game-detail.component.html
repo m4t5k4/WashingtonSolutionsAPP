@@ -1,16 +1,16 @@
 <div class="container mt-5">
-  <h1>Game Details</h1>
+  <h1>Wedstrijd Details</h1>
   <hr>
   <div class="row">
-    <p class="col-3 font-weight-bold">Group A:</p>
+    <p class="col-3 font-weight-bold">Ploeg A:</p>
     <p class="col">{{ groups[teams[game.teamAID - 1].groupID - 1].name }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Group B:</p>
+    <p class="col-3 font-weight-bold">Ploeg B:</p>
     <p class="col">{{ groups[teams[game.teamBID - 1].groupID - 1].name }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Challenger:</p>
+    <p class="col-3 font-weight-bold">Uitdager:</p>
     <p class="col">{{ groups[game.challengedByID - 1].name}}</p>
   </div>
   <div class="row">
@@ -18,23 +18,23 @@
     <p class="col">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Game Date:</p>
-    <p class="col">{{ game.date }}</p>
+    <p class="col-3 font-weight-bold">Datum:</p>
+    <p class="col">{{ game.date | date }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Table:</p>
+    <p class="col-3 font-weight-bold">Kickertafel:</p>
     <p class="col">{{ tables[game.tableID - 1].tableName }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Game Type:</p>
+    <p class="col-3 font-weight-bold">Wedstrijd Type:</p>
     <p class="col">{{ gameTypes[game.gameTypeID - 1].name}}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Tournament:</p>
+    <p class="col-3 font-weight-bold">Tournooi:</p>
     <p class="col">{{ tournaments[game.tournamentID - 1].name }}</p>
   </div>
   <div class="row">
-    <p class="col-3 font-weight-bold">Game Status:</p>
+    <p class="col-3 font-weight-bold">Wedstrijd Status:</p>
     <p class="col">{{ status[game.gameStatusID - 1].name}}</p>
   </div>
 </div>

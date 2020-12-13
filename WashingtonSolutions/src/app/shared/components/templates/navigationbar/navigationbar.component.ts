@@ -15,20 +15,20 @@ export class NavigationbarComponent implements OnInit {
   imageUrl: string;
 
   navUser = [
-    { link: '/user/games', title: 'My games' },
-    { link: '/', title: 'My group' },
-    { link: '/user/profile/edit', title: 'My profile' }
+    { link: '/user/games', title: 'Mijn wedstrijden' },
+    { link: '/', title: 'Mijn ploeg' },
+    { link: '/user/profile/edit', title: 'Mijn profiel' }
   ]
   navCaptain = [
-    { link: '/', title: 'My group' }
+    { link: '/', title: 'Ploeg beheren' }
   ]
   navAdmin = [
-    { link: '/admin/user/list', title: 'Users' },
-    { link: '/admin/game/list', title: 'Games' },
-    { link: '/admin/table', title: 'Tables' },
-    { link: '/group', title: 'Groups' },
-    { link: '/admin/competition', title: 'Competitions' },
-    { link: '/tournament', title: 'Tournaments' }
+    { link: '/admin/user/list', title: 'Gebruikers' },
+    { link: '/admin/game/list', title: 'Wedstrijden' },
+    { link: '/admin/table', title: 'Voetbaltafels' },
+    { link: '/group', title: 'Ploegen' },
+    { link: '/admin/competition', title: 'Competities' },
+    { link: '/tournament', title: 'Tournooien' }
   ]
 
   constructor(
