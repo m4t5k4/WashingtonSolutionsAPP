@@ -30,6 +30,7 @@ import { CaptainComponent } from './modules/captain/captain/captain.component';
 import { GameComponent } from './modules/user/games/game.component';
 import { UserGameDetailComponent } from './modules/user/games/details/user-game-detail/user-game-detail.component';
 import { ChallengesComponent } from './modules/user/games/challenges/challenges.component';
+import { NewChallengeComponent } from './modules/user/games/new-challenge/new-challenge.component';
 
 
 import { Error403Component } from './shared/components/error/error403/error403.component';
@@ -68,6 +69,17 @@ const routes: Routes = [
   { path: 'user/games' , component: GameComponent},
   { path: 'user/games/edit/:id', component: UserGameDetailComponent },
   { path: 'user/challenge', component: ChallengesComponent },
+  { path: 'user/challenge/new', component: NewChallengeComponent },
+  
+  { path: 'table', component: TableComponent },
+  { path: 'table/add', component: NewTableComponent },
+  { path: 'table/:id', component: EditTableComponent },
+  { path: 'tournament', component: TournamentComponent },
+  { path: 'tournament/add', component: NewTournamentComponent },
+  { path: 'tournament/:id', component: NewTournamentComponent },
+  //TODO: childrenroutes
+
+  { path: 'group', component: GroupComponent },
 
   { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },
