@@ -64,7 +64,7 @@ export class GroupComponent implements OnInit {
 
   delete(object){
     console.log(object.groupID);
-    this.http.delete(`${environment.apiUrl}/groups` + object.groupID).subscribe(
+    this.http.delete(`${environment.apiUrl}/groups/` + object.groupID).subscribe(
       response => {
         const index = this.groupItems.indexOf(object);
         this.groupItems.splice(index, 1);
