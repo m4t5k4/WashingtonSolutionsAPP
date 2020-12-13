@@ -107,4 +107,19 @@ export class UserGameDetailComponent implements OnInit {
   gameDetails(id) {
     this.router.navigateByUrl("/user/games/edit/" + id);
   };
+
+  startGame() {
+    let patchDocument = [];
+    patchDocument.push({ op: "replace", path: "/gameStatusID", value: 3 })
+    console.log(this.game.gameID)
+    console.log(patchDocument)
+    this._gameService.patch(this.game.gameID, patchDocument)
+      .subscribe(x=> {
+        this.getGame();
+      })
+  }
+
+  goBack () {
+    this.router.navigateByUrl("/user/games")
+  }
 }

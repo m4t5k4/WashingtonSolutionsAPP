@@ -40,4 +40,8 @@ export class GameService {
         return x;
       }));
   }
+
+  patch (id, params) {
+    return this.http.patch(`${environment.apiUrl}/games/${id}`, params);
+  }
 }

@@ -10,9 +10,6 @@ import { ManageCompetitionComponent } from './modules/admin/competition/manage-c
 import { AddCompetitionComponent } from './modules/admin/competition/add-competition/add-competition.component';
 import { EditCompetitionComponent } from './modules/admin/competition/edit-competition/edit-competition.component';
 import { RegisterComponent } from './modules/home/register/register.component';
-//import { ListComponent } from './modules/admin/user/list/list.component';
-//import { DetailComponent } from './modules/admin/user/detail/detail.component';
-// (in comment gezet bij merge Bram)
 import { TournamentComponent } from './modules/admin/tournament/tournament/tournament.component';
 import { NewTournamentComponent } from './modules/admin/tournament/new-tournament/new-tournament.component';
 import { ListComponent as UserListComponent } from './modules/admin/user/list/list.component';
