@@ -1,13 +1,25 @@
 <div class="container mt-5">
   <!-- Logged in -->
   <div *ngIf="user">
+    <!-- User -->
     <div *ngIf="user.roleID == 3">
       <h1>Welcome, {{ user.firstName }}</h1>
       <hr>
       <!-- User has group -->
       <div *ngIf="user.groupID">
         <div class="row">
-            <div class="col"></div>
+          <div class="col-lg mb-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+              (click)="redirectTo('user/games')">My games</button>
+          </div>
+          <div class="col-lg mb-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+              (click)="redirectTo('user/groups')">My group</button>
+          </div>
+          <div class="col-lg mb-3">
+            <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+              (click)="redirectTo('user/profile/edit')">My profile</button>
+          </div>
         </div>
       </div>
       <!-- User had no group yet -->
@@ -15,12 +27,48 @@
         <div class="row">
           <div class="col-lg mb-3">
             <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-              (click)="toJoinGroup()">Join group</button>
+              (click)="redirectTo()">Make group</button>
           </div>
-          <div class="col-lg mb-3">
-            <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-              (click)="toMakeGroup()">Make group</button>
-          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Captain -->
+    <div *ngIf="user.roleID == 1">
+      <h1>Welcome, {{ user.firstName }}</h1>
+      <hr>
+    </div>
+    <!-- Admin -->
+    <div *ngIf="user.roleID == 2">
+      <h1>Welcome, {{ user.firstName }}</h1>
+      <hr>
+      <div class="row">
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('admin/user/list')">Manage users</button>
+        </div>
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('admin/game/list')">Manages games</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('table')">Manage tables</button>
+        </div>
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('group')">Manage group</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('admin/competition')">Manage competitions</button>
+        </div>
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('tournament')">Manage tournaments</button>
         </div>
       </div>
     </div>
@@ -31,12 +79,12 @@
     <hr>
     <div class="row">
       <div class="col-lg mb-3">
-        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase" (click)="toLogin()">Log
+        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase" (click)="redirectTo(login)">Log
           in</button>
       </div>
       <div class="col-lg mb-3">
         <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-          (click)="toRegister()">Register</button>
+          (click)="redirectTo('register')">Register</button>
       </div>
     </div>
   </div>

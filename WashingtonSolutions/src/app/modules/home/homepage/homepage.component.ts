@@ -20,20 +20,8 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toLogin() {
-    this.router.navigateByUrl("/login");
-  }
-
-  toRegister() {
-    this.router.navigateByUrl("/register");
-  }
-
-  toMakeGroup() {
-
-  }
-
-  toJoinGroup() {
-
+  redirectTo(route) {
+    this.router.navigateByUrl("/" + route);
   }
 
 }
