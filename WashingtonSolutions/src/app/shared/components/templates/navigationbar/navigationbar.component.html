@@ -10,11 +10,11 @@
           <a class="nav-link" [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
         </li>
 
-        <div ngbDropdown class="nav-item" *ngIf="accountService.isUser()">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
-            User
+        <div ngbDropdown class="nav-item" *ngIf="accountService.isUser() || accountService.isCaptain()">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownUser" ngbDropdownToggle>
+            Speler
           </a>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <div ngbDropdownMenu aria-labelledby="navbarDropdownUser">
             <a class="nav-item nav-link" *ngFor="let item of navUser" [routerLink]="[item.link]" ngbDropdownItem>
               {{item.title}}
             </a>
@@ -22,10 +22,10 @@
         </div>
 
         <div ngbDropdown class="nav-item" *ngIf="accountService.isCaptain()">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
-            Captain
+          <a class="nav-link dropdown-toggle" id="navbarDropdownCaptain" ngbDropdownToggle>
+            Kapitein
           </a>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <div ngbDropdownMenu aria-labelledby="navbarDropdownCaptain">
             <a class="nav-item nav-link" *ngFor="let item of navCaptain" [routerLink]="[item.link]" ngbDropdownItem>
               {{item.title}}
             </a>
@@ -33,10 +33,10 @@
         </div>
 
         <div ngbDropdown class="nav-item"  *ngIf="accountService.isAdmin()">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
+          <a class="nav-link dropdown-toggle" id="navbarDropdownAdmin" ngbDropdownToggle>
             Admin
           </a>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <div ngbDropdownMenu aria-labelledby="navbarDropdownAdmin">
             <a class="nav-item nav-link" *ngFor="let item of navAdmin" [routerLink]="[item.link]" ngbDropdownItem>
               {{item.title}}
             </a>
@@ -50,7 +50,7 @@
         <a  class="nav-item nav-link text-dark" [routerLink]="['/login']">Aanmelden</a>
       </div>
       <div style="float: right; display: flex" *ngIf="user">
-        <p class="mr-2 nav-item nav-link">Welcome, {{user.firstName}}</p>
+        <p class="mr-2 nav-item nav-link">Welkom, {{user.firstName}}</p>
         <img *ngIf="this.imageUrl" [src]="this.imageUrl" class="avatar">
         <a href="" class="nav-item nav-link" (click)="logout()">Uitloggen</a>
       </div>

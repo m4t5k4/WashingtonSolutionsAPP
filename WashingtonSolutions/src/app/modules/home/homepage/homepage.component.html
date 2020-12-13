@@ -3,22 +3,22 @@
   <div *ngIf="user">
     <!-- User -->
     <div *ngIf="user.roleID == 3">
-      <h1>Welcome, {{ user.firstName }}</h1>
+      <h1>Welkom, {{ user.firstName }}</h1>
       <hr>
       <!-- User has group -->
       <div *ngIf="user.groupID">
         <div class="row">
           <div class="col-lg mb-3">
             <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-              (click)="redirectTo('user/games')">My games</button>
+              (click)="redirectTo('user/games')">Mijn wedstrijden</button>
           </div>
           <div class="col-lg mb-3">
             <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-              (click)="redirectTo('user/groups')">My group</button>
+              (click)="redirectTo('user/groups')">Mijn ploeg</button>
           </div>
           <div class="col-lg mb-3">
             <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-              (click)="redirectTo('user/profile/edit')">My profile</button>
+              (click)="redirectTo('user/profile/edit')">Mijn profiel</button>
           </div>
         </div>
       </div>
@@ -27,64 +27,63 @@
         <div class="row">
           <div class="col-lg mb-3">
             <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-              (click)="redirectTo()">Make group</button>
+              (click)="redirectTo()">Ploeg aanmaken</button>
           </div>
         </div>
       </div>
     </div>
     <!-- Captain -->
     <div *ngIf="user.roleID == 1">
-      <h1>Welcome, {{ user.firstName }}</h1>
+      <h1>Welkom, {{ user.firstName }}</h1>
       <hr>
     </div>
     <!-- Admin -->
     <div *ngIf="user.roleID == 2">
-      <h1>Welcome, {{ user.firstName }}</h1>
+      <h1>Welkom, {{ user.firstName }}</h1>
       <hr>
       <div class="row">
         <div class="col-lg mb-3">
           <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-            (click)="redirectTo('admin/user/list')">Manage users</button>
+            (click)="redirectTo('admin/user/list')">Gebruikers beheren</button>
         </div>
         <div class="col-lg mb-3">
           <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-            (click)="redirectTo('admin/game/list')">Manages games</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg mb-3">
-          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-            (click)="redirectTo('table')">Manage tables</button>
-        </div>
-        <div class="col-lg mb-3">
-          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-            (click)="redirectTo('group')">Manage group</button>
+            (click)="redirectTo('admin/game/list')">Wedstrijden beheren</button>
         </div>
       </div>
       <div class="row">
         <div class="col-lg mb-3">
           <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-            (click)="redirectTo('admin/competition')">Manage competitions</button>
+            (click)="redirectTo('table')">Tafels beheren</button>
         </div>
         <div class="col-lg mb-3">
           <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-            (click)="redirectTo('tournament')">Manage tournaments</button>
+            (click)="redirectTo('group')">Ploegen beheren</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('admin/competition')">Competities beheren</button>
+        </div>
+        <div class="col-lg mb-3">
+          <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
+            (click)="redirectTo('tournament')">Tournooien beheren</button>
         </div>
       </div>
     </div>
   </div>
   <!-- Not logged in -->
   <div *ngIf="! user">
-    <h1>Welcome</h1>
+    <h1>Welkom</h1>
     <hr>
     <div class="row">
       <div class="col-lg mb-3">
-        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase" (click)="redirectTo(login)">Log
-          in</button>
+        <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase" (click)="redirectTo('login')">Login</button>
       </div>
       <div class="col-lg mb-3">
         <button type="button" class="btn btn-outline-dark btn-lg btn-block py-5 text-uppercase"
-          (click)="redirectTo('register')">Register</button>
+          (click)="redirectTo('register')">Registeren</button>
       </div>
     </div>
   </div>
