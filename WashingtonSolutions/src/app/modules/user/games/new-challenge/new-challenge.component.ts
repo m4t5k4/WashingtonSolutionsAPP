@@ -8,38 +8,52 @@ import { GameType } from 'src/app/shared/models/game-type.model';
 import { Group } from 'src/app/shared/models/group.model';
 import { Table } from 'src/app/shared/models/table.model';
 import { Team } from 'src/app/shared/models/team.model';
-import { GameService } from '../../../core/services/game.service';
-import { Game } from '../../../shared/models/game.model';
+import { GameService } from 'src/app/core/services/game.service';
+import { Game } from 'src/app/shared/models/game.model';
+import { Competition } from 'src/app/shared/models/competition.model';
 import { AccountService } from 'src/app/core/services/account.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  selector: 'app-new-challenge',
+  templateUrl: './new-challenge.component.html',
+  styleUrls: ['./new-challenge.component.scss']
 })
-export class GameComponent implements OnInit {
+export class NewChallengeComponent implements OnInit {
 
-  games: Game[] = []; //moet op voorhand gedeclareerd zijn
-  gameTypes: GameType[];
-  tables: Table[];
-  teams: Team[]; // alle teams.
-  groups: Group[];
-  //userdata
-  userTeams: Team[] = []; //teams waar de user in zit
-  teamUsers
-  groupID;
-
-  constructor(private _gameService: GameService, private _tableService: TableService, private _competitionService: CompetitionService, private _teamService: TeamService, private _groupService: GroupService, private router: Router, private _accountservice: AccountService) {
-    this.getData();
-    this.getGameTypes();
-    this.getTables();
-    this.getTeams();
+  constructor(
+    private formBuilder: FormBuilder,
+    private _gameService: GameService,
+    private _tableService: TableService,
+    private _competitionService: CompetitionService,
+    private _teamService: TeamService,
+    private _groupService: GroupService,
+    private _accountservice: AccountService,
+    private router: Router
+  ) {
     this.getGroups();
   }
 
-  ngOnInit(): void {
-  }
+  form: FormGroup;
+  teams: Team[];
+  games: Game[] = []; //moet op voorhand gedeclareerd zijn
+  gameTypes: GameType[];
+  tables: Table[];
+  userTeams: Team[] = []; //teams waar de user in zit
+  groups: Group[];
+  competitions: Competition[]
+  teamUsers
+  groupID;
+  teamGroups: Team[]// de teams van de geselecteerde groep
+  loading = false;
 
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      groupID: ['', Validators.required],
+      teamID: ['', Validators.required],
+      competitionID: ['', Validators.required]
+    });
+  }
   getData() {
     this._accountservice.getUser()
       .subscribe(result => {
@@ -68,15 +82,6 @@ export class GameComponent implements OnInit {
       })
   }
 
-  getGames() {
-    // subscribe to GET all games
-    this._gameService.getGames().subscribe(
-      result => {
-        this.games = result;
-      }
-    )
-  }
-
   getGameTypes() {
     // subscribe to GET gameTypes
     this._competitionService.getGameTypes().subscribe(
@@ -91,6 +96,15 @@ export class GameComponent implements OnInit {
     this._tableService.getTables().subscribe(
       result => {
         this.tables = result;
+      }
+    )
+  }
+
+  getCompetitions() {
+    // subscribe to GET tables
+    this._competitionService.getCompetitions().subscribe(
+      result => {
+        this.competitions = result;
       }
     )
   }
@@ -112,8 +126,5 @@ export class GameComponent implements OnInit {
     )
   }
 
-  gameDetails(id) {
-    this.router.navigateByUrl("/user/games/edit/" + id);
-  };
-
+  onSubmit() {}
 }

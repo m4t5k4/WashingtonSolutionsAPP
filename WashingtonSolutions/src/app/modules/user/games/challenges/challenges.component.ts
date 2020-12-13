@@ -29,6 +29,7 @@ export class ChallengesComponent implements OnInit {
     private router: Router
   ) { }
 
+  teams: Team[];
   games: Game[] = []; //moet op voorhand gedeclareerd zijn
   gameTypes: GameType[];
   tables: Table[];
@@ -38,7 +39,11 @@ export class ChallengesComponent implements OnInit {
   groupID;
 
   ngOnInit(): void {
-    this.getData()
+    this.getData();
+    this.getGameTypes();
+    this.getTables();
+    this.getTeams();
+    this.getGroups();
   }
 
   getData() {
@@ -68,5 +73,41 @@ export class ChallengesComponent implements OnInit {
         }
       })
   }
+
+  getGameTypes() {
+    // subscribe to GET gameTypes
+    this._competitionService.getGameTypes().subscribe(
+      result => {
+        this.gameTypes = result;
+      }
+    )
+  };
+
+  getTables() {
+    // subscribe to GET tables
+    this._tableService.getTables().subscribe(
+      result => {
+        this.tables = result;
+      }
+    )
+  }
+
+  getTeams() {
+    // subscribe to GET teams
+    this._teamService.getTeams().subscribe(
+      result => {
+        this.teams = result;
+      }
+    )
+  }
+
+  getGroups() {
+    this._groupService.getGroups().subscribe(
+      result => {
+        this.groups = result;
+      }
+    )
+  }
+
 
 }

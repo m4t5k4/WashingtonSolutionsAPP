@@ -1,0 +1,30 @@
+<p>new-challenge works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group col">
+    <label for="groupID">Users</label>
+    <select name="groupID" id="groupID" formControlName="groupID" class="form-control">
+      <option *ngFor="let group of groups" value="{{group.groupID}}">{{group.groupName}}</option>
+    </select>
+  </div>
+
+  <div class="form-group col">
+    <label for="teamID">Users</label>
+    <select name="teamID" id="noGroupUsers" formControlName="teamID" class="form-control">
+      <option *ngFor="let team of teamGroups" value="{{team.teamID}}">{{team.teamName}}</option>
+    </select>
+  </div>
+
+  <div class="form-group col">
+    <label for="competitionID">Users</label>
+    <select name="competitionID" id="competitionID" formControlName="competitionID" class="form-control">
+      <option *ngFor="let competition of competitions" value="{{competition.competitionID}}">{{competition.competitionName}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Challenge
+    </button>
+  </div>
+</form>
