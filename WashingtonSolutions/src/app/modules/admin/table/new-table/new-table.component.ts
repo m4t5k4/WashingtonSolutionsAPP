@@ -6,6 +6,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../../core/services/alert.service';
 import { FileService } from 'src/app/core/services/file.service';
 
+interface Option {
+  value: number;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-new-table',
   templateUrl: './new-table.component.html',
@@ -21,6 +26,10 @@ export class NewTableComponent implements OnInit {
   imagePath;
   imgURL;
   @ViewChild('inputFile') inputFile: ElementRef;
+
+  users: Option[] = [
+    
+  ]
 
   constructor(
     private _tableService: TableService,
