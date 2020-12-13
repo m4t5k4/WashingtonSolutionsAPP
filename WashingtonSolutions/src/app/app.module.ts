@@ -25,6 +25,11 @@ import { GameModule } from './modules/admin/game/game.module';
 import { UserGameModule } from './modules/user/games/game.module';
 import { GroupComponent } from './modules/admin/group/group.component';
 import { ProfileModule } from './modules/user/profile/profile.module';
+import { ShowScoreComponent } from './modules/user/show-score/show-score.component';
+import { CreateTeamComponent } from './modules/user/create-team/create-team.component';
+import { AuthGuard } from './core/guards/auth-guard.service';
+import { UserAuthGuard } from './core/guards/user-auth-guard.service';
+import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
 import { CaptainModule } from './modules/captain/captain.module';
 
 @NgModule({
@@ -37,7 +42,9 @@ import { CaptainModule } from './modules/captain/captain.module';
     NavigationbarComponent,
 
     AlertComponent,
-    GroupComponent
+    GroupComponent,
+    ShowScoreComponent,
+    CreateTeamComponent,
   ],
 
   imports: [
@@ -60,7 +67,12 @@ import { CaptainModule } from './modules/captain/captain.module';
   ],
   exports: [
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AuthGuard,
+    UserAuthGuard,
+    AdminAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

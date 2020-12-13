@@ -3,6 +3,7 @@ import { FileService } from 'src/app/core/services/file.service';
 import { AccountService } from '../../../../core/services/account.service';
 import { User } from '../../../models/user.model';
 import { environment } from '../../../../../environments/environment';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navigationbar',
@@ -16,14 +17,16 @@ export class NavigationbarComponent implements OnInit {
   navUser = [
     { link: '/user/games', title: 'Mijn wedstrijden' },
     { link: '/', title: 'Mijn ploeg' },
-    { link: '/user/profile/edit', title: 'Mijn gebruiker' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' }
+    { link: '/user/profile/edit', title: 'Mijn gebruiker' }
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' }
   ]
   navCaptain = [
-    { link: '/', title: 'Mijn ploeg' },
-    { link: '/', title: 'link' },
-    { link: '/', title: 'link' }
+    { link: '/', title: 'Mijn ploeg' }
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' },
+    // { link: '/', title: 'link' }
   ]
   navAdmin = [
     { link: '/admin/user/list', title: 'Gebruikers' },
@@ -35,7 +38,7 @@ export class NavigationbarComponent implements OnInit {
   ]
 
   constructor(
-    private accountService: AccountService,
+    public accountService: AccountService,
     private fileService: FileService
   ) {
     this.accountService.user.subscribe(x => {

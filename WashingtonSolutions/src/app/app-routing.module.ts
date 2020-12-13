@@ -21,12 +21,18 @@ import { ListComponent as GameListComponent } from './modules/admin/game/list/li
 import { GroupComponent } from './modules/admin/group/group.component';
 import { EditComponent as ProfileEditComponent } from './modules/user/profile/edit/edit.component';
 import { DetailComponent as GameDetailComponent } from './modules/admin/game/detail/detail.component';
+import { ShowScoreComponent } from './modules/user/show-score/show-score.component';
+import { CreateTeamComponent } from './modules/user/create-team/create-team.component';
+import { AuthGuard } from './core/guards/auth-guard.service';
+import { UserAuthGuard } from './core/guards/user-auth-guard.service';
+import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
 import { CaptainComponent } from './modules/captain/captain/captain.component';
 import { GameComponent } from './modules/user/games/game.component';
 import { UserGameDetailComponent } from './modules/user/games/details/user-game-detail/user-game-detail.component';
 import { ChallengesComponent } from './modules/user/games/challenges/challenges.component';
 
 
+import { Error403Component } from './shared/components/error/error403/error403.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -36,32 +42,37 @@ const routes: Routes = [
   { path: 'captain', component: CaptainComponent },
 
   
-  { path: 'admin/user/list', component: UserListComponent },
-  { path: 'admin/user/edit/:id', component: UserDetailComponent },
-  { path: 'admin/user/add', component: UserDetailComponent },
+  { path: 'admin/user/list', component: UserListComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/user/edit/:id', component: UserDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/user/add', component: UserDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   
-  { path: 'admin/competition', component: ManageCompetitionComponent},
-  { path: 'admin/competition/add', component: AddCompetitionComponent},
-  { path: 'admin/competition/edit/:id', component: EditCompetitionComponent},
+  { path: 'admin/competition', component: ManageCompetitionComponent, canActivate: [AdminAuthGuard, AuthGuard]},
+  { path: 'admin/competition/add', component: AddCompetitionComponent, canActivate: [AdminAuthGuard, AuthGuard]},
+  { path: 'admin/competition/edit/:id', component: EditCompetitionComponent, canActivate: [AdminAuthGuard, AuthGuard]},
 
-  { path: 'admin/game/list', component: GameListComponent },
-  { path: 'admin/game/edit/:id', component: GameDetailComponent },
-  { path: 'admin/game/add', component: GameDetailComponent },
+  { path: 'admin/game/list', component: GameListComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/game/edit/:id', component: GameDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'admin/game/add', component: GameDetailComponent, canActivate: [AdminAuthGuard, AuthGuard] },
 
+  { path: 'user/profile/edit',
+    component: ProfileEditComponent,
+    canActivate: [UserAuthGuard, AuthGuard]},
+
+  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'table/add', component: NewTableComponent, canActivate: [AuthGuard] },
+  { path: 'table/:id', component: EditTableComponent, canActivate: [AuthGuard] },
+  { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
+  { path: 'tournament/add', component: NewTournamentComponent, canActivate: [AuthGuard] },
+  { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },
   { path: 'user/profile/edit', component: ProfileEditComponent },
   { path: 'user/games' , component: GameComponent},
   { path: 'user/games/edit/:id', component: UserGameDetailComponent },
   { path: 'user/challenge', component: ChallengesComponent },
-  
-  { path: 'table', component: TableComponent },
-  { path: 'table/add', component: NewTableComponent },
-  { path: 'table/:id', component: EditTableComponent },
-  { path: 'tournament', component: TournamentComponent },
-  { path: 'tournament/add', component: NewTournamentComponent },
-  { path: 'tournament/:id', component: NewTournamentComponent },
-  //TODO: childrenroutes
 
-  { path: 'group', component: GroupComponent },
+  { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
+  { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },
+  { path: 'user/create_team', component: CreateTeamComponent, canActivate: [AuthGuard] },
+  { path: 'no-access', component: Error403Component },
 
   //moet laatst blijven staan.
   { path: '**', component: Error404Component },
