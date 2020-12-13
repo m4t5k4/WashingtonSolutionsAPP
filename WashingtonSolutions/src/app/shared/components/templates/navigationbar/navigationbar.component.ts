@@ -16,11 +16,10 @@ export class NavigationbarComponent implements OnInit {
 
   navUser = [
     { link: '/user/games', title: 'Mijn wedstrijden' },
-    { link: '/', title: 'Mijn ploeg' },
     { link: '/user/profile/edit', title: 'Mijn profiel' }
   ]
   navCaptain = [
-    { link: '/', title: 'Ploeg beheren' }
+    { link: '/captain', title: 'Ploeg beheren' }
   ]
   navAdmin = [
     { link: '/admin/user/list', title: 'Gebruikers' },
