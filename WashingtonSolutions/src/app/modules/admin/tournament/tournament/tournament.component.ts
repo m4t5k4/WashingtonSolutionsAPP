@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TournamentService } from 'src/app/core/services/tournament.service'
 import { Tournament } from 'src/app/shared/models/tournament.model'
 import { Router, ActivatedRoute } from '@angular/router';
+import { CompetitionService } from 'src/app/core/services/competition.service';
+import { GroupService } from 'src/app/core/services/group.service';
 
 @Component({
   selector: 'app-tournament',
@@ -12,13 +14,20 @@ export class TournamentComponent implements OnInit {
 
   constructor(
     private _tournamentService: TournamentService,
+    private _competitionService: CompetitionService,
+    private _groupService: GroupService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {
+    this.getGroups();
+    this.getCompetitions();
+  }
 
   tournaments: Tournament[];
   date;
-  columnsToDisplay = ['tournamentID', 'name', 'startdate', 'enddate', 'competition','winner', 'acties'];
+  columnsToDisplay = ['tournamentID', 'name', 'startdate', 'enddate', 'competition', 'winner', 'acties'];
   loaded = false;
+  groups;
+  competitions;
 
   //CRUD METHODES
 
@@ -49,7 +58,8 @@ export class TournamentComponent implements OnInit {
         next: () => {
           this.getTournaments()
         }
-      })}
+      })
+  }
 
   checkStatus(date: Date, id: number) {
     //status = 0 --> nog niet afgelopen
@@ -57,7 +67,7 @@ export class TournamentComponent implements OnInit {
     //status = 2 --> afgelopen en een winnaar
 
     //werkt voor geen meter!!!
-    console.log("test" + date + " versus " + this.date )
+    console.log("test" + date + " versus " + this.date)
 
     if (date > this.date) {
       return 0
@@ -68,14 +78,30 @@ export class TournamentComponent implements OnInit {
   }
 
   editTournament(id: number) {
-    this.router.navigateByUrl("/tournament/"+id);
+    this.router.navigateByUrl("/tournament/" + id);
   }
 
   ngOnInit(): void {
     this.getTournaments();
     this.date = new Date();
     console.log(this.date)
-    
+
   }
 
+  getGroups() {
+    this._groupService.getGroups().subscribe(
+      result => {
+        this.groups = result;
+      }
+    )
+  }
+
+  getCompetitions() {
+    this._competitionService.getCompetitions().subscribe(
+      result => {
+        this.competitions = result;
+      }
+    )
+  }
 }
+

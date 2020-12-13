@@ -18,7 +18,7 @@
                       <td>{{ table.tableName }}</td>
                       <td>{{ table.companyName }}</td>
                       <td>{{ table.address }}</td>
-                      <td>{{ table.contactPersonID }}</td>
+                      <td>{{ users[table.contactPersonID - 1].firstName }} {{ users[table.contactPersonID - 1].lastName }}</td>
                       <td style="white-space: nowrap">
                           <a routerLink="edit/{{table.tableID}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                           <button class="btn btn-sm btn-danger m-1" (click)="deleteTable(table.tableID)">Verwijder</button>
