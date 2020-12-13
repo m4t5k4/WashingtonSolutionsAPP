@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let game of games">
-                        <td>{{game.date}}</td>
+                        <td>{{game.date | date}}</td>
                         <td>{{game.teamAID}}</td>
                         <td>{{game.teamBID}}</td>
                         <td>{{game.scoreTeamA}} - {{game.scoreTeamB}}</td>
