@@ -42,7 +42,7 @@ export class AccountService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    //this.router.navigate(['/login']);
   }
 
   register (user: NewUser) {
@@ -57,8 +57,28 @@ export class AccountService {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
+  getByGroupId(id: number) {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/GetByGroup/${id}`);
+  }
+
   update (id, params) {
     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id == this.userValue.userID) {
+          // update local storage
+          const user = { ...this.userValue, ...params };
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // publish updated user to subscribers
+          this.userSubject.next(user);
+        }
+        return x;
+      }));
+  }
+
+  patch (id, params) {
+    return this.http.patch(`${environment.apiUrl}/users/${id}`, params)
       .pipe(map(x => {
         // update stored user if the logged in user updated their own record
         if (id == this.userValue.userID) {
@@ -109,9 +129,9 @@ export class AccountService {
     }
   }
 
-  isCapiten() { 
+  isCaptain() { 
     if(this.user1){
-      if (this.user1.role.name == "Capiten"){
+      if (this.user1.role.name == "Captain"){
         return true;
       }else{
         return false;
@@ -127,5 +147,15 @@ export class AccountService {
       }else{
         return false;
       }
+  }
+
+  kick(user: User) {
+    user.groupID = null;
+    return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
+  }
+
+  addToGroup(user: User, groupID: number) {
+    user.groupID = groupID;
+    return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
   }
 }

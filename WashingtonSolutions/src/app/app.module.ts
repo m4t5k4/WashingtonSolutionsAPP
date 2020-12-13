@@ -22,6 +22,7 @@ import { TableModule } from './modules/admin/table/table.module';
 import { TournamentModule } from './modules/admin/tournament/tournament.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GameModule } from './modules/admin/game/game.module';
+import { UserGameModule } from './modules/user/games/game.module';
 import { GroupComponent } from './modules/admin/group/group.component';
 import { ProfileModule } from './modules/user/profile/profile.module';
 import { ShowScoreComponent } from './modules/user/show-score/show-score.component';
@@ -30,6 +31,7 @@ import { NoAccessComponent } from './shared/components/no-access/no-access.compo
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { UserAuthGuard } from './core/guards/user-auth-guard.service';
 import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
+import { CaptainModule } from './modules/captain/captain.module';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,9 @@ import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
     HomeModule,
     UserModule,
     GameModule,
+    ProfileModule,
+    CaptainModule,
+    UserGameModule,
     ProfileModule
 
   ],

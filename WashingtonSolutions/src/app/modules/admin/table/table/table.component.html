@@ -1,50 +1,58 @@
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="tables">
+<div class="container">
+  <div class="card item">
+    <div class="card-body">
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="userID">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let table"> {{table.tableID}} </td>
-    </ng-container>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="tables">
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="userID">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let table"> {{table.tableID}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Tablename </th>
+            <td mat-cell *matCellDef="let table"> {{table.tableName}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="companyname">
+            <th mat-header-cell *matHeaderCellDef> Companyname </th>
+            <td mat-cell *matCellDef="let table"> {{table.companyName}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let table"> {{table.address}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef> Contactpersoon </th>
+            <td mat-cell *matCellDef="let table"> {{table.contactPersonID}} </td>
+          </ng-container>
+      
+      
+      
+      
+      
+          <ng-container matColumnDef="verwijderen">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let table">
+              <!-- Knop voor gebruiker te vervijderen -->
+              <!-- admins kunnen elkaar niet vervijderen -->
+              <button class="btn btn-danger m-1" (click)="deleteTable(table.tableID)">Verwijder</button>
+              <button class="btn btn-primary m-1" (click)="editTable(table.tableID)">Pas aan</button>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+      
+        </table>
+        <a href="/table/add" class="btn btn-success m-1">Nieuwe Tafel</a>
+      </div>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Tablename </th>
-      <td mat-cell *matCellDef="let table"> {{table.tableName}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="companyname">
-      <th mat-header-cell *matHeaderCellDef> Companyname </th>
-      <td mat-cell *matCellDef="let table"> {{table.companyName}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef> Address </th>
-      <td mat-cell *matCellDef="let table"> {{table.address}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="contact">
-      <th mat-header-cell *matHeaderCellDef> Contactpersoon </th>
-      <td mat-cell *matCellDef="let table"> {{table.contactPersonID}} </td>
-    </ng-container>
-
-
-
-
-
-    <ng-container matColumnDef="verwijderen">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let table">
-        <!-- Knop voor gebruiker te vervijderen -->
-        <!-- admins kunnen elkaar niet vervijderen -->
-        <button class="btn btn-danger" (click)="deleteTable(table.tableID)" >Verwijder</button>
-        <button class="btn btn-primary" (click)="editTable(table.tableID)" >Pas aan</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-
-  </table>
-  <a href="/table/add" class="btn btn-success">Nieuwe Tafel</a>
+    </div>
+  </div>
 </div>

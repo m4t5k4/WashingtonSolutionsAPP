@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 import { AlertService } from '../../../../core/services/alert.service';
 import { AccountService } from '../../../../core/services/account.service';
@@ -9,6 +9,7 @@ import { FileService } from '../../../../core/services/file.service';
 import { GroupService } from '../../../../core/services/group.service';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 interface Option {
     value: number;
@@ -81,9 +82,7 @@ export class DetailComponent implements OnInit {
           this.form.patchValue({
             dob: date
           });
-          this.fileService.getFile(x.userPictureID)
-            .pipe(first())
-            .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/uploads/' + x.path);
+          this.fileService.getFile(x.userPictureID).subscribe(x => this.imageUrl = environment.apiUrl.slice(0, -3) + x.path);
         });
     }
 
@@ -147,8 +146,7 @@ export class DetailComponent implements OnInit {
       });
   }
 
-  private updateUser () {
-    console.log(this.form.value.roleID);
+  private updateUser1 () {
     let values = this.form.value;
     let ngbDate = values.dob;
     let date = this.ngbDateParserFormatter.format(ngbDate);
@@ -178,6 +176,49 @@ export class DetailComponent implements OnInit {
           console.log(updateUser);
         }
       });
+  }
+
+  private updateUser () {
+    let patchDocument = []
+    let values = this.form.value;
+    if (this.form.controls['firstName'].dirty) {
+      patchDocument.push({op: "replace", path:"/firstName", value: values.firstName})
+    }
+    if (this.form.controls['lastName'].dirty) {
+      patchDocument.push({ op: "replace", path: "/lastName", value: values.lastName })
+    }
+    if (this.form.controls['username'].dirty) {
+      patchDocument.push({ op: "replace", path: "/username", value: values.username })
+    }
+    if (this.form.controls['password'].dirty) {
+      patchDocument.push({ op: "replace", path: "/password", value: values.password })
+    }
+    if (this.form.controls['email'].dirty) {
+      patchDocument.push({ op: "replace", path: "/email", value: values.email })
+    }
+    if (this.form.controls['roleID'].dirty) {
+      patchDocument.push({ op: "replace", path: "/roleID", value: values.roleID })
+    }
+    if (this.form.controls['dob'].dirty) {
+      let date = this.ngbDateParserFormatter.format(values.dob)+"T00:00:00"
+      patchDocument.push({ op: "replace", path: "/dob", value: date })
+    }
+    if (this.form.controls['userPictureID'].dirty) {
+      patchDocument.push({ op: "replace", path: "/userPictureID", value: values.userPictureID })
+    }
+    if (this.form.controls['groupID'].dirty) {
+      patchDocument.push({ op: "replace", path: "/groupID", value: values.groupID })
+    }
+    console.log(patchDocument);
+    this.accountService.patch(this.id,patchDocument).subscribe({
+      next: () => {
+        this.router.navigate(['../../list'], { relativeTo: this.route });
+      },
+       error: error => {
+        this.alertService.error(error);
+        this.loading = false;
+      }
+    })
   }
 
   goBack() {

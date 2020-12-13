@@ -3,9 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  //apiUrl: 'https://localhost:5001/api',
   apiUrl: 'https://kickerapi.azurewebsites.net/api',
+  //apiUrl: 'https://kickerapi2020.azurewebsites.net/api',
+  //apiUrl: 'https://localhost:5001/api',
+  production: false,
+ 
 };
 
 /*

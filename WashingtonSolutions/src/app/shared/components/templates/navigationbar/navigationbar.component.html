@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light ">
-    <a class="navbar-brand" style="color: #DE3163;">KickerAPP</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <a class="navbar-brand" style="color: #ffffff;">KickerAPP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div ngbDropdown class="nav-item" *ngIf="accountService.isCapiten()">
+        <div ngbDropdown class="nav-item" *ngIf="accountService.isCaptain()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>
             Kapitein
           </a>
@@ -50,8 +50,9 @@
         <a  class="nav-item nav-link text-dark" [routerLink]="['/login']">Aanmelden</a>
       </div>
       <div style="float: right; display: flex" *ngIf="user">
-        <p class="text-dark h3">Welkom {{user.firstName}}</p>
-        <a href="" class="nav-item nav-link text-dark" (click)="logout()">Uitloggen</a>
+        <h3 class="mr-2">welkom {{user.firstName}}</h3>
+        <img *ngIf="this.imageUrl" [src]="this.imageUrl" class="avatar">
+        <a href="" class="nav-item nav-link" (click)="logout()">Uitloggen</a>
       </div>
       
     </div>

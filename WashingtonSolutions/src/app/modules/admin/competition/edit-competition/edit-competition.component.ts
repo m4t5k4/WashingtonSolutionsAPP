@@ -17,7 +17,7 @@ export class EditCompetitionComponent implements OnInit {
   competitionID = Number(this.route.snapshot.paramMap.get("id"));
   competition: Competition;
 
-  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute,) { 
+  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) { 
     // subscribe to GET competition/{id}
     this._competitionService.getCompetitionById(this.competitionID).subscribe(
       result => {

@@ -27,12 +27,20 @@ import { NoAccessComponent } from './shared/components/no-access/no-access.compo
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { UserAuthGuard } from './core/guards/user-auth-guard.service';
 import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
+import { CaptainComponent } from './modules/captain/captain/captain.component';
+import { GameComponent } from './modules/user/games/game.component';
+import { UserGameDetailComponent } from './modules/user/games/details/user-game-detail/user-game-detail.component';
+import { ChallengesComponent } from './modules/user/games/challenges/challenges.component';
+
+
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent},
   
-  { path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'captain', component: CaptainComponent },
+
   
   { path: 'admin/user/list', component: UserListComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'admin/user/edit/:id', component: UserDetailComponent, canActivate: [AuthGuard, AdminAuthGuard] },
@@ -56,7 +64,10 @@ const routes: Routes = [
   { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/add', component: NewTournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },
-  //TODO: childrenroutes
+  { path: 'user/profile/edit', component: ProfileEditComponent },
+  { path: 'user/games' , component: GameComponent},
+  { path: 'user/games/edit/:id', component: UserGameDetailComponent },
+  { path: 'user/challenge', component: ChallengesComponent },
 
   { path: 'group', component: GroupComponent, canActivate: [AuthGuard, AdminAuthGuard] },
   { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },

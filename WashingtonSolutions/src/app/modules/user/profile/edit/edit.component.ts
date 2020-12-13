@@ -7,6 +7,8 @@ import { HttpEventType } from '@angular/common/http';
 import { FileService } from '../../../../core/services/file.service';
 import { first } from 'rxjs/operators';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-edit',
@@ -27,6 +29,8 @@ export class EditComponent implements OnInit {
   imageUrl: string;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
     private accountService: AccountService,
@@ -39,10 +43,9 @@ export class EditComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', ],
+      password: ['', Validators.required],
       email: ['', Validators.required],
-      dob: ['', Validators.required],
-      userPictureID: []
+      dob: ['', Validators.required]
     });
 
     this.accountService.user
@@ -54,15 +57,17 @@ export class EditComponent implements OnInit {
         this.form.patchValue({
           dob: date
         });
+        console.log(this.user);
+        console.log(this.form.value);
         this.fileService.getFile(x.userPictureID)
           .pipe(first())
-          .subscribe(x => this.imageUrl = 'https://kickerapi.azurewebsites.net/uploads/' + x.path);
+          .subscribe(x => this.imageUrl = environment.apiUrl.slice(0, -3) + x.path);
       });
   }
 
   get f () { return this.form.controls; }
 
-  onSubmit () {
+  onSubmit (files) {
     this.submitted = true;
     // reset alerts on submit
     this.alertService.clear();
@@ -73,6 +78,48 @@ export class EditComponent implements OnInit {
     }
 
     this.loading = true;
+
+    console.log(this.user);
+    console.log(this.form.value);
+    let values = this.form.value;
+    let ngbDate = values.dob;
+    let date = this.ngbDateParserFormatter.format(ngbDate);
+
+    let userPictureID = this.user.userPictureID;
+    if (this.imgURL) {
+      const file = files[0];
+      this.fileService.upload(file).subscribe(data => {
+        userPictureID = data.fileID;
+        console.log(userPictureID);
+
+        var updateUser = {
+          roleID: this.user.roleID,
+          username: values.username,
+          password: values.password,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          dob: date + "T00:00:00",
+          userID: this.user.userID,
+          userPictureID: userPictureID,
+          groupID: this.user.groupID
+        }
+        console.log(updateUser);
+        this.accountService.update(this.user.userID, updateUser)
+          .pipe(first())
+          .subscribe({
+            next: () => {
+              this.alertService.success('Update succesvol', { keepAfterRouteChange: true });
+              this.router.navigate(['/']);
+            },
+            error: error => {
+              this.alertService.error(error);
+              this.loading = false;
+              console.log(updateUser);
+            }
+          });
+      });
+    }
   }
 
   preview (files) {
@@ -97,7 +144,7 @@ export class EditComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
 
-      /* this.fileService.uploadFile(file).subscribe(
+      this.fileService.uploadFile(file).subscribe(
         data => {
           console.log(data);
           if (data) {
@@ -118,9 +165,7 @@ export class EditComponent implements OnInit {
           this.inputFile.nativeElement.value = '';
 
         }
-      ); */
-
-      this.fileService.upload(file).subscribe(data => console.log(data));
+      );
     }
   }
 
