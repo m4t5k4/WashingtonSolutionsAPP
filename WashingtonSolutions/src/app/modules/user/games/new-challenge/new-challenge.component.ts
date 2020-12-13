@@ -44,8 +44,11 @@ export class NewChallengeComponent implements OnInit {
   competitions: Competition[]
   teamUsers
   groupID;
-  teamGroups: Team[]// de teams van de geselecteerde groep
   loading = false;
+  //Selectionvariables
+
+  teamGroups: Team[]// de teams van de geselecteerde groep
+  
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -126,5 +129,11 @@ export class NewChallengeComponent implements OnInit {
     )
   }
 
-  onSubmit() {}
+  onSubmit() { }
+
+  groupSelect(value: string) {
+    //als de group geselecteerd wordt zal dit gedisabled worden en worden de teams van deze group gezocht.
+    console.log(value)
+    //this._teamService.getTeamsByGroup(Number(value))
+  }
 }
