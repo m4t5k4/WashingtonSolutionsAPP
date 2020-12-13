@@ -5,6 +5,7 @@ import { Table } from 'src/app/shared/models/table.model'
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../../core/services/alert.service';
 import { FileService } from 'src/app/core/services/file.service';
+import { AccountService } from 'src/app/core/services/account.service';
 
 interface Option {
   value: number;
@@ -28,7 +29,7 @@ export class NewTableComponent implements OnInit {
   @ViewChild('inputFile') inputFile: ElementRef;
 
   users: Option[] = [
-    
+
   ]
 
   constructor(
@@ -37,6 +38,7 @@ export class NewTableComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private fileService: FileService,
+    private accountService: AccountService,
     private alertService: AlertService) { }
 
   ngOnInit(): void {
@@ -46,6 +48,9 @@ export class NewTableComponent implements OnInit {
       address: ['', Validators.required],
       contactPersonID: []
     });
+
+    this.accountService.getAll().subscribe(x => x.forEach(user => 
+      this.users.push({value: user.userID, viewValue: user.firstName+" "+user.lastName})))
   }
 
   get f() { return this.form.controls; }
@@ -70,31 +75,54 @@ export class NewTableComponent implements OnInit {
       this.fileService.upload(file).subscribe(data => {
         tablePictureID = data.fileID;
         console.log(tablePictureID);
-      });
-    } else {tablePictureID=null}
 
-    //var t = new Table(0, this.f.tablename.value, this.f.companyname.value, this.f.address.value, 1, 1)
-    var t = {
-      tableID: null,
-      tableName: this.f.tablename.value,
-      companyName: this.f.companyname.value,
-      address: this.f.address.value,
-      tablePictureID: tablePictureID,
-      contactPersonID: 0
-    }
-    //TODO: userID == ingelogde gebruiker
-    console.log(t)
-    this._tableService.addTable(t)
-      .subscribe({
-        next: () => {
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl("/admin/table");
-        },
-        error: error => {
-          this.alertService.error(error);
-          this.loading = false;
+        var t = {
+          tableID: 0,
+          tableName: this.f.tablename.value,
+          companyName: this.f.companyname.value,
+          address: this.f.address.value,
+          tablePictureID: tablePictureID,
+          contactPersonID: parseInt(this.f.contactPersonID.value)
         }
+
+        console.log(t)
+        this._tableService.addTable(t)
+          .subscribe({
+            next: () => {
+              const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+              this.router.navigateByUrl("/admin/table");
+            },
+            error: error => {
+              this.alertService.error(error);
+              this.loading = false;
+            }
+          });
       });
+    } else {
+      tablePictureID=null;
+      //var t = new Table(0, this.f.tablename.value, this.f.companyname.value, this.f.address.value, 1, 1)
+      var t = {
+        tableID: 0,
+        tableName: this.f.tablename.value,
+        companyName: this.f.companyname.value,
+        address: this.f.address.value,
+        tablePictureID: tablePictureID,
+        contactPersonID: parseInt(this.f.contactPersonID.value)
+      }
+
+      console.log(t)
+      this._tableService.addTable(t)
+        .subscribe({
+          next: () => {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigateByUrl("/admin/table");
+          },
+          error: error => {
+            this.alertService.error(error);
+            this.loading = false;
+          }
+        });
+    }    
   }
 
   goBack () {

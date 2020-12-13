@@ -15,6 +15,7 @@ export class UserAuthGuard implements CanActivate {
 
    canActivate(){
     if (this.user && this.accountService.isUser()) return true;
+    if (this.user && this.accountService.isCaptain()) return true;
 
     this.router.navigate(["/no-access"]);
     return false;

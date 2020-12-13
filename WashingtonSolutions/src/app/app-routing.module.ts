@@ -65,11 +65,11 @@ const routes: Routes = [
   { path: 'tournament', component: TournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/add', component: NewTournamentComponent, canActivate: [AuthGuard] },
   { path: 'tournament/:id', component: NewTournamentComponent, canActivate: [AuthGuard] },
-  { path: 'user/profile/edit', component: ProfileEditComponent },
-  { path: 'user/games' , component: GameComponent},
-  { path: 'user/games/edit/:id', component: UserGameDetailComponent },
-  { path: 'user/challenge', component: ChallengesComponent },
-  { path: 'user/challenge/new', component: NewChallengeComponent },
+  { path: 'user/profile/edit', component: ProfileEditComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/games' , component: GameComponent, canActivate: [UserAuthGuard ,AuthGuard]},
+  { path: 'user/games/edit/:id', component: UserGameDetailComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/challenge', component: ChallengesComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/challenge/new', component: NewChallengeComponent, canActivate: [UserAuthGuard ,AuthGuard] },
   
   { path: 'table', component: TableComponent },
   { path: 'table/add', component: NewTableComponent },
@@ -79,11 +79,9 @@ const routes: Routes = [
   { path: 'tournament/:id', component: NewTournamentComponent },
   //TODO: childrenroutes
 
-  { path: 'group', component: GroupComponent },
-
   { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
-  { path: 'user/show_score', component: ShowScoreComponent, canActivate: [AuthGuard] },
-  { path: 'user/create_team', component: CreateTeamComponent, canActivate: [AuthGuard] },
+  { path: 'user/show_score', component: ShowScoreComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/create_team', component: CreateTeamComponent, canActivate: [UserAuthGuard ,AuthGuard] },
   { path: 'no-access', component: Error403Component },
 
   //moet laatst blijven staan.

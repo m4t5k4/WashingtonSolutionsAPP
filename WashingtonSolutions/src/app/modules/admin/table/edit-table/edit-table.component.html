@@ -3,7 +3,13 @@
   <div class="card">
   <h4 class="card-header">Tafel Bewerken</h4>
   <div *ngIf="data" class="card-body">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="d-flex justify-content-center">
+      <img *ngIf="this.imageUrl && !imgURL" [src]="this.imageUrl" class="avatar mt-3">
+      <img [src]="imgURL" class="avatar mt-3" *ngIf="imgURL">
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(file.files)">
       <div class="form-group">
         <label for="tableName">Tafelnaam</label>
         <input type="text" formControlName="tableName" class="form-control"
@@ -27,6 +33,24 @@
                [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
         <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
           <div *ngIf="f.address.errors.required">Address is required</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="image">Foto</label>
+          <span style="color:red;" *ngIf="message">{{message}}</span>
+          <input style="border: 0px;" name="image" #inputFile #file type="file" accept='image/*'
+            (change)="preview(file.files)" class="form-control" />
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="tableID">ContactPersoon</label>
+          <select name="contactPersonID" id="contactPersonID" formControlName="contactPersonID" class="form-control">
+            <option *ngFor="let user of users" value="{{user.value}}">{{user.viewValue}}</option>
+          </select>
         </div>
       </div>
 
