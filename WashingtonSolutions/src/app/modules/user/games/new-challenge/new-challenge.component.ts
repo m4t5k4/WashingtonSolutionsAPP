@@ -165,7 +165,7 @@ export class NewChallengeComponent implements OnInit {
   onSubmit() {
     //let date = this.ngbDateParserFormatter.format(ngbDate);
     let date = new Date()
-    var game:Game = new Game(0,0,0,new Date().toUTCString(),this.selectedOwnTeamID,this.selectedOppTeamID,this.selectedTableID,this.selectedGameTypeID,null,this.selectedOwnTeamID,2)
+    var game:Game = new Game(0,0,0,new Date().toUTCString(),this.selectedOwnTeamID,this.selectedOwnTeamID,this.selectedTableID,this.selectedGameTypeID,null,this.selectedOppTeamID,2)
     console.log(game);
     this._gameService.addGame(game)
       .pipe(first())
