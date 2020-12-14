@@ -31,6 +31,7 @@ import { AuthGuard } from './core/guards/auth-guard.service';
 import { UserAuthGuard } from './core/guards/user-auth-guard.service';
 import { AdminAuthGuard } from './core/guards/admin-auth-guard.service';
 import { CaptainModule } from './modules/captain/captain.module';
+import { MakeGroupComponent } from './modules/user/make-group/make-group.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CaptainModule } from './modules/captain/captain.module';
     GroupComponent,
     ShowScoreComponent,
     CreateTeamComponent,
+    MakeGroupComponent,
   ],
 
   imports: [
