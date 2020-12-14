@@ -31,6 +31,7 @@ import { NewChallengeComponent } from './modules/user/games/new-challenge/new-ch
 
 
 import { Error403Component } from './shared/components/error/error403/error403.component';
+import { MakeGroupComponent } from './modules/user/make-group/make-group.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -79,6 +80,7 @@ const routes: Routes = [
   { path: 'group', component: GroupComponent, canActivate: [AdminAuthGuard, AuthGuard] },
   { path: 'user/show_score', component: ShowScoreComponent, canActivate: [UserAuthGuard ,AuthGuard] },
   { path: 'user/create_team', component: CreateTeamComponent, canActivate: [UserAuthGuard ,AuthGuard] },
+  { path: 'user/make-group', component: MakeGroupComponent, canActivate: [UserAuthGuard ,AuthGuard] },
   { path: 'no-access', component: Error403Component },
 
   //moet laatst blijven staan.
