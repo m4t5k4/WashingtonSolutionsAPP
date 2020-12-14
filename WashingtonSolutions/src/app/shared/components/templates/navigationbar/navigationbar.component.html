@@ -50,7 +50,7 @@
         <a  class="nav-item nav-link text-dark" [routerLink]="['/login']">Aanmelden</a>
       </div>
       <div style="float: right; display: flex" *ngIf="accountService.isLogedIn()">
-        <p class="mr-2 nav-item nav-link">Welkom, {{user.firstName}}</p>
+        <p *ngIf="this.game" class="mr-2 nav-item nav-link">Welkom, {{user.firstName}}</p>
         <img *ngIf="this.imageUrl" [src]="this.imageUrl" class="avatar">
         <a href="" class="nav-item nav-link" (click)="logout()">Uitloggen</a>
       </div>
