@@ -66,6 +66,10 @@ export class AccountService {
     return this.http.get<User[]>(`${environment.apiUrl}/users/GetByGroup/${id}`);
   }
 
+  getWithoutGroup(id: number) {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/WithoutGroup/`);
+  }
+
   update (id, params) {
     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
       .pipe(map(x => {

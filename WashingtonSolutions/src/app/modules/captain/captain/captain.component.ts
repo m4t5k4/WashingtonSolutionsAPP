@@ -77,8 +77,8 @@ export class CaptainComponent implements OnInit {
     this.accountService.getByGroupId(this.user.groupID)
       .pipe(first())
       .subscribe(users => this.users = users);
-    //lijst met gebruikers zonder groep... Of toch niet!
-    this.accountService.getAll()
+    //lijst met gebruikers zonder groep... Of toch niet!... Of toch wel!!!
+    this.accountService.getWithoutGroup()
       .pipe(first())
       .subscribe(users => {
         this.noGroupUsers = users
