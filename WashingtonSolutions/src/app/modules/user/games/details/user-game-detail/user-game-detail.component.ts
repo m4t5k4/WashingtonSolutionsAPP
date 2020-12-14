@@ -31,7 +31,17 @@ export class UserGameDetailComponent implements OnInit {
   tournaments: Tournament[];
   status: Status[];
 
-  constructor(private _gameService: GameService, private _tableService: TableService, private _competitionService: CompetitionService, private _teamService: TeamService, private _groupService: GroupService, private _tournamentService: TournamentService, private _statusService: StatusService, private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private _gameService: GameService, 
+    private _tableService: TableService, 
+    private _competitionService: CompetitionService, 
+    private _teamService: TeamService, 
+    private _groupService: GroupService, 
+    private _tournamentService: TournamentService, 
+    private _statusService: StatusService, 
+    private router: Router, 
+    private route: ActivatedRoute
+    ) {
     this.getGame();
     this.getGameTypes();
     this.getTables();
@@ -42,6 +52,7 @@ export class UserGameDetailComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
   }
 
   getGame() {
@@ -51,6 +62,11 @@ export class UserGameDetailComponent implements OnInit {
         this.game = result;
       }
     )
+    const timer = 5*60;
+    setTimeout(() => {
+      console.log(new Date());
+      this.getGame();
+    }, timer * 1000);
   }
 
   getGameTypes() {
@@ -109,14 +125,74 @@ export class UserGameDetailComponent implements OnInit {
   };
 
   startGame() {
-    let patchDocument = [];
-    patchDocument.push({ op: "replace", path: "/gameStatusID", value: 3 })
-    console.log(this.game.gameID)
-    console.log(patchDocument)
-    this._gameService.patch(this.game.gameID, patchDocument)
-      .subscribe(x=> {
-        this.getGame();
-      })
+    if (this.game.gameStatusID==1) {
+      let patchDocument = [];
+      patchDocument.push({ op: "replace", path: "/gameStatusID", value: 3 })
+      console.log(this.game.gameID)
+      console.log(patchDocument)
+      this._gameService.patch(this.game.gameID, patchDocument)
+        .subscribe(x => {
+          this.getGame();
+        })
+    } else {
+      console.log("niet planned")
+    }
+    
+  }
+
+  changeScore() {
+    if (this.game.gameStatusID==3 || this.game.gameStatusID==7) {
+      let patchDocument = [];
+      patchDocument.push({ op: "replace", path: "/gameStatusID", value: 7 })
+      patchDocument.push({ op: "replace", path: "/scoreTeamA", value: this.game.scoreTeamA })
+      patchDocument.push({ op: "replace", path: "/scoreTeamB", value: this.game.scoreTeamB })
+      console.log(this.game.gameID)
+      console.log(patchDocument)
+      this._gameService.patch(this.game.gameID, patchDocument)
+        .subscribe(x => {
+          this.getGame();
+        })
+    }
+
+  }
+
+  verifyScore() {
+    if (this.game.gameStatusID==7 || this.game.gameStatusID==5) {
+      let patchDocument = [];
+      patchDocument.push({ op: "replace", path: "/gameStatusID", value: 3 })
+      console.log(this.game.gameID)
+      console.log(patchDocument)
+      this._gameService.patch(this.game.gameID, patchDocument)
+        .subscribe(x => {
+          this.getGame();
+        })
+    }
+  }
+
+  dispute() {
+    if (this.game.gameStatusID==7){
+      let patchDocument = [];
+      patchDocument.push({ op: "replace", path: "/gameStatusID", value: 5 })
+      console.log(this.game.gameID)
+      console.log(patchDocument)
+      this._gameService.patch(this.game.gameID, patchDocument)
+        .subscribe(x => {
+          this.getGame();
+        })
+    }
+  }
+
+  endGame() {
+    if (this.game.gameStatusID == 3) {
+      let patchDocument = [];
+      patchDocument.push({ op: "replace", path: "/gameStatusID", value: 4 })
+      console.log(this.game.gameID)
+      console.log(patchDocument)
+      this._gameService.patch(this.game.gameID, patchDocument)
+        .subscribe(x => {
+          this.getGame();
+        })
+    }
   }
 
   goBack () {

@@ -14,8 +14,7 @@
         <td>{{ groups[teams[game.teamAID - 1].groupID - 1].name }}</td>
         <td>{{ groups[teams[game.teamBID - 1].groupID - 1].name }}</td>
         <td>{{ game.date }}</td>
-        <td *ngIf="game.scoreTeamA">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</td>
-        <td *ngIf="!game.scoreTeamA">ingepland</td><!-- to do aanpassen adhv status -->
+        <td *ngIf="game.gameID">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</td>
         <td><button class="btn btn-info mr-2" (click)="gameDetails(game.gameID)">Details</button></td>
       </tr>
       <tr *ngIf="!games">

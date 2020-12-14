@@ -30,9 +30,9 @@ export class DetailComponent implements OnInit {
   imageUrl: string;
 
   roles: Option[] = [
-    { value: 1, viewValue: 'admin' },
-    { value: 2, viewValue: 'gebruiker'},
-    { value: 3, viewValue: 'kapitein' }
+    { value: 1, viewValue: 'kapitein' },
+    { value: 2, viewValue: 'admin'},
+    { value: 3, viewValue: 'gebruiker' }
   ] 
 
   groups: Option[] = [

@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4)],],
       email: ['', Validators.required],
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     let ngbDate = values.dob;
     let date = this.ngbDateParserFormatter.format(ngbDate);
     var newUser = {
-      roleID : 2,
+      roleID : 3,
       username: values.username,
       password: values.password,
       firstName: values.firstName,

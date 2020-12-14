@@ -15,7 +15,14 @@
   </div>
   <div class="row">
     <p class="col-3 font-weight-bold">Score:</p>
-    <p class="col">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</p>
+    <div class="col-3">
+      <div class="row">
+        <input type="number" [(ngModel)]="game.scoreTeamA" style="width: 100px;" class="form-control m-1">
+        -
+        <input type="number" [(ngModel)]="game.scoreTeamB" style="width: 100px;" class="form-control m-1">
+      </div>
+    </div>
+    
   </div>
   <div class="row">
     <p class="col-3 font-weight-bold">Datum:</p>
@@ -35,22 +42,22 @@
   </div>
   <div class="row">
     <p class="col-3 font-weight-bold">Wedstrijd Status:</p>
-    <p class="col" *ngIf="status[0]">{{ status[game.gameStatusID - 1].name}}</p>
+    <p class="col" >{{ status[game.gameStatusID - 1].name}}</p>
   </div>
-  <button *ngIf="game.gameStatusID==1" class="btn btn-primary m-1" (click)="startGame()">
+  <button class="btn btn-primary m-1" (click)="startGame()">
   Starten
   </button>
-  <button *ngIf="game.gameStatusID==3" class="btn btn-info m-1" (click)="startGame()">
-    Betwisten
-  </button>
-  <button *ngIf="game.gameStatusID==3" class="btn btn-danger m-1" (click)="startGame()">
-    Beëindigen
-  </button>
-  <button *ngIf="game.gameStatusID==3" class="btn btn-success m-1" (click)="startGame()">
+  <button class="btn btn-success m-1" (click)="changeScore()">
     Score aanpassen
   </button>
-  <button *ngIf="game.gameStatusID==3" class="btn btn-primary m-1" (click)="startGame()">
+  <button class="btn btn-success m-1" (click)="verifyScore()">
     Score verifiëren
+  </button>
+  <button class="btn btn-info m-1" (click)="dispute()">
+    Betwisten
+  </button>
+  <button class="btn btn-danger m-1" (click)="endGame()">
+    Beëindigen
   </button>
   <a (click)="goBack()" class="btn btn-link">Terug</a>
 </div>
