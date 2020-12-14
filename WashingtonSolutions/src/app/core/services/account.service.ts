@@ -66,7 +66,7 @@ export class AccountService {
     return this.http.get<User[]>(`${environment.apiUrl}/users/GetByGroup/${id}`);
   }
 
-  getWithoutGroup(id: number) {
+  getWithoutGroup() {
     return this.http.get<User[]>(`${environment.apiUrl}/users/WithoutGroup/`);
   }
 
