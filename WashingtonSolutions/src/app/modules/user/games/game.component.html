@@ -13,8 +13,17 @@
       <tr *ngFor="let game of games" (click)="gameDetails(game.gameID)">
         <td>{{ groups[teams[game.teamAID - 1].groupID - 1].name }}</td>
         <td>{{ groups[teams[game.teamBID - 1].groupID - 1].name }}</td>
-        <td>{{ game.date }}</td>
-        <td *ngIf="game.gameID">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</td>
+        <td>{{ game.date | date }}</td>
+        <td *ngIf="game.scoreTeamA">{{ game.scoreTeamA }} - {{ game.scoreTeamB }}</td>
+        <td *ngIf="!game.scoreTeamA">
+          <span *ngIf="game.gameStatusID == 1">Ingepland</span>
+          <span *ngIf="game.gameStatusID == 2">Uitgedaagd</span>
+          <span *ngIf="game.gameStatusID == 3">Aan het spelen</span>
+          <span *ngIf="game.gameStatusID == 4">Gespeeld</span>
+          <span *ngIf="game.gameStatusID == 5">Betwisting</span>
+          <span *ngIf="game.gameStatusID == 6">Afgewezen</span>
+          <span *ngIf="game.gameStatusID == 7">Verifiëren</span>
+        </td><!-- to do aanpassen adhv status -->
         <td><button class="btn btn-info mr-2" (click)="gameDetails(game.gameID)">Details</button></td>
       </tr>
       <tr *ngIf="!games">

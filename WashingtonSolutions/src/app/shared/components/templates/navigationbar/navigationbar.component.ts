@@ -16,6 +16,7 @@ export class NavigationbarComponent implements OnInit {
 
   navUser = [
     { link: '/user/games', title: 'Mijn wedstrijden' },
+    { link: '/user/challenge', title: 'Mijn challenges' },
     { link: '/user/profile/edit', title: 'Mijn profiel' }
   ]
   navCaptain = [

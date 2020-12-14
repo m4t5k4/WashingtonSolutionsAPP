@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { GroupService } from 'src/app/core/services/group.service';
+import { Group } from 'src/app/shared/models/group.model';
 import { AccountService } from '../../../../core/services/account.service';
 import { AlertService } from '../../../../core/services/alert.service';
+import { Role } from '../../../../shared/models/role.model';
 
 @Component({
   selector: 'app-list',
@@ -10,9 +13,13 @@ import { AlertService } from '../../../../core/services/alert.service';
 })
 export class ListComponent implements OnInit {
   users = null;
+  roles;
+  groups;
+
   constructor(
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private groupService: GroupService
     ) { }
 
   ngOnInit(): void {
@@ -23,6 +30,18 @@ export class ListComponent implements OnInit {
     this.accountService.getAll()
       .pipe(first())
       .subscribe(users => console.log(users));
+
+    this.accountService.getRoles().subscribe(
+      result => {
+        this.roles = result;
+      }
+    )
+
+    this.groupService.getGroups().subscribe(
+      result => {
+        this.groups = result;
+      }
+    )
   }
 
   deleteUser (id: number) {

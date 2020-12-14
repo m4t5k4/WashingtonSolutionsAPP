@@ -163,4 +163,8 @@ export class AccountService {
     user.groupID = groupID;
     return this.http.put(`${environment.apiUrl}/users/${user.userID}`, user)
   }
+
+  getRoles() {
+    return this.http.get(`${environment.apiUrl}/roles`)
+  }
 }
