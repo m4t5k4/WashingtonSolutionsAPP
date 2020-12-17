@@ -44,6 +44,7 @@ export class ChallengesComponent implements OnInit {
     this.getTables();
     this.getTeams();
     this.getGroups();
+    this.getTeams();
   }
 
   getData() {

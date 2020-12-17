@@ -10,7 +10,9 @@ export class Game {
         public gameTypeID: number,
         public tournamentID: number,
         public challengedByID: number,
-        public gameStatusID: number) {
+      public gameStatusID: number,
+        public challengedGroupID?: number
+    ) {
 
     }
 }

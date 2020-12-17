@@ -41,6 +41,7 @@ export class NewChallengeComponent implements OnInit {
     this.getGameTypes()
     this.getCompetitions()
     this.getTables();
+    this.getTeams();
   }
 
   form: FormGroup;
@@ -165,7 +166,7 @@ export class NewChallengeComponent implements OnInit {
   onSubmit() {
     //let date = this.ngbDateParserFormatter.format(ngbDate);
     let date = new Date()
-    var game:Game = new Game(0,0,0,new Date().toUTCString(),this.selectedOwnTeamID,this.selectedOwnTeamID,this.selectedTableID,this.selectedGameTypeID,null,this.selectedOppTeamID,2)
+    var game: Game = new Game(0, 0, 0, new Date().toUTCString(), this.selectedOwnTeamID, this.selectedOwnTeamID, this.selectedTableID, this.selectedGameTypeID, null, this.selectedOppTeamID, 2, this.selectedGroupID)
     console.log(game);
     this._gameService.addGame(game)
       .pipe(first())
