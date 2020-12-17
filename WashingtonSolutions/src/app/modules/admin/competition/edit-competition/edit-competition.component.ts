@@ -56,7 +56,7 @@ export class EditCompetitionComponent implements OnInit {
     this._competitionService.putCompetition(this.competitionID, c).subscribe({
       next: () => {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigateByUrl('admin/competitions');
+        this.router.navigateByUrl('admin/competition');
       },
       error: error => {
         console.log(error);

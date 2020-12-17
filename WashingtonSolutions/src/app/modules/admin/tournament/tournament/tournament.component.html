@@ -10,7 +10,6 @@
             <th>Startdatum</th>
             <th>Einddatum</th>
             <th>Competitie</th>
-            <th>Winnaar</th>
             <th></th>
           </tr>
         </thead>
@@ -20,11 +19,9 @@
             <td>{{ tournament.startDate | date }}</td>
             <td>{{ tournament.endDate | date }}</td>
             <td>{{ competitions[tournament.competitionID - 1].name }}</td>
-            <td *ngIf="tournament.winnerID">{{ groups[tournament.winnerID - 1].name }}</td>
-            <td *ngIf="!tournament.winnerID">Winnaar nog niet bekend gemaakt!</td>
+            
             <td style="white-space: nowrap">
-              <button (click)="announceWinner(tournament.tournamentID)" class="btn btn-sm btn-primary mr-2">Maak winnaar
-                bekend</button>
+              
               <button class="btn btn-sm btn-success mr-2"
                 (click)="editTournament(tournament.tournamentID)">Wijzigen</button>
               <button class="btn btn-sm btn-danger"
